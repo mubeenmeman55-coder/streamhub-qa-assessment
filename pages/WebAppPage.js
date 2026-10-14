@@ -13,6 +13,25 @@ class WebAppPage extends BasePage {
     this.tenure = page.getByRole('textbox', { name: 'Loan tenure' });
     this.tenureUnit = page.getByRole('combobox', { name: 'Tenure unit' });
     this.startMonth = page.getByLabel('EMI start month');
+    this.extra = page.getByRole('textbox', { name: 'Extra monthly payment (₹, optional)' });
+    this.amountWords = page.getByTestId('amount-words');
+    this.shareButton = page.getByRole('button', { name: 'Copy share link' });
+    this.shareUrl = page.getByTestId('share-url');
+    this.scenarioName = page.getByRole('textbox', { name: 'Scenario name' });
+    this.saveButton = page.getByRole('button', { name: 'Save', exact: true });
+    this.savedItems = page.getByTestId('saved-item');
+    this.savedEmpty = page.getByTestId('saved-empty');
+    this.themeToggle = page.getByRole('button', { name: 'Toggle dark mode' });
+    this.csvButton = page.getByRole('button', { name: 'Download CSV' });
+    this.savings = page.getByTestId('savings');
+    this.compareButton = page.getByRole('button', { name: 'Compare loans' });
+    this.compareVerdict = page.getByTestId('compare-verdict');
+    this.yearFormat = page.getByLabel('Year format');
+    this.endOfMonthRadio = page.getByRole('radio', { name: 'End of month' });
+    this.startOfMonthRadio = page.getByRole('radio', { name: 'Start of month' });
+    this.monthRows = page.getByTestId('schedule-month-row');
+    this.balancePoints = page.getByTestId('balance-point');
+    this.balanceLine = page.getByTestId('balance-line');
     this.amountSlider = page.getByRole('slider', { name: 'Loan amount slider' });
     this.calculateButton = page.getByRole('button', { name: 'Calculate EMI' });
     this.resetButton = page.getByRole('button', { name: 'Reset' });
@@ -43,12 +62,13 @@ class WebAppPage extends BasePage {
     await this.page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name, exact: true }).click();
   }
 
-  async enterLoan({ amount, rate, tenure, unit = 'Years', start }) {
+  async enterLoan({ amount, rate, tenure, unit = 'Years', start, extra }) {
     await this.amount.fill(String(amount));
     await this.rate.fill(String(rate));
     await this.tenure.fill(String(tenure));
     await this.tenureUnit.selectOption({ label: unit });
     if (start) await this.startMonth.fill(start);
+    if (extra !== undefined) await this.extra.fill(String(extra));
   }
 
   async calculate() {
@@ -106,6 +126,17 @@ class WebAppPage extends BasePage {
   async totalsRow() {
     const read = async (col) => Number(await this.scheduleTotal.locator(`[data-col=${col}]`).getAttribute('data-value'));
     return { paid: await read('paid'), principal: await read('principal'), interest: await read('interest') };
+  }
+
+  async fillCompare(which, { amount, rate, years }) {
+    await this.page.getByRole('textbox', { name: `Loan ${which} amount` }).fill(String(amount));
+    await this.page.getByRole('textbox', { name: `Loan ${which} rate` }).fill(String(rate));
+    await this.page.getByRole('textbox', { name: `Loan ${which} tenure` }).fill(String(years));
+  }
+
+  /** exact value of a comparison cell, e.g. ('emi','a') or ('total','diff') */
+  async compareValue(measure, col) {
+    return Number(await this.page.getByTestId(`cmp-${measure}-${col}`).getAttribute('data-value'));
   }
 
   async lastRowClosingBalance() {

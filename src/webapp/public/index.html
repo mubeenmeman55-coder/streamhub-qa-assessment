@@ -11,50 +11,90 @@
   <div class="wrap">
     <div class="top">
       <a class="brand" href="#/dashboard"><span class="logo" aria-hidden="true">%</span>EMI Calculator</a>
-      <nav aria-label="Main">
-        <a href="#/dashboard" id="nav-dashboard" data-testid="nav-dashboard">Dashboard</a>
-        <a href="#/report" id="nav-report" data-testid="nav-report">Report</a>
-      </nav>
+      <div class="topright">
+        <nav aria-label="Main">
+          <a href="#/dashboard" id="nav-dashboard" data-testid="nav-dashboard">Dashboard</a>
+          <a href="#/report" id="nav-report" data-testid="nav-report">Report</a>
+          <a href="#/compare" id="nav-compare" data-testid="nav-compare">Compare</a>
+        </nav>
+        <button type="button" id="theme-toggle" class="themebtn" aria-label="Toggle dark mode" aria-pressed="false">&#9680;</button>
+      </div>
     </div>
     <h1 id="page-title">Loan EMI dashboard</h1>
-    <p>Plan a loan: see your monthly EMI, the interest you pay, and a year-by-year schedule.</p>
+    <p>Plan a loan: see your monthly EMI, the interest you pay, what a prepayment saves, and a year-by-year schedule.</p>
   </div>
 </header>
 
 <main class="wrap">
-  <section class="panel form-panel" aria-labelledby="form-h">
-    <h2 id="form-h">Loan details</h2>
-    <form id="loan-form" novalidate>
-      <div class="field">
-        <label for="amount">Loan amount (&#8377;)</label>
-        <input id="amount" name="amount" type="text" inputmode="numeric" value="25,00,000" autocomplete="off" aria-describedby="err-amount">
-        <input id="amount-range" type="range" min="100000" max="10000000" step="50000" value="2500000" aria-label="Loan amount slider">
-        <p class="error" id="err-amount" data-testid="error-amount" role="alert"></p>
+  <div class="side">
+    <section class="panel form-panel" id="form-panel" aria-labelledby="form-h">
+      <h2 id="form-h">Loan details</h2>
+      <div class="products" role="tablist" aria-label="Loan type">
+        <button type="button" role="tab" id="product-home" data-testid="product-home" data-product="home" aria-selected="true">Home loan</button>
+        <button type="button" role="tab" id="product-personal" data-testid="product-personal" data-product="personal" aria-selected="false">Personal loan</button>
+        <button type="button" role="tab" id="product-car" data-testid="product-car" data-product="car" aria-selected="false">Car loan</button>
       </div>
-      <div class="field">
-        <label for="rate">Interest rate (% per annum)</label>
-        <input id="rate" name="rate" type="text" inputmode="decimal" value="10" autocomplete="off" aria-describedby="err-rate">
-        <input id="rate-range" type="range" min="1" max="25" step="0.1" value="10" aria-label="Interest rate slider">
-        <p class="error" id="err-rate" data-testid="error-rate" role="alert"></p>
-      </div>
-      <div class="field">
-        <label for="tenure">Loan tenure</label>
-        <div class="inline">
-          <input id="tenure" name="tenure" type="text" inputmode="numeric" value="10" autocomplete="off" aria-describedby="err-tenure">
-          <select id="tenure-unit" name="tenure-unit" aria-label="Tenure unit"><option value="years">Years</option><option value="months">Months</option></select>
+      <form id="loan-form" novalidate>
+        <div class="field">
+          <label for="amount">Loan amount (&#8377;)</label>
+          <input id="amount" name="amount" type="text" inputmode="numeric" value="25,00,000" autocomplete="off" aria-describedby="err-amount amount-words">
+          <p class="hint" id="amount-words" data-testid="amount-words"></p>
+          <input id="amount-range" type="range" min="100000" max="10000000" step="50000" value="2500000" aria-label="Loan amount slider">
+          <div class="ticks" data-for="amount-range" aria-hidden="true"></div>
+          <p class="error" id="err-amount" data-testid="error-amount" role="alert"></p>
         </div>
-        <input id="tenure-range" type="range" min="1" max="30" step="1" value="10" aria-label="Loan tenure slider">
-        <p class="error" id="err-tenure" data-testid="error-tenure" role="alert"></p>
+        <div class="field">
+          <label for="rate">Interest rate (% per annum)</label>
+          <input id="rate" name="rate" type="text" inputmode="decimal" value="10" autocomplete="off" aria-describedby="err-rate">
+          <input id="rate-range" type="range" min="1" max="25" step="0.1" value="10" aria-label="Interest rate slider">
+          <div class="ticks" data-for="rate-range" aria-hidden="true"></div>
+          <p class="error" id="err-rate" data-testid="error-rate" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="tenure">Loan tenure</label>
+          <div class="inline">
+            <input id="tenure" name="tenure" type="text" inputmode="numeric" value="10" autocomplete="off" aria-describedby="err-tenure">
+            <select id="tenure-unit" name="tenure-unit" aria-label="Tenure unit"><option value="years">Years</option><option value="months">Months</option></select>
+          </div>
+          <input id="tenure-range" type="range" min="1" max="30" step="1" value="10" aria-label="Loan tenure slider">
+          <div class="ticks" data-for="tenure-range" aria-hidden="true"></div>
+          <p class="error" id="err-tenure" data-testid="error-tenure" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="start">EMI start month</label>
+          <input id="start" name="start" type="month" value="2027-01">
+          <p class="error" id="err-start" data-testid="error-start" role="alert"></p>
+        </div>
+        <fieldset class="field timing">
+          <legend>EMI payment timing</legend>
+          <label class="radio"><input type="radio" name="timing" value="arrears" id="timing-arrears" checked> End of month</label>
+          <label class="radio"><input type="radio" name="timing" value="advance" id="timing-advance"> Start of month</label>
+        </fieldset>
+        <div class="field">
+          <label for="extra">Extra monthly payment (&#8377;, optional)</label>
+          <input id="extra" name="extra" type="text" inputmode="numeric" value="0" autocomplete="off" aria-describedby="err-extra">
+          <p class="error" id="err-extra" data-testid="error-extra" role="alert"></p>
+        </div>
+        <button type="submit" id="calculate" class="primary">Calculate EMI</button>
+        <div class="btnrow">
+          <button type="button" id="reset" class="ghost">Reset</button>
+          <button type="button" id="share" class="ghost">Copy share link</button>
+        </div>
+        <div id="share-box" hidden><label for="share-url">Share link</label><input id="share-url" data-testid="share-url" type="text" readonly></div>
+      </form>
+    </section>
+
+    <section class="panel" id="saved-panel" aria-labelledby="saved-h">
+      <h2 id="saved-h">Saved scenarios</h2>
+      <div class="inline save-row">
+        <input id="scenario-name" type="text" placeholder="Scenario name" aria-label="Scenario name" maxlength="40" autocomplete="off">
+        <button type="button" id="save-scenario" class="ghost" style="margin:0">Save</button>
       </div>
-      <div class="field">
-        <label for="start">EMI start month</label>
-        <input id="start" name="start" type="month" value="2027-01">
-        <p class="error" id="err-start" data-testid="error-start" role="alert"></p>
-      </div>
-      <button type="submit" id="calculate" class="primary">Calculate EMI</button>
-      <button type="button" id="reset" class="ghost">Reset</button>
-    </form>
-  </section>
+      <p class="error" id="err-save" data-testid="error-save" role="alert"></p>
+      <ul id="saved-list" data-testid="saved-list" class="saved"></ul>
+      <p class="hint" id="saved-empty" data-testid="saved-empty">Nothing saved yet. Calculate a loan, name it, and save it.</p>
+    </section>
+  </div>
 
   <div class="views">
     <!-- DASHBOARD: summary numbers + charts -->
@@ -66,6 +106,11 @@
         <article class="kpi"><span>Total payment</span><b id="kpi-total" data-testid="kpi-total" data-value="">-</b></article>
         <article class="kpi"><span>Interest share</span><b id="kpi-share" data-testid="kpi-share" data-value="">-</b></article>
       </div>
+      <article class="savings" id="savings" data-testid="savings" hidden aria-live="polite">
+        <h3>Prepayment impact</h3>
+        <p>An extra payment each month saves <b id="saved-interest" data-testid="saved-interest" data-value="">-</b> in interest and finishes
+        <b id="saved-months" data-testid="saved-months" data-value="">-</b> sooner (loan ends after <b id="actual-months" data-testid="actual-months" data-value="">-</b>).</p>
+      </article>
       <div class="charts">
         <section class="panel" aria-labelledby="pie-h">
           <h3 id="pie-h">Principal vs interest</h3>
@@ -84,6 +129,7 @@
           <h3 id="bar-h">Payments per year</h3>
           <div class="bar-wrap"><svg id="bar-chart" data-testid="bar-chart" viewBox="0 0 640 260" role="img" aria-label="Stacked bar chart of principal and interest paid each year"></svg>
           <div id="bar-tooltip" data-testid="bar-tooltip" role="tooltip" hidden></div></div>
+          <ul class="legend inline-legend"><li><i class="sw principal"></i>Principal</li><li><i class="sw interest"></i>Interest</li><li><i class="sw balance"></i>Balance (right axis)</li></ul>
         </section>
       </div>
     </section>
@@ -96,8 +142,11 @@
           <div class="controls">
             <label for="report-mode">View</label>
             <select id="report-mode" data-testid="report-mode"><option value="yearly">Yearly</option><option value="monthly">Monthly</option></select>
+            <label for="year-format">Year format</label>
+            <select id="year-format" data-testid="year-format"><option value="calendar">Calendar year</option><option value="financial">Financial year (Apr-Mar)</option></select>
             <label for="report-year">Year</label>
             <select id="report-year" data-testid="report-year"><option value="all">All years</option></select>
+            <button type="button" id="download-csv" class="ghost" style="margin:0;width:auto">Download CSV</button>
           </div>
         </div>
         <p id="report-summary" data-testid="report-summary" class="muted" aria-live="polite"></p>
@@ -110,8 +159,45 @@
         </div>
       </div>
     </section>
+
+    <!-- COMPARE: two loans side by side -->
+    <section id="view-compare" data-testid="view-compare" aria-labelledby="cmp-h" hidden>
+      <div class="panel">
+        <h2 id="cmp-h">Compare two loans</h2>
+        <form id="compare-form" novalidate>
+          <div class="cmp-grid">
+            <fieldset><legend>Loan A</legend>
+              <label for="a-amount">Amount (&#8377;)</label><input id="a-amount" type="text" inputmode="numeric" value="25,00,000" aria-label="Loan A amount">
+              <label for="a-rate">Rate (%)</label><input id="a-rate" type="text" inputmode="decimal" value="10" aria-label="Loan A rate">
+              <label for="a-years">Tenure (years)</label><input id="a-years" type="text" inputmode="numeric" value="10" aria-label="Loan A tenure">
+            </fieldset>
+            <fieldset><legend>Loan B</legend>
+              <label for="b-amount">Amount (&#8377;)</label><input id="b-amount" type="text" inputmode="numeric" value="25,00,000" aria-label="Loan B amount">
+              <label for="b-rate">Rate (%)</label><input id="b-rate" type="text" inputmode="decimal" value="9" aria-label="Loan B rate">
+              <label for="b-years">Tenure (years)</label><input id="b-years" type="text" inputmode="numeric" value="15" aria-label="Loan B tenure">
+            </fieldset>
+          </div>
+          <p class="error" id="err-compare" data-testid="error-compare" role="alert"></p>
+          <button type="submit" id="compare-btn" class="primary" style="width:auto">Compare loans</button>
+          <button type="button" id="compare-use-current" class="ghost" style="width:auto">Use current loan as Loan A</button>
+        </form>
+        <div id="compare-result" hidden>
+          <p id="compare-verdict" data-testid="compare-verdict" class="verdict" aria-live="polite"></p>
+          <table id="compare-table" data-testid="compare-table" aria-label="Loan comparison">
+            <thead><tr><th scope="col">Measure</th><th scope="col">Loan A</th><th scope="col">Loan B</th><th scope="col">B minus A</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Monthly EMI</th><td data-testid="cmp-emi-a"></td><td data-testid="cmp-emi-b"></td><td data-testid="cmp-emi-diff"></td></tr>
+              <tr><th scope="row">Total interest</th><td data-testid="cmp-interest-a"></td><td data-testid="cmp-interest-b"></td><td data-testid="cmp-interest-diff"></td></tr>
+              <tr><th scope="row">Total payment</th><td data-testid="cmp-total-a"></td><td data-testid="cmp-total-b"></td><td data-testid="cmp-total-diff"></td></tr>
+              <tr><th scope="row">Tenure (months)</th><td data-testid="cmp-months-a"></td><td data-testid="cmp-months-b"></td><td data-testid="cmp-months-diff"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   </div>
 </main>
+<div id="toast" role="status" aria-live="polite" data-testid="toast"></div>
 <script src="app.js"></script>
 </body>
 </html>

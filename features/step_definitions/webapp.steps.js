@@ -10,10 +10,12 @@ const CENT = 0.05; // data-value attributes carry 2 decimals
 function expectedFor(world) {
   const { principal, rate, months, startYear, startMonth } = world.state.loan;
   const years = months / 12;
-  return { ...summary(principal, rate, years), schedule: yearlySchedule(principal, rate, years, startYear, startMonth) };
+  const advance = world.state.advance === true;
+  const fy = world.state.fy === true;
+  return { ...summary(principal, rate, years, advance), schedule: yearlySchedule(principal, rate, years, startYear, startMonth, { advance, fy }) };
 }
 
-function rememberLoan(world, { amount, rate, tenure, unit, start = '2027-01' }) {
+function rememberLoan(world, { amount, rate, tenure, unit, start = '2027-01', extra: extraRaw = '0' }) {
   const [startYear, month] = start.split('-').map(Number);
   const principal = Number(String(amount).replace(/,/g, ''));
   if (![principal, Number(rate), Number(tenure)].every(Number.isFinite) || String(rate).trim() === '') return; // invalid-input scenarios keep the last valid loan
@@ -24,6 +26,8 @@ function rememberLoan(world, { amount, rate, tenure, unit, start = '2027-01' }) 
     startYear,
     startMonth: month - 1,
   };
+  const extra = Number(String(extraRaw).replace(/,/g, ''));
+  if (Number.isFinite(extra)) world.state.loan.extra = extra;
 }
 
 Given('I open the EMI app', async function () {
@@ -57,9 +61,16 @@ Then('the form is pre-filled with amount {string}, rate {string} and tenure {str
 
 When('I enter loan amount {string}, rate {string}, tenure {string} {string} and calculate', async function (amount, rate, tenure, unit) {
   this.state.emiBefore = await this.app.kpiValue('emi');
-  await this.app.enterLoan({ amount, rate, tenure, unit });
+  await this.app.enterLoan({ amount, rate, tenure, unit, extra: 0 });
   await this.app.calculate();
   rememberLoan(this, { amount, rate, tenure, unit });
+});
+
+When('I enter loan amount {string}, rate {string}, tenure {string} {string} with an extra monthly payment of {string} and calculate', async function (amount, rate, tenure, unit, extra) {
+  this.state.emiBefore = await this.app.kpiValue('emi');
+  await this.app.enterLoan({ amount, rate, tenure, unit, extra });
+  await this.app.calculate();
+  rememberLoan(this, { amount, rate, tenure, unit, extra });
 });
 
 When('I enter loan amount {string}, rate {string}, tenure {string} {string} starting {string} and calculate', async function (amount, rate, tenure, unit, start) {

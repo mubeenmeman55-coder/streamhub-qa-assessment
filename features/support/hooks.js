@@ -52,7 +52,7 @@ AfterAll(async () => {
 
 Before({ tags: '@ui' }, async function ({ pickle }) {
   browser ??= await chromium.launch({ headless: config.headless, slowMo: config.slowMo });
-  this.context = await browser.newContext({ viewport: { width: 1366, height: 900 } });
+  this.context = await browser.newContext({ viewport: { width: 1366, height: 900 }, colorScheme: 'light' });
   this.context.setDefaultTimeout(config.timeout);
   if (config.blockAds) {
     // hide whatever ad placeholders remain once their scripts are blocked

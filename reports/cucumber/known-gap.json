@@ -12,7 +12,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 12344299
+              "duration": 18178800
             },
             "keyword": "Before",
             "hidden": true
@@ -20,7 +20,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 448415200
+              "duration": 332849199
             },
             "arguments": [],
             "keyword": "When ",
@@ -39,7 +39,7 @@
           {
             "result": {
               "status": "failed",
-              "duration": 3040899,
+              "duration": 2837498,
               "error_message": "Error: a 5xx means the server failed on this input\n\nexpect(received).toBeLessThan(expected)\n\nExpected: < 500\nReceived:   500\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeLessThan (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:40:81)"
             },
             "arguments": [],
@@ -53,7 +53,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 3513400
+              "duration": 2555800
             },
             "keyword": "After",
             "hidden": true
@@ -81,7 +81,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 1458000
+              "duration": 1938499
             },
             "keyword": "Before",
             "hidden": true
@@ -89,7 +89,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 607914398
+              "duration": 628051499
             },
             "arguments": [],
             "keyword": "When ",
@@ -108,7 +108,7 @@
           {
             "result": {
               "status": "failed",
-              "duration": 951499,
+              "duration": 870899,
               "error_message": "Error: expected a 4xx rejection but the API answered 201\n\nexpect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 400\nReceived:    201\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeGreaterThanOrEqual (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:64:67)"
             },
             "arguments": [],
@@ -128,7 +128,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 2643799
+              "duration": 1769299
             },
             "keyword": "After",
             "hidden": true
@@ -156,7 +156,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 2107600
+              "duration": 2059900
             },
             "keyword": "Before",
             "hidden": true
@@ -164,7 +164,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 259934897
+              "duration": 272469699
             },
             "arguments": [],
             "keyword": "When ",
@@ -183,7 +183,7 @@
           {
             "result": {
               "status": "failed",
-              "duration": 3238899,
+              "duration": 747399,
               "error_message": "Error: expected a 4xx rejection but the API answered 201\n\nexpect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 400\nReceived:    201\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeGreaterThanOrEqual (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:64:67)"
             },
             "arguments": [],
@@ -203,7 +203,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 2757500
+              "duration": 1526899
             },
             "keyword": "After",
             "hidden": true
@@ -231,7 +231,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 1387299
+              "duration": 1213000
             },
             "keyword": "Before",
             "hidden": true
@@ -239,7 +239,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 327707698
+              "duration": 321242198
             },
             "arguments": [],
             "keyword": "When ",
@@ -258,7 +258,7 @@
           {
             "result": {
               "status": "failed",
-              "duration": 959799,
+              "duration": 629797,
               "error_message": "Error: expected a 4xx rejection but the API answered 201\n\nexpect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 400\nReceived:    201\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeGreaterThanOrEqual (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:64:67)"
             },
             "arguments": [],
@@ -278,7 +278,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 1819599
+              "duration": 1084000
             },
             "keyword": "After",
             "hidden": true
@@ -306,7 +306,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 1887200
+              "duration": 942900
             },
             "keyword": "Before",
             "hidden": true
@@ -314,7 +314,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 766982600
+              "duration": 300929098
             },
             "arguments": [],
             "keyword": "When ",
@@ -333,7 +333,7 @@
           {
             "result": {
               "status": "failed",
-              "duration": 817199,
+              "duration": 1089099,
               "error_message": "Error: expected a 4xx rejection but the API answered 201\n\nexpect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 400\nReceived:    201\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeGreaterThanOrEqual (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:64:67)"
             },
             "arguments": [],
@@ -353,7 +353,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 999900
+              "duration": 1660800
             },
             "keyword": "After",
             "hidden": true
@@ -381,7 +381,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 1325800
+              "duration": 1093400
             },
             "keyword": "Before",
             "hidden": true
@@ -389,7 +389,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 257261000
+              "duration": 302692698
             },
             "arguments": [],
             "keyword": "When ",
@@ -408,7 +408,7 @@
           {
             "result": {
               "status": "failed",
-              "duration": 899998,
+              "duration": 677000,
               "error_message": "Error: expected a 4xx rejection but the API answered 201\n\nexpect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 400\nReceived:    201\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeGreaterThanOrEqual (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:64:67)"
             },
             "arguments": [],
@@ -428,7 +428,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 1492700
+              "duration": 1314600
             },
             "keyword": "After",
             "hidden": true
@@ -456,7 +456,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 1412999
+              "duration": 1452999
             },
             "keyword": "Before",
             "hidden": true
@@ -464,7 +464,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 309042798
+              "duration": 318933998
             },
             "arguments": [],
             "keyword": "When ",
@@ -483,7 +483,7 @@
           {
             "result": {
               "status": "failed",
-              "duration": 979800,
+              "duration": 635899,
               "error_message": "Error: expected a 4xx rejection but the API answered 201\n\nexpect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 400\nReceived:    201\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeGreaterThanOrEqual (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:64:67)"
             },
             "arguments": [],
@@ -503,7 +503,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 1586600
+              "duration": 1343399
             },
             "keyword": "After",
             "hidden": true

@@ -5,8 +5,8 @@ plus the self-healing exercise. Parts of Section B that I also built are kept as
 
 | Brief item | What I built | Where |
 |---|---|---|
-| **A1** web app | EMI Calculator: dashboard (KPIs, pie chart, bar chart), report view (filterable amortisation table), validation | `src/webapp/` |
-| **A2** Playwright tests | 21 Cucumber scenarios, page object, independent EMI oracle | `features/webapp/`, `pages/WebAppPage.js`, `features/step_definitions/webapp.steps.js` |
+| **A1** web app | EMI Calculator: dashboard (KPIs, pie, bar + balance line), report (filters, drill-down, CSV), compare view, prepayment, saved scenarios | `src/webapp/` |
+| **A2** Playwright tests | 56 Cucumber scenarios, page object, independent EMI oracle | `features/webapp/`, `pages/WebAppPage.js`, `features/step_definitions/webapp.steps.js` |
 | **A3** API test | JSONPlaceholder `POST /posts`: long titles, special characters, missing fields | `features/jsonplaceholder/`, `pages/api/PostsApi.js` |
 | **A4** SQL | schema + round-trip transfers + IPL streaks, with output screenshots | `sql/`, `reports/sql/` |
 | Self-healing | 5 deliberately broken locators, write-up, working POC | `pages/LegacyEmiPage.js`, `docs/SELF_HEALING.md`, `self-healing/heal.js` |
@@ -50,11 +50,17 @@ See "Latest results" at the end for the numbers.
 
 ## A1 - the EMI Calculator app (`src/webapp`)
 
-Plain HTML/CSS/JS served by a tiny Express static server. Enter amount, rate, tenure (years or months) and start month, press **Calculate EMI**.
-- **Dashboard** (`#/dashboard`): Monthly EMI, total interest, total payment, interest share; a **pie chart** (principal vs interest) and a
-  **stacked bar chart** per calendar year with hover tooltips.
-- **Report** (`#/report`): amortisation table driven by controls - Yearly/Monthly view and a Year filter, with a totals row and a summary line.
-- Input validation with specific messages (amount, rate, tenure), a reset button, and sliders kept in sync with the fields.
+Plain HTML/CSS/JS served by a tiny Express static server. Several ideas are borrowed from https://emicalculator.net/ (loan-type tabs, sliders with
+tick marks, EMI at start/end of month, calendar vs financial year, expandable yearly rows, balance line on the bar chart, live results), then extended.
+- **Dashboard** (`#/dashboard`): Monthly EMI, total interest, total payment, interest share; a **pie chart** (principal vs interest), a **stacked bar chart**
+  per year with hover tooltips and an outstanding-**balance line** (right axis); a **prepayment impact** box (interest and time saved) when an extra monthly payment is entered.
+- **Report** (`#/report`): amortisation table driven by controls - Yearly/Monthly view, Year filter, **Calendar vs Financial year (Apr-Mar)**, click a year to
+  **drill into its months**, totals row, and **Download CSV** of what is on screen.
+- **Compare** (`#/compare`): two loans side by side with differences, the cheaper one highlighted, and a plain-language verdict.
+- **Loan types**: Home / Personal / Car tabs with their own defaults and slider ranges. **EMI timing**: end of month (arrears) or start of month (advance).
+- **Dynamic**: results update live while typing or dragging sliders (invalid values never wipe the last good result); amount spelled out in words (Indian
+  numbering); **saved scenarios** (kept in the browser); **share link** that restores the exact loan; light/dark theme.
+- Input validation with specific messages (amount, rate, tenure, extra payment), reset, sliders kept in sync with the fields.
 - Built to be testable: labelled fields, ARIA roles, `data-testid` hooks, and exact numbers exposed in `data-value` attributes
   (so tests never parse locale formatting such as `₹39,64,522`).
 
@@ -69,6 +75,10 @@ Plain HTML/CSS/JS served by a tiny Express static server. Enter amount, rate, te
   every bar > 0, bars summing to the loan amount and total interest, year-by-year equality with the oracle; tooltip contents; the start month changing
   the year span; slider keyboard use; report totals, a final balance of zero, the Monthly + Year filter (12 rows) and monthly rows summing to the yearly figure;
   seven invalid inputs with their messages and "previous results kept"; reset.
+  Second and third feature files (`emi_app_features.feature`, `emi_app_dynamic.feature`) cover: prepayment (closed-form oracle, no month loop, so it
+  cannot share a bug with the app), compare view, CSV download, saved scenarios surviving a reload, share-link round trip, theme, loan types, start-of-month
+  EMI, financial-year grouping, drill-down rows, balance-line values and live recalculation.
+  I mutation-tested the new features (broke the advance-EMI formula, the financial-year boundary and the balance line in the app): 7 scenarios failed as they should.
 
 ## A3 - JSONPlaceholder findings (read this)
 
@@ -136,10 +146,10 @@ Not required when Section A is chosen, but built and passing: a mock catalogue A
 
 | Suite | Result |
 |---|---|
-| **A2** EMI web app (`test:webapp`) | 21 scenarios passed (stable across 5 consecutive runs) |
+| **A2** EMI web app (`test:webapp`) | 56 scenarios passed |
 | **A3** JSONPlaceholder (`test:jsonplaceholder`) | 23 scenarios passed |
 | A3 known gaps (`test:gap`) | 7 failed **by design** - API returns 201 for invalid input and 500 for malformed JSON |
-| Full run `npm test` | 105 scenarios / 603 steps passed |
+| Full run `npm test` | 140 scenarios / 858 steps passed |
 | `@broken` self-healing demo | 1 failed - **expected** |
 | **A4** SQL | scenario 1: 6 rows, scenario 2: 5 rows (match hand-worked expectations) |
 | `npm run heal` (offline) | 5/5 healed |
