@@ -15,7 +15,12 @@ const LIVE = process.env.LIVE_VIEW === 'true';
 
 BeforeAll(async () => {
   fs.mkdirSync(SHOTS_DIR, { recursive: true });
-  if (LIVE) live = startLiveView(Number(process.env.LIVE_VIEW_PORT || 3200), () => currentPage);
+  if (LIVE) {
+    live = startLiveView(Number(process.env.LIVE_VIEW_PORT || 3200), () => currentPage);
+    const wait = Number(process.env.LIVE_VIEW_WAIT_MS || 20000);
+    live.setStatus(`Viewer connected - tests start in ${wait / 1000}s`, 'Open/refresh this page, then watch.');
+    await new Promise((r) => setTimeout(r, wait));
+  }
   if (config.startApiServer) {
     const port = new URL(config.apiBaseUrl).port || 80;
     apiServer = await startServer(port);
