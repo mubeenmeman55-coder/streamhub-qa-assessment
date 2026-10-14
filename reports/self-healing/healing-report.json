@@ -1,0 +1,189 @@
+{
+  "mode": "offline heuristic + validation",
+  "url": "https://emicalculator.net",
+  "results": [
+    {
+      "key": "loanAmountInput",
+      "brokenSelector": "#loan-amount",
+      "intent": "Text box where the user types the home loan amount",
+      "detected": {
+        "broken": true,
+        "reason": "no element found"
+      },
+      "attempts": [
+        {
+          "source": "heuristic",
+          "confidence": 0.95,
+          "element": {
+            "i": 9,
+            "tag": "input",
+            "type": "text",
+            "id": "loanamount",
+            "name": "loanamount",
+            "label": "Home Loan Amount",
+            "container": "emicalculatorinnerform"
+          },
+          "ok": true,
+          "expr": "page.getByRole('textbox', { name: \"Home Loan Amount\" })",
+          "checks": {
+            "uniqueMatch": true,
+            "visible": true,
+            "kindCompatible": true,
+            "acceptsInput": true,
+            "confidentEnough": true
+          }
+        }
+      ],
+      "outcome": "HEALED (validated) - suggested replacement below; apply via PR review",
+      "suggested": "page.getByRole('textbox', { name: \"Home Loan Amount\" })"
+    },
+    {
+      "key": "interestRateInput",
+      "brokenSelector": "xpath=//div[3]/form/div[2]/div/input",
+      "intent": "Text box where the user types the interest rate in percent",
+      "detected": {
+        "broken": true,
+        "reason": "no element found"
+      },
+      "attempts": [
+        {
+          "source": "heuristic",
+          "confidence": 0.73,
+          "element": {
+            "i": 30,
+            "tag": "input",
+            "type": "text",
+            "id": "loaninterest",
+            "name": "loaninterest",
+            "label": "Interest Rate",
+            "container": "emicalculatorinnerform"
+          },
+          "ok": true,
+          "expr": "page.getByRole('textbox', { name: \"Interest Rate\" })",
+          "checks": {
+            "uniqueMatch": true,
+            "visible": true,
+            "kindCompatible": true,
+            "acceptsInput": true,
+            "confidentEnough": true
+          }
+        }
+      ],
+      "outcome": "HEALED (validated) - suggested replacement below; apply via PR review",
+      "suggested": "page.getByRole('textbox', { name: \"Interest Rate\" })"
+    },
+    {
+      "key": "personalLoanTab",
+      "brokenSelector": "role=link[name=\"Personal Loans\"]",
+      "intent": "Tab link that switches the calculator to Personal Loan",
+      "detected": {
+        "broken": true,
+        "reason": "no element found"
+      },
+      "attempts": [
+        {
+          "source": "heuristic",
+          "confidence": 0.79,
+          "element": {
+            "i": 1,
+            "tag": "a",
+            "id": "menu-item-dropdown-2696",
+            "text": "LOAN CALCULATORS & WIDGETS",
+            "container": "menu-main-menu"
+          },
+          "ok": false,
+          "expr": "page.getByRole('link', { name: \"LOAN CALCULATORS & WIDGETS\", exact: true })",
+          "checks": {
+            "uniqueMatch": false
+          },
+          "why": "locator is not unique"
+        },
+        {
+          "source": "heuristic",
+          "confidence": 0.79,
+          "element": {
+            "i": 7,
+            "tag": "a",
+            "text": "Personal Loan",
+            "container": "personal-loan"
+          },
+          "ok": true,
+          "expr": "page.getByRole('link', { name: \"Personal Loan\", exact: true })",
+          "checks": {
+            "uniqueMatch": true,
+            "visible": true,
+            "kindCompatible": true,
+            "hasHref": true,
+            "confidentEnough": true
+          }
+        }
+      ],
+      "outcome": "HEALED (validated) - suggested replacement below; apply via PR review",
+      "suggested": "page.getByRole('link', { name: \"Personal Loan\", exact: true })"
+    },
+    {
+      "key": "emiResult",
+      "brokenSelector": ".emi-result > span.value",
+      "intent": "Monthly Loan EMI amount shown in the payment summary",
+      "detected": {
+        "broken": true,
+        "reason": "no element found"
+      },
+      "attempts": [
+        {
+          "source": "heuristic",
+          "confidence": 0.52,
+          "element": {
+            "i": 66,
+            "tag": "p",
+            "text": "₹44,986",
+            "container": "emiamount",
+            "heading": "Loan EMI"
+          },
+          "ok": true,
+          "expr": "page.locator('#emiamount').locator('p')",
+          "checks": {
+            "uniqueMatch": true,
+            "visible": true,
+            "kindCompatible": true,
+            "containsNumber": true,
+            "confidentEnough": true
+          }
+        }
+      ],
+      "outcome": "HEALED (validated) - suggested replacement below; apply via PR review",
+      "suggested": "page.locator('#emiamount').locator('p')"
+    },
+    {
+      "key": "pieChart",
+      "brokenSelector": "#emi-pie-chart canvas",
+      "intent": "Pie chart showing principal vs total interest",
+      "detected": {
+        "broken": true,
+        "reason": "no element found"
+      },
+      "attempts": [
+        {
+          "source": "heuristic",
+          "confidence": 0.63,
+          "element": {
+            "i": 74,
+            "tag": "svg",
+            "container": "emipiechart"
+          },
+          "ok": true,
+          "expr": "page.locator('#emipiechart').locator('svg')",
+          "checks": {
+            "uniqueMatch": true,
+            "visible": true,
+            "kindCompatible": true,
+            "hasShapes": true,
+            "confidentEnough": true
+          }
+        }
+      ],
+      "outcome": "HEALED (validated) - suggested replacement below; apply via PR review",
+      "suggested": "page.locator('#emipiechart').locator('svg')"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+<html><head><meta charset="utf-8"><style>body{font:14px Segoe UI,Arial;margin:24px;max-width:1100px}h1{font-size:20px}h2{font-size:15px;margin-top:22px}
+pre{background:#f4f6f8;padding:12px;border-radius:6px;white-space:pre-wrap;font-size:12px}table{border-collapse:collapse;margin:6px 0}
+th,td{border:1px solid #c8d0d8;padding:4px 10px;text-align:left}th{background:#e8eef4}</style></head><body><h1>Scenario 2 - IPL 2024 30+ run streaks</h1>
+      <h2>Query</h2><pre>-- Scenario 2: players with 30+ runs in at least 3 consecutive matches (IPL 2024).
+-- Returns the player and the date the streak commenced (plus its end and length for readability).
+--
+-- Technique: "gaps and islands" with two ROW_NUMBER()s.
+--   rn_all  numbers a player's 2024 appearances in date order
+--   rn_30   numbers only the 30+ appearances
+--   rn_all - rn_30 is constant inside an unbroken run of 30+ scores, and jumps whenever a sub-30 score
+--   (or a did-not-bat NULL) interrupts it - so (player, grp) identifies one streak.
+--
+-- Assumption: "consecutive" means consecutive appearances of that player in the season (a NULL = did not bat counts
+-- as an appearance that is not 30+, so it breaks the streak).
+WITH appearances AS (
+    SELECT
+        b.player_name,
+        m.match_id,
+        m.match_date,
+        b.runs,
+        ROW_NUMBER() OVER (PARTITION BY b.player_name ORDER BY m.match_date, m.match_id) AS rn_all
+    FROM batting_scores b
+    JOIN ipl_matches m ON m.match_id = b.match_id
+    WHERE m.season = 2024
+),
+thirties AS (
+    SELECT
+        *,
+        rn_all - ROW_NUMBER() OVER (PARTITION BY player_name ORDER BY match_date, match_id) AS grp
+    FROM appearances
+    WHERE runs >= 30                       -- NULL >= 30 is not true, so did-not-bat rows drop out here
+)
+SELECT
+    player_name,
+    MIN(match_date) AS streak_start_date,
+    MAX(match_date) AS streak_end_date,
+    COUNT(*)        AS matches_in_streak
+FROM thirties
+GROUP BY player_name, grp
+HAVING COUNT(*) >= 3
+ORDER BY streak_start_date, player_name;
+</pre><h2>Output</h2><table><tr><th>player_name</th><th>streak_start_date</th><th>streak_end_date</th><th>matches_in_streak</th></tr><tr><td>Shivam Dube</td><td>2024-03-22</td><td>2024-03-29</td><td>5</td></tr><tr><td>Virat Kohli</td><td>2024-03-23</td><td>2024-03-27</td><td>3</td></tr><tr><td>Sanju Samson</td><td>2024-03-25</td><td>2024-03-31</td><td>4</td></tr><tr><td>Travis Head</td><td>2024-03-29</td><td>2024-04-02</td><td>3</td></tr><tr><td>Virat Kohli</td><td>2024-03-31</td><td>2024-04-05</td><td>3</td></tr></table><p><em>5 row(s)</em></p></body></html>

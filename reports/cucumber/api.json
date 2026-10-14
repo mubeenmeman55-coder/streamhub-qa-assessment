@@ -1,0 +1,4972 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;genres-list-with-counts-matching-the-catalogue",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Genres list with counts matching the catalogue",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 11394299
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 37985300
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "I request the genres",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:44"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9nZW5yZXMKewogICJkYXRhIjogWwogICAgewogICAgICAibmFtZSI6ICJhY3Rpb24iLAogICAgICAiY291bnQiOiAyCiAgICB9LAogICAgewogICAgICAibmFtZSI6ICJhZHZlbnR1cmUiLAogICAgICAiY291bnQiOiAyCiAgICB9LAogICAgewogICAgICAibmFtZSI6ICJjb21lZHkiLAogICAgICAiY291bnQiOiAzCiAgICB9LAogICAgewogICAgICAibmFtZSI6ICJkb2N1bWVudGFyeSIsCiAgICAgICJjb3VudCI6IDIKICAgIH0sCiAgICB7CiAgICAgICJuYW1lIjogImRyYW1hIiwKICAgICAgImNvdW50IjogNAogICAgfSwKICAgIHsKICAgICAgIm5hbWUiOiAiZmFtaWx5IiwKICAgICAgImNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgIm5hbWUiOiAicm9tYW5jZSIsCiAgICAgICJjb3VudCI6IDIKICAgIH0sCiAgICB7CiAgICAgICJuYW1lIjogInNjaS1maSIsCiAgICAgICJjb3VudCI6IDQKICAgIH0sCiAgICB7CiAgICAgICJuYW1lIjogInRocmlsbGVyIiwKICAgICAgImNvdW50IjogMwogICAgfQogIF0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3178300
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 48163900
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "the genre counts add up to the total number of titles",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:130"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2917400
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-matches-my-own-calculation---2500000-at-10%-for-10-years",
+        "keyword": "Scenario Outline",
+        "line": 16,
+        "name": "EMI endpoint matches my own calculation - 2500000 at 10% for 10 years",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1330999
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 7534099
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "I request the EMI for principal 2500000, rate 10 and years 10",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:48"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cHJpbmNpcGFsPTI1MDAwMDAmcmF0ZT0xMCZ5ZWFycz0xMAp7CiAgImRhdGEiOiB7CiAgICAicHJpbmNpcGFsIjogMjUwMDAwMCwKICAgICJyYXRlIjogMTAsCiAgICAieWVhcnMiOiAxMCwKICAgICJlbWkiOiAzMzAzOCwKICAgICJ0b3RhbEludGVyZXN0IjogMTQ2NDUyMiwKICAgICJ0b3RhbFBheW1lbnQiOiAzOTY0NTIyCiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 671199
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2594800
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "the EMI response matches my own calculation",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:141"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1412499
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-matches-my-own-calculation---5000000-at-7.5%-for-15-years",
+        "keyword": "Scenario Outline",
+        "line": 17,
+        "name": "EMI endpoint matches my own calculation - 5000000 at 7.5% for 15 years",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1399100
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6420900
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "I request the EMI for principal 5000000, rate 7.5 and years 15",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:48"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cHJpbmNpcGFsPTUwMDAwMDAmcmF0ZT03LjUmeWVhcnM9MTUKewogICJkYXRhIjogewogICAgInByaW5jaXBhbCI6IDUwMDAwMDAsCiAgICAicmF0ZSI6IDcuNSwKICAgICJ5ZWFycyI6IDE1LAogICAgImVtaSI6IDQ2MzUxLAogICAgInRvdGFsSW50ZXJlc3QiOiAzMzQzMTExLAogICAgInRvdGFsUGF5bWVudCI6IDgzNDMxMTEKICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 990800
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1176799
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "the EMI response matches my own calculation",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:141"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1231099
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-matches-my-own-calculation---1000000-at-12%-for-5-years",
+        "keyword": "Scenario Outline",
+        "line": 18,
+        "name": "EMI endpoint matches my own calculation - 1000000 at 12% for 5 years",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 971099
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 7480500
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "I request the EMI for principal 1000000, rate 12 and years 5",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:48"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cHJpbmNpcGFsPTEwMDAwMDAmcmF0ZT0xMiZ5ZWFycz01CnsKICAiZGF0YSI6IHsKICAgICJwcmluY2lwYWwiOiAxMDAwMDAwLAogICAgInJhdGUiOiAxMiwKICAgICJ5ZWFycyI6IDUsCiAgICAiZW1pIjogMjIyNDQsCiAgICAidG90YWxJbnRlcmVzdCI6IDMzNDY2NywKICAgICJ0b3RhbFBheW1lbnQiOiAxMzM0NjY3CiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1893500
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2171299
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "the EMI response matches my own calculation",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:141"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2036599
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-matches-my-own-calculation---100000-at-0.1%-for-1-years",
+        "keyword": "Scenario Outline",
+        "line": 19,
+        "name": "EMI endpoint matches my own calculation - 100000 at 0.1% for 1 years",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1109500
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5282500
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "I request the EMI for principal 100000, rate 0.1 and years 1",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:48"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cHJpbmNpcGFsPTEwMDAwMCZyYXRlPTAuMSZ5ZWFycz0xCnsKICAiZGF0YSI6IHsKICAgICJwcmluY2lwYWwiOiAxMDAwMDAsCiAgICAicmF0ZSI6IDAuMSwKICAgICJ5ZWFycyI6IDEsCiAgICAiZW1pIjogODMzOCwKICAgICJ0b3RhbEludGVyZXN0IjogNTQsCiAgICAidG90YWxQYXltZW50IjogMTAwMDU0CiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 604599
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 876600
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "the EMI response matches my own calculation",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:141"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2707400
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-rejects-missing-or-invalid-input---no-parameters",
+        "keyword": "Scenario Outline",
+        "line": 28,
+        "name": "EMI endpoint rejects missing or invalid input - no parameters",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1743500
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6462700
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I send the raw request \"/api/emi\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWkKewogICJlcnJvciI6IHsKICAgICJjb2RlIjogIk1JU1NJTkdfUEFSQU1FVEVSIiwKICAgICJtZXNzYWdlIjogIk1pc3NpbmcgcmVxdWlyZWQgcGFyYW1ldGVyICdwcmluY2lwYWwnIgogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 740000
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1408200
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "the error response has code \"MISSING_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1208800
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-rejects-missing-or-invalid-input---missing-rate",
+        "keyword": "Scenario Outline",
+        "line": 29,
+        "name": "EMI endpoint rejects missing or invalid input - missing rate",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 955699
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6447199
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I send the raw request \"/api/emi?principal=100000&years=5\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cHJpbmNpcGFsPTEwMDAwMCZ5ZWFycz01CnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJNSVNTSU5HX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJNaXNzaW5nIHJlcXVpcmVkIHBhcmFtZXRlciAncmF0ZSciCiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1188200
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1072100
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "the error response has code \"MISSING_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1589699
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-rejects-missing-or-invalid-input---missing-years",
+        "keyword": "Scenario Outline",
+        "line": 30,
+        "name": "EMI endpoint rejects missing or invalid input - missing years",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1021400
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5327800
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I send the raw request \"/api/emi?principal=100000&rate=10\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cHJpbmNpcGFsPTEwMDAwMCZyYXRlPTEwCnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJNSVNTSU5HX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJNaXNzaW5nIHJlcXVpcmVkIHBhcmFtZXRlciAneWVhcnMnIgogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 874399
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1036200
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "the error response has code \"MISSING_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1600600
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-rejects-missing-or-invalid-input---missing-principal",
+        "keyword": "Scenario Outline",
+        "line": 31,
+        "name": "EMI endpoint rejects missing or invalid input - missing principal",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2558399
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6833799
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I send the raw request \"/api/emi?rate=10&years=5\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cmF0ZT0xMCZ5ZWFycz01CnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJNSVNTSU5HX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJNaXNzaW5nIHJlcXVpcmVkIHBhcmFtZXRlciAncHJpbmNpcGFsJyIKICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1082300
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1461699
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "the error response has code \"MISSING_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1733899
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-rejects-missing-or-invalid-input---negative-principal",
+        "keyword": "Scenario Outline",
+        "line": 32,
+        "name": "EMI endpoint rejects missing or invalid input - negative principal",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1642100
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5912100
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I send the raw request \"/api/emi?principal=-5&rate=10&years=5\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cHJpbmNpcGFsPS01JnJhdGU9MTAmeWVhcnM9NQp7CiAgImVycm9yIjogewogICAgImNvZGUiOiAiSU5WQUxJRF9QQVJBTUVURVIiLAogICAgIm1lc3NhZ2UiOiAiUGFyYW1ldGVyICdwcmluY2lwYWwnIG11c3QgYmUgPj0gMSIsCiAgICAiZGV0YWlscyI6IHsKICAgICAgInJlY2VpdmVkIjogLTUKICAgIH0KICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 666899
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1675199
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6982199
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-rejects-missing-or-invalid-input---zero-rate",
+        "keyword": "Scenario Outline",
+        "line": 33,
+        "name": "EMI endpoint rejects missing or invalid input - zero rate",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1618999
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5321400
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I send the raw request \"/api/emi?principal=100000&rate=0&years=5\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cHJpbmNpcGFsPTEwMDAwMCZyYXRlPTAmeWVhcnM9NQp7CiAgImVycm9yIjogewogICAgImNvZGUiOiAiSU5WQUxJRF9QQVJBTUVURVIiLAogICAgIm1lc3NhZ2UiOiAiUGFyYW1ldGVyICdyYXRlJyBtdXN0IGJlID49IDAuMSIsCiAgICAiZGV0YWlscyI6IHsKICAgICAgInJlY2VpdmVkIjogMAogICAgfQogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 663999
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2748399
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1927100
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-rejects-missing-or-invalid-input---rate-above-maximum",
+        "keyword": "Scenario Outline",
+        "line": 34,
+        "name": "EMI endpoint rejects missing or invalid input - rate above maximum",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2260499
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5464300
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I send the raw request \"/api/emi?principal=100000&rate=51&years=5\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cHJpbmNpcGFsPTEwMDAwMCZyYXRlPTUxJnllYXJzPTUKewogICJlcnJvciI6IHsKICAgICJjb2RlIjogIklOVkFMSURfUEFSQU1FVEVSIiwKICAgICJtZXNzYWdlIjogIlBhcmFtZXRlciAncmF0ZScgbXVzdCBiZSA8PSA1MCIsCiAgICAiZGV0YWlscyI6IHsKICAgICAgInJlY2VpdmVkIjogNTEKICAgIH0KICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 493899
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 626800
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1090000
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-rejects-missing-or-invalid-input---non-numeric-principal",
+        "keyword": "Scenario Outline",
+        "line": 35,
+        "name": "EMI endpoint rejects missing or invalid input - non numeric principal",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2314400
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5827200
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I send the raw request \"/api/emi?principal=lots&rate=10&years=5\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cHJpbmNpcGFsPWxvdHMmcmF0ZT0xMCZ5ZWFycz01CnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJJTlZBTElEX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJQYXJhbWV0ZXIgJ3ByaW5jaXBhbCcgbXVzdCBiZSBhIG51bWJlciIsCiAgICAiZGV0YWlscyI6IHsKICAgICAgInJlY2VpdmVkIjogImxvdHMiCiAgICB9CiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 504400
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 616199
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 954700
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-rejects-missing-or-invalid-input---fractional-years",
+        "keyword": "Scenario Outline",
+        "line": 36,
+        "name": "EMI endpoint rejects missing or invalid input - fractional years",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 911300
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6188700
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I send the raw request \"/api/emi?principal=100000&rate=10&years=2.5\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cHJpbmNpcGFsPTEwMDAwMCZyYXRlPTEwJnllYXJzPTIuNQp7CiAgImVycm9yIjogewogICAgImNvZGUiOiAiSU5WQUxJRF9QQVJBTUVURVIiLAogICAgIm1lc3NhZ2UiOiAiUGFyYW1ldGVyICd5ZWFycycgbXVzdCBiZSBhbiBpbnRlZ2VyIiwKICAgICJkZXRhaWxzIjogewogICAgICAicmVjZWl2ZWQiOiAiMi41IgogICAgfQogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 550400
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 988700
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 988400
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-rejects-missing-or-invalid-input---years-above-maximum",
+        "keyword": "Scenario Outline",
+        "line": 37,
+        "name": "EMI endpoint rejects missing or invalid input - years above maximum",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 736899
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5141799
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I send the raw request \"/api/emi?principal=100000&rate=10&years=41\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cHJpbmNpcGFsPTEwMDAwMCZyYXRlPTEwJnllYXJzPTQxCnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJJTlZBTElEX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJQYXJhbWV0ZXIgJ3llYXJzJyBtdXN0IGJlIDw9IDQwIiwKICAgICJkZXRhaWxzIjogewogICAgICAicmVjZWl2ZWQiOiA0MQogICAgfQogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 657099
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 678900
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1273900
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "genres-and-emi-endpoints;emi-endpoint-rejects-missing-or-invalid-input---unsupported-parameter",
+        "keyword": "Scenario Outline",
+        "line": 38,
+        "name": "EMI endpoint rejects missing or invalid input - unsupported parameter",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1719000
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5051699
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I send the raw request \"/api/emi?principal=100000&rate=10&years=5&x=1\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9lbWk/cHJpbmNpcGFsPTEwMDAwMCZyYXRlPTEwJnllYXJzPTUmeD0xCnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJJTlZBTElEX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJVbnN1cHBvcnRlZCBxdWVyeSBwYXJhbWV0ZXIocyk6IHgiLAogICAgImRldGFpbHMiOiB7CiAgICAgICJhbGxvd2VkIjogWwogICAgICAgICJwcmluY2lwYWwiLAogICAgICAgICJyYXRlIiwKICAgICAgICAieWVhcnMiCiAgICAgIF0KICAgIH0KICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 464300
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 479400
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1180700
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@genres",
+            "line": 1
+          },
+          {
+            "name": "@emi",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "genres-and-emi-endpoints",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Genres and EMI endpoints",
+    "tags": [
+      {
+        "name": "@api",
+        "line": 1
+      },
+      {
+        "name": "@genres",
+        "line": 1
+      },
+      {
+        "name": "@emi",
+        "line": 1
+      }
+    ],
+    "uri": "features\\api\\genres_and_emi.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};list-titles-with-default-pagination",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "List titles with default pagination",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 883199
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4741400
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "I request the titles list with no parameters",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:20"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXMKewogICJkYXRhIjogWwogICAgewogICAgICAiaWQiOiAxLAogICAgICAidGl0bGUiOiAiTWlkbmlnaHQgSGFyYm9yIiwKICAgICAgInR5cGUiOiAibW92aWUiLAogICAgICAiZ2VucmUiOiAidGhyaWxsZXIiLAogICAgICAieWVhciI6IDIwMTksCiAgICAgICJyYXRpbmciOiA3LjQsCiAgICAgICJkdXJhdGlvbiI6IDExMgogICAgfSwKICAgIHsKICAgICAgImlkIjogMiwKICAgICAgInRpdGxlIjogIlRoZSBMYXN0IE9yY2hhcmQiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJkcmFtYSIsCiAgICAgICJ5ZWFyIjogMjAyMSwKICAgICAgInJhdGluZyI6IDguMSwKICAgICAgImR1cmF0aW9uIjogMTI4CiAgICB9LAogICAgewogICAgICAiaWQiOiAzLAogICAgICAidGl0bGUiOiAiTGF1Z2ggVHJhY2siLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAiY29tZWR5IiwKICAgICAgInllYXIiOiAyMDIwLAogICAgICAicmF0aW5nIjogNi45LAogICAgICAiZHVyYXRpb24iOiAyNAogICAgfSwKICAgIHsKICAgICAgImlkIjogNCwKICAgICAgInRpdGxlIjogIk9yYml0IE5pbmUiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJzY2ktZmkiLAogICAgICAieWVhciI6IDIwMjIsCiAgICAgICJyYXRpbmciOiA3LjgsCiAgICAgICJkdXJhdGlvbiI6IDEzNAogICAgfSwKICAgIHsKICAgICAgImlkIjogNSwKICAgICAgInRpdGxlIjogIkR1c3QgJiBEeW5hc3R5IiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImRyYW1hIiwKICAgICAgInllYXIiOiAyMDE4LAogICAgICAicmF0aW5nIjogOC41LAogICAgICAiZHVyYXRpb24iOiA1OAogICAgfSwKICAgIHsKICAgICAgImlkIjogNiwKICAgICAgInRpdGxlIjogIk5lb24gQWxsZXkiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJhY3Rpb24iLAogICAgICAieWVhciI6IDIwMjMsCiAgICAgICJyYXRpbmciOiA2LjUsCiAgICAgICJkdXJhdGlvbiI6IDEwMQogICAgfSwKICAgIHsKICAgICAgImlkIjogNywKICAgICAgInRpdGxlIjogIlF1aWV0IFNpZ25hbHMiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAic2NpLWZpIiwKICAgICAgInllYXIiOiAyMDIxLAogICAgICAicmF0aW5nIjogOCwKICAgICAgImR1cmF0aW9uIjogNDIKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDgsCiAgICAgICJ0aXRsZSI6ICJQYXBlciBNb29ucyIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogInJvbWFuY2UiLAogICAgICAieWVhciI6IDIwMTcsCiAgICAgICJyYXRpbmciOiA3LjEsCiAgICAgICJkdXJhdGlvbiI6IDEwNQogICAgfSwKICAgIHsKICAgICAgImlkIjogOSwKICAgICAgInRpdGxlIjogIlRoZSBDYXJ0b2dyYXBoZXIiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJhZHZlbnR1cmUiLAogICAgICAieWVhciI6IDIw",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 466700
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8054900
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "the response has a \"data\" array of titles and pagination \"meta\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:71"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 728599
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "the page size used is 10 and the page is 1",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:78"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1027199
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};filter-titles-by-genre=drama",
+        "keyword": "Scenario Outline",
+        "line": 17,
+        "name": "Filter titles by genre=drama",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 922799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4813999
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I request the titles list with \"genre\" set to \"drama\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/Z2VucmU9ZHJhbWEKewogICJkYXRhIjogWwogICAgewogICAgICAiaWQiOiAyLAogICAgICAidGl0bGUiOiAiVGhlIExhc3QgT3JjaGFyZCIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogImRyYW1hIiwKICAgICAgInllYXIiOiAyMDIxLAogICAgICAicmF0aW5nIjogOC4xLAogICAgICAiZHVyYXRpb24iOiAxMjgKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDUsCiAgICAgICJ0aXRsZSI6ICJEdXN0ICYgRHluYXN0eSIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJkcmFtYSIsCiAgICAgICJ5ZWFyIjogMjAxOCwKICAgICAgInJhdGluZyI6IDguNSwKICAgICAgImR1cmF0aW9uIjogNTgKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDE0LAogICAgICAidGl0bGUiOiAiR2xhc3MgUml2ZXJzIiwKICAgICAgInR5cGUiOiAibW92aWUiLAogICAgICAiZ2VucmUiOiAiZHJhbWEiLAogICAgICAieWVhciI6IDIwMTUsCiAgICAgICJyYXRpbmciOiA3LjcsCiAgICAgICJkdXJhdGlvbiI6IDE0MQogICAgfSwKICAgIHsKICAgICAgImlkIjogMTksCiAgICAgICJ0aXRsZSI6ICJBc2ggJiBFbWJlciIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJkcmFtYSIsCiAgICAgICJ5ZWFyIjogMjAyNCwKICAgICAgInJhdGluZyI6IDguNiwKICAgICAgImR1cmF0aW9uIjogMzYKICAgIH0KICBdLAogICJtZXRhIjogewogICAgInRvdGFsIjogNCwKICAgICJwYWdlIjogMSwKICAgICJsaW1pdCI6IDEwLAogICAgInRvdGFsUGFnZXMiOiAxCiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 537299
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1922000
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "every returned title satisfies \"genre\" \"drama\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:83"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1429700
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};filter-titles-by-genre=sci-fi",
+        "keyword": "Scenario Outline",
+        "line": 18,
+        "name": "Filter titles by genre=sci-fi",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1093899
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4310699
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I request the titles list with \"genre\" set to \"sci-fi\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/Z2VucmU9c2NpLWZpCnsKICAiZGF0YSI6IFsKICAgIHsKICAgICAgImlkIjogNCwKICAgICAgInRpdGxlIjogIk9yYml0IE5pbmUiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJzY2ktZmkiLAogICAgICAieWVhciI6IDIwMjIsCiAgICAgICJyYXRpbmciOiA3LjgsCiAgICAgICJkdXJhdGlvbiI6IDEzNAogICAgfSwKICAgIHsKICAgICAgImlkIjogNywKICAgICAgInRpdGxlIjogIlF1aWV0IFNpZ25hbHMiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAic2NpLWZpIiwKICAgICAgInllYXIiOiAyMDIxLAogICAgICAicmF0aW5nIjogOCwKICAgICAgImR1cmF0aW9uIjogNDIKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDE4LAogICAgICAidGl0bGUiOiAiRGVlcCBTdGF0aWMiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJzY2ktZmkiLAogICAgICAieWVhciI6IDIwMTgsCiAgICAgICJyYXRpbmciOiA2LjYsCiAgICAgICJkdXJhdGlvbiI6IDEwOQogICAgfSwKICAgIHsKICAgICAgImlkIjogMjQsCiAgICAgICJ0aXRsZSI6ICJSZXdpbmQgQ2l0eSIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogInNjaS1maSIsCiAgICAgICJ5ZWFyIjogMjAyMywKICAgICAgInJhdGluZyI6IDcuOSwKICAgICAgImR1cmF0aW9uIjogMTIyCiAgICB9CiAgXSwKICAibWV0YSI6IHsKICAgICJ0b3RhbCI6IDQsCiAgICAicGFnZSI6IDEsCiAgICAibGltaXQiOiAxMCwKICAgICJ0b3RhbFBhZ2VzIjogMQogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 473899
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 562900
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "every returned title satisfies \"genre\" \"sci-fi\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:83"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1082899
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};filter-titles-by-type=series",
+        "keyword": "Scenario Outline",
+        "line": 19,
+        "name": "Filter titles by type=series",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 856600
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5075800
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I request the titles list with \"type\" set to \"series\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/dHlwZT1zZXJpZXMKewogICJkYXRhIjogWwogICAgewogICAgICAiaWQiOiAzLAogICAgICAidGl0bGUiOiAiTGF1Z2ggVHJhY2siLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAiY29tZWR5IiwKICAgICAgInllYXIiOiAyMDIwLAogICAgICAicmF0aW5nIjogNi45LAogICAgICAiZHVyYXRpb24iOiAyNAogICAgfSwKICAgIHsKICAgICAgImlkIjogNSwKICAgICAgInRpdGxlIjogIkR1c3QgJiBEeW5hc3R5IiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImRyYW1hIiwKICAgICAgInllYXIiOiAyMDE4LAogICAgICAicmF0aW5nIjogOC41LAogICAgICAiZHVyYXRpb24iOiA1OAogICAgfSwKICAgIHsKICAgICAgImlkIjogNywKICAgICAgInRpdGxlIjogIlF1aWV0IFNpZ25hbHMiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAic2NpLWZpIiwKICAgICAgInllYXIiOiAyMDIxLAogICAgICAicmF0aW5nIjogOCwKICAgICAgImR1cmF0aW9uIjogNDIKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEwLAogICAgICAidGl0bGUiOiAiQmFja3N0YWdlIEJsdWVzIiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImNvbWVkeSIsCiAgICAgICJ5ZWFyIjogMjAyMiwKICAgICAgInJhdGluZyI6IDcuMywKICAgICAgImR1cmF0aW9uIjogMzAKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEyLAogICAgICAidGl0bGUiOiAiSG9sbG93IENyb3duIENvdW50eSIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJ0aHJpbGxlciIsCiAgICAgICJ5ZWFyIjogMjAyMywKICAgICAgInJhdGluZyI6IDguMywKICAgICAgImR1cmF0aW9uIjogNDgKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEzLAogICAgICAidGl0bGUiOiAiU3VuZGF5IEtpdGNoZW4iLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAiZG9jdW1lbnRhcnkiLAogICAgICAieWVhciI6IDIwMTksCiAgICAgICJyYXRpbmciOiA3LjksCiAgICAgICJkdXJhdGlvbiI6IDEyCiAgICB9LAogICAgewogICAgICAiaWQiOiAxNywKICAgICAgInRpdGxlIjogIlRoZSBVbmRlcnN0dWR5IiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImNvbWVkeSIsCiAgICAgICJ5ZWFyIjogMjAyNCwKICAgICAgInJhdGluZyI6IDcsCiAgICAgICJkdXJhdGlvbiI6IDIwCiAgICB9LAogICAgewogICAgICAiaWQiOiAxOSwKICAgICAgInRpdGxlIjogIkFzaCAmIEVtYmVyIiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImRyYW1hIiwKICAgICAgInllYXIiOiAyMDI0LAogICAgICAicmF0aW5nIjogOC42LAogICAgICAiZHVyYXRpb24iOiAzNgogICAgfSwKICAgIHsKICAgICAgImlkIjogMjAsCiAgICAgICJ0aXRsZSI6ICJXaWxkIEF0bGFzIiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImRvY3VtZW50YXJ5IiwK",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 534500
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1386600
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "every returned title satisfies \"type\" \"series\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:83"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 921400
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};filter-titles-by-type=movie",
+        "keyword": "Scenario Outline",
+        "line": 20,
+        "name": "Filter titles by type=movie",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 793099
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4399800
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I request the titles list with \"type\" set to \"movie\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/dHlwZT1tb3ZpZQp7CiAgImRhdGEiOiBbCiAgICB7CiAgICAgICJpZCI6IDEsCiAgICAgICJ0aXRsZSI6ICJNaWRuaWdodCBIYXJib3IiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJ0aHJpbGxlciIsCiAgICAgICJ5ZWFyIjogMjAxOSwKICAgICAgInJhdGluZyI6IDcuNCwKICAgICAgImR1cmF0aW9uIjogMTEyCiAgICB9LAogICAgewogICAgICAiaWQiOiAyLAogICAgICAidGl0bGUiOiAiVGhlIExhc3QgT3JjaGFyZCIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogImRyYW1hIiwKICAgICAgInllYXIiOiAyMDIxLAogICAgICAicmF0aW5nIjogOC4xLAogICAgICAiZHVyYXRpb24iOiAxMjgKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDQsCiAgICAgICJ0aXRsZSI6ICJPcmJpdCBOaW5lIiwKICAgICAgInR5cGUiOiAibW92aWUiLAogICAgICAiZ2VucmUiOiAic2NpLWZpIiwKICAgICAgInllYXIiOiAyMDIyLAogICAgICAicmF0aW5nIjogNy44LAogICAgICAiZHVyYXRpb24iOiAxMzQKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDYsCiAgICAgICJ0aXRsZSI6ICJOZW9uIEFsbGV5IiwKICAgICAgInR5cGUiOiAibW92aWUiLAogICAgICAiZ2VucmUiOiAiYWN0aW9uIiwKICAgICAgInllYXIiOiAyMDIzLAogICAgICAicmF0aW5nIjogNi41LAogICAgICAiZHVyYXRpb24iOiAxMDEKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDgsCiAgICAgICJ0aXRsZSI6ICJQYXBlciBNb29ucyIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogInJvbWFuY2UiLAogICAgICAieWVhciI6IDIwMTcsCiAgICAgICJyYXRpbmciOiA3LjEsCiAgICAgICJkdXJhdGlvbiI6IDEwNQogICAgfSwKICAgIHsKICAgICAgImlkIjogOSwKICAgICAgInRpdGxlIjogIlRoZSBDYXJ0b2dyYXBoZXIiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJhZHZlbnR1cmUiLAogICAgICAieWVhciI6IDIwMTYsCiAgICAgICJyYXRpbmciOiA3LjYsCiAgICAgICJkdXJhdGlvbiI6IDExOQogICAgfSwKICAgIHsKICAgICAgImlkIjogMTEsCiAgICAgICJ0aXRsZSI6ICJJcm9uIFRpZGUiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJhY3Rpb24iLAogICAgICAieWVhciI6IDIwMjAsCiAgICAgICJyYXRpbmciOiA2LjgsCiAgICAgICJkdXJhdGlvbiI6IDEyNwogICAgfSwKICAgIHsKICAgICAgImlkIjogMTQsCiAgICAgICJ0aXRsZSI6ICJHbGFzcyBSaXZlcnMiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJkcmFtYSIsCiAgICAgICJ5ZWFyIjogMjAxNSwKICAgICAgInJhdGluZyI6IDcuNywKICAgICAgImR1cmF0aW9uIjogMTQxCiAgICB9LAogICAgewogICAgICAiaWQiOiAxNSwKICAgICAgInRpdGxlIjogIlplcm8gR3Jhdml0eSBMb3ZlIiwKICAgICAgInR5cGUiOiAibW92aWUiLAogICAgICAiZ2VucmUiOiAicm9tYW5jZSIsCiAgICAgICJ5ZWE=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 440800
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1517299
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "every returned title satisfies \"type\" \"movie\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:83"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 992200
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};filter-titles-by-minyear=2023",
+        "keyword": "Scenario Outline",
+        "line": 21,
+        "name": "Filter titles by minYear=2023",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4940999
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5282600
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I request the titles list with \"minYear\" set to \"2023\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/bWluWWVhcj0yMDIzCnsKICAiZGF0YSI6IFsKICAgIHsKICAgICAgImlkIjogNiwKICAgICAgInRpdGxlIjogIk5lb24gQWxsZXkiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJhY3Rpb24iLAogICAgICAieWVhciI6IDIwMjMsCiAgICAgICJyYXRpbmciOiA2LjUsCiAgICAgICJkdXJhdGlvbiI6IDEwMQogICAgfSwKICAgIHsKICAgICAgImlkIjogMTIsCiAgICAgICJ0aXRsZSI6ICJIb2xsb3cgQ3Jvd24gQ291bnR5IiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogInRocmlsbGVyIiwKICAgICAgInllYXIiOiAyMDIzLAogICAgICAicmF0aW5nIjogOC4zLAogICAgICAiZHVyYXRpb24iOiA0OAogICAgfSwKICAgIHsKICAgICAgImlkIjogMTUsCiAgICAgICJ0aXRsZSI6ICJaZXJvIEdyYXZpdHkgTG92ZSIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogInJvbWFuY2UiLAogICAgICAieWVhciI6IDIwMjQsCiAgICAgICJyYXRpbmciOiA2LjIsCiAgICAgICJkdXJhdGlvbiI6IDk4CiAgICB9LAogICAgewogICAgICAiaWQiOiAxNiwKICAgICAgInRpdGxlIjogIlNhbHQgUm9hZCIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogImFkdmVudHVyZSIsCiAgICAgICJ5ZWFyIjogMjAyNCwKICAgICAgInJhdGluZyI6IDcuNSwKICAgICAgImR1cmF0aW9uIjogMTE2CiAgICB9LAogICAgewogICAgICAiaWQiOiAxNywKICAgICAgInRpdGxlIjogIlRoZSBVbmRlcnN0dWR5IiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImNvbWVkeSIsCiAgICAgICJ5ZWFyIjogMjAyNCwKICAgICAgInJhdGluZyI6IDcsCiAgICAgICJkdXJhdGlvbiI6IDIwCiAgICB9LAogICAgewogICAgICAiaWQiOiAxOSwKICAgICAgInRpdGxlIjogIkFzaCAmIEVtYmVyIiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImRyYW1hIiwKICAgICAgInllYXIiOiAyMDI0LAogICAgICAicmF0aW5nIjogOC42LAogICAgICAiZHVyYXRpb24iOiAzNgogICAgfSwKICAgIHsKICAgICAgImlkIjogMjEsCiAgICAgICJ0aXRsZSI6ICJDcm9zc3dpcmUiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJ0aHJpbGxlciIsCiAgICAgICJ5ZWFyIjogMjAyNCwKICAgICAgInJhdGluZyI6IDcuMiwKICAgICAgImR1cmF0aW9uIjogMTAzCiAgICB9LAogICAgewogICAgICAiaWQiOiAyMywKICAgICAgInRpdGxlIjogIlBvY2tldCBIZXJvZXMiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAiZmFtaWx5IiwKICAgICAgInllYXIiOiAyMDIzLAogICAgICAicmF0aW5nIjogNi40LAogICAgICAiZHVyYXRpb24iOiA1MgogICAgfSwKICAgIHsKICAgICAgImlkIjogMjQsCiAgICAgICJ0aXRsZSI6ICJSZXdpbmQgQ2l0eSIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogInNjaS1maSIsCiAgICAgICJ5ZQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 990000
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1781500
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "every returned title satisfies \"minYear\" \"2023\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:83"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1773500
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};filter-titles-by-maxyear=2018",
+        "keyword": "Scenario Outline",
+        "line": 22,
+        "name": "Filter titles by maxYear=2018",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1050699
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5524399
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I request the titles list with \"maxYear\" set to \"2018\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/bWF4WWVhcj0yMDE4CnsKICAiZGF0YSI6IFsKICAgIHsKICAgICAgImlkIjogNSwKICAgICAgInRpdGxlIjogIkR1c3QgJiBEeW5hc3R5IiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImRyYW1hIiwKICAgICAgInllYXIiOiAyMDE4LAogICAgICAicmF0aW5nIjogOC41LAogICAgICAiZHVyYXRpb24iOiA1OAogICAgfSwKICAgIHsKICAgICAgImlkIjogOCwKICAgICAgInRpdGxlIjogIlBhcGVyIE1vb25zIiwKICAgICAgInR5cGUiOiAibW92aWUiLAogICAgICAiZ2VucmUiOiAicm9tYW5jZSIsCiAgICAgICJ5ZWFyIjogMjAxNywKICAgICAgInJhdGluZyI6IDcuMSwKICAgICAgImR1cmF0aW9uIjogMTA1CiAgICB9LAogICAgewogICAgICAiaWQiOiA5LAogICAgICAidGl0bGUiOiAiVGhlIENhcnRvZ3JhcGhlciIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogImFkdmVudHVyZSIsCiAgICAgICJ5ZWFyIjogMjAxNiwKICAgICAgInJhdGluZyI6IDcuNiwKICAgICAgImR1cmF0aW9uIjogMTE5CiAgICB9LAogICAgewogICAgICAiaWQiOiAxNCwKICAgICAgInRpdGxlIjogIkdsYXNzIFJpdmVycyIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogImRyYW1hIiwKICAgICAgInllYXIiOiAyMDE1LAogICAgICAicmF0aW5nIjogNy43LAogICAgICAiZHVyYXRpb24iOiAxNDEKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDE4LAogICAgICAidGl0bGUiOiAiRGVlcCBTdGF0aWMiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJzY2ktZmkiLAogICAgICAieWVhciI6IDIwMTgsCiAgICAgICJyYXRpbmciOiA2LjYsCiAgICAgICJkdXJhdGlvbiI6IDEwOQogICAgfQogIF0sCiAgIm1ldGEiOiB7CiAgICAidG90YWwiOiA1LAogICAgInBhZ2UiOiAxLAogICAgImxpbWl0IjogMTAsCiAgICAidG90YWxQYWdlcyI6IDEKICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 484600
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 861900
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "every returned title satisfies \"maxYear\" \"2018\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:83"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1093299
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};filter-titles-by-minrating=8",
+        "keyword": "Scenario Outline",
+        "line": 23,
+        "name": "Filter titles by minRating=8",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 828100
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4750199
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I request the titles list with \"minRating\" set to \"8\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/bWluUmF0aW5nPTgKewogICJkYXRhIjogWwogICAgewogICAgICAiaWQiOiAyLAogICAgICAidGl0bGUiOiAiVGhlIExhc3QgT3JjaGFyZCIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogImRyYW1hIiwKICAgICAgInllYXIiOiAyMDIxLAogICAgICAicmF0aW5nIjogOC4xLAogICAgICAiZHVyYXRpb24iOiAxMjgKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDUsCiAgICAgICJ0aXRsZSI6ICJEdXN0ICYgRHluYXN0eSIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJkcmFtYSIsCiAgICAgICJ5ZWFyIjogMjAxOCwKICAgICAgInJhdGluZyI6IDguNSwKICAgICAgImR1cmF0aW9uIjogNTgKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDcsCiAgICAgICJ0aXRsZSI6ICJRdWlldCBTaWduYWxzIiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogInNjaS1maSIsCiAgICAgICJ5ZWFyIjogMjAyMSwKICAgICAgInJhdGluZyI6IDgsCiAgICAgICJkdXJhdGlvbiI6IDQyCiAgICB9LAogICAgewogICAgICAiaWQiOiAxMiwKICAgICAgInRpdGxlIjogIkhvbGxvdyBDcm93biBDb3VudHkiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAidGhyaWxsZXIiLAogICAgICAieWVhciI6IDIwMjMsCiAgICAgICJyYXRpbmciOiA4LjMsCiAgICAgICJkdXJhdGlvbiI6IDQ4CiAgICB9LAogICAgewogICAgICAiaWQiOiAxOSwKICAgICAgInRpdGxlIjogIkFzaCAmIEVtYmVyIiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImRyYW1hIiwKICAgICAgInllYXIiOiAyMDI0LAogICAgICAicmF0aW5nIjogOC42LAogICAgICAiZHVyYXRpb24iOiAzNgogICAgfSwKICAgIHsKICAgICAgImlkIjogMjAsCiAgICAgICJ0aXRsZSI6ICJXaWxkIEF0bGFzIiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImRvY3VtZW50YXJ5IiwKICAgICAgInllYXIiOiAyMDIyLAogICAgICAicmF0aW5nIjogOC44LAogICAgICAiZHVyYXRpb24iOiAxMAogICAgfQogIF0sCiAgIm1ldGEiOiB7CiAgICAidG90YWwiOiA2LAogICAgInBhZ2UiOiAxLAogICAgImxpbWl0IjogMTAsCiAgICAidG90YWxQYWdlcyI6IDEKICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 476099
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 953999
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "every returned title satisfies \"minRating\" \"8\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:83"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1415100
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};filter-titles-by-q=the",
+        "keyword": "Scenario Outline",
+        "line": 24,
+        "name": "Filter titles by q=the",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1151799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4702099
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I request the titles list with \"q\" set to \"the\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/cT10aGUKewogICJkYXRhIjogWwogICAgewogICAgICAiaWQiOiAyLAogICAgICAidGl0bGUiOiAiVGhlIExhc3QgT3JjaGFyZCIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogImRyYW1hIiwKICAgICAgInllYXIiOiAyMDIxLAogICAgICAicmF0aW5nIjogOC4xLAogICAgICAiZHVyYXRpb24iOiAxMjgKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDksCiAgICAgICJ0aXRsZSI6ICJUaGUgQ2FydG9ncmFwaGVyIiwKICAgICAgInR5cGUiOiAibW92aWUiLAogICAgICAiZ2VucmUiOiAiYWR2ZW50dXJlIiwKICAgICAgInllYXIiOiAyMDE2LAogICAgICAicmF0aW5nIjogNy42LAogICAgICAiZHVyYXRpb24iOiAxMTkKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDE3LAogICAgICAidGl0bGUiOiAiVGhlIFVuZGVyc3R1ZHkiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAiY29tZWR5IiwKICAgICAgInllYXIiOiAyMDI0LAogICAgICAicmF0aW5nIjogNywKICAgICAgImR1cmF0aW9uIjogMjAKICAgIH0KICBdLAogICJtZXRhIjogewogICAgInRvdGFsIjogMywKICAgICJwYWdlIjogMSwKICAgICJsaW1pdCI6IDEwLAogICAgInRvdGFsUGFnZXMiOiAxCiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 485300
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 744500
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "every returned title satisfies \"q\" \"the\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:83"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1037400
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};combine-filters,-sorting-and-pagination",
+        "keyword": "Scenario",
+        "line": 26,
+        "name": "Combine filters, sorting and pagination",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 961699
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5060500
+            },
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "genre",
+                      "drama"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "sortBy",
+                      "rating"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "order",
+                      "desc"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "limit",
+                      "2"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "page",
+                      "1"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "When ",
+            "line": 27,
+            "name": "I request the titles list with:",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:27"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/Z2VucmU9ZHJhbWEmc29ydEJ5PXJhdGluZyZvcmRlcj1kZXNjJmxpbWl0PTImcGFnZT0xCnsKICAiZGF0YSI6IFsKICAgIHsKICAgICAgImlkIjogMTksCiAgICAgICJ0aXRsZSI6ICJBc2ggJiBFbWJlciIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJkcmFtYSIsCiAgICAgICJ5ZWFyIjogMjAyNCwKICAgICAgInJhdGluZyI6IDguNiwKICAgICAgImR1cmF0aW9uIjogMzYKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDUsCiAgICAgICJ0aXRsZSI6ICJEdXN0ICYgRHluYXN0eSIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJkcmFtYSIsCiAgICAgICJ5ZWFyIjogMjAxOCwKICAgICAgInJhdGluZyI6IDguNSwKICAgICAgImR1cmF0aW9uIjogNTgKICAgIH0KICBdLAogICJtZXRhIjogewogICAgInRvdGFsIjogNCwKICAgICJwYWdlIjogMSwKICAgICJsaW1pdCI6IDIsCiAgICAidG90YWxQYWdlcyI6IDIKICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1170599
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 33,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1030500
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 34,
+            "name": "the titles are sorted by \"rating\" \"desc\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:96"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 725100
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 35,
+            "name": "the pagination meta reports limit 2 and page 1",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:104"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 603500
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 36,
+            "name": "at most 2 titles are returned",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:108"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1308199
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};sort-titles-by-title-asc",
+        "keyword": "Scenario Outline",
+        "line": 48,
+        "name": "Sort titles by title asc",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1308399
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5092799
+            },
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "sortBy",
+                      "title"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "order",
+                      "asc"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "limit",
+                      "50"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "When ",
+            "line": 39,
+            "name": "I request the titles list with:",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:27"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/c29ydEJ5PXRpdGxlJm9yZGVyPWFzYyZsaW1pdD01MAp7CiAgImRhdGEiOiBbCiAgICB7CiAgICAgICJpZCI6IDE5LAogICAgICAidGl0bGUiOiAiQXNoICYgRW1iZXIiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAiZHJhbWEiLAogICAgICAieWVhciI6IDIwMjQsCiAgICAgICJyYXRpbmciOiA4LjYsCiAgICAgICJkdXJhdGlvbiI6IDM2CiAgICB9LAogICAgewogICAgICAiaWQiOiAxMCwKICAgICAgInRpdGxlIjogIkJhY2tzdGFnZSBCbHVlcyIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJjb21lZHkiLAogICAgICAieWVhciI6IDIwMjIsCiAgICAgICJyYXRpbmciOiA3LjMsCiAgICAgICJkdXJhdGlvbiI6IDMwCiAgICB9LAogICAgewogICAgICAiaWQiOiAyMSwKICAgICAgInRpdGxlIjogIkNyb3Nzd2lyZSIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogInRocmlsbGVyIiwKICAgICAgInllYXIiOiAyMDI0LAogICAgICAicmF0aW5nIjogNy4yLAogICAgICAiZHVyYXRpb24iOiAxMDMKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDE4LAogICAgICAidGl0bGUiOiAiRGVlcCBTdGF0aWMiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJzY2ktZmkiLAogICAgICAieWVhciI6IDIwMTgsCiAgICAgICJyYXRpbmciOiA2LjYsCiAgICAgICJkdXJhdGlvbiI6IDEwOQogICAgfSwKICAgIHsKICAgICAgImlkIjogNSwKICAgICAgInRpdGxlIjogIkR1c3QgJiBEeW5hc3R5IiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImRyYW1hIiwKICAgICAgInllYXIiOiAyMDE4LAogICAgICAicmF0aW5nIjogOC41LAogICAgICAiZHVyYXRpb24iOiA1OAogICAgfSwKICAgIHsKICAgICAgImlkIjogMTQsCiAgICAgICJ0aXRsZSI6ICJHbGFzcyBSaXZlcnMiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJkcmFtYSIsCiAgICAgICJ5ZWFyIjogMjAxNSwKICAgICAgInJhdGluZyI6IDcuNywKICAgICAgImR1cmF0aW9uIjogMTQxCiAgICB9LAogICAgewogICAgICAiaWQiOiAxMiwKICAgICAgInRpdGxlIjogIkhvbGxvdyBDcm93biBDb3VudHkiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAidGhyaWxsZXIiLAogICAgICAieWVhciI6IDIwMjMsCiAgICAgICJyYXRpbmciOiA4LjMsCiAgICAgICJkdXJhdGlvbiI6IDQ4CiAgICB9LAogICAgewogICAgICAiaWQiOiAxMSwKICAgICAgInRpdGxlIjogIklyb24gVGlkZSIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogImFjdGlvbiIsCiAgICAgICJ5ZWFyIjogMjAyMCwKICAgICAgInJhdGluZyI6IDYuOCwKICAgICAgImR1cmF0aW9uIjogMTI3CiAgICB9LAogICAgewogICAgICAiaWQiOiAyMiwKICAgICAgInRpdGxlIjogIkxhbnRlcm4gRmVzdGl2YWwiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJmYW1pbHkiLAogICAgICAieWU=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 486300
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 43,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 409000
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 44,
+            "name": "the titles are sorted by \"title\" \"asc\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:96"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 877999
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};sort-titles-by-year-desc",
+        "keyword": "Scenario Outline",
+        "line": 49,
+        "name": "Sort titles by year desc",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 692599
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5433399
+            },
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "sortBy",
+                      "year"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "order",
+                      "desc"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "limit",
+                      "50"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "When ",
+            "line": 39,
+            "name": "I request the titles list with:",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:27"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/c29ydEJ5PXllYXImb3JkZXI9ZGVzYyZsaW1pdD01MAp7CiAgImRhdGEiOiBbCiAgICB7CiAgICAgICJpZCI6IDIxLAogICAgICAidGl0bGUiOiAiQ3Jvc3N3aXJlIiwKICAgICAgInR5cGUiOiAibW92aWUiLAogICAgICAiZ2VucmUiOiAidGhyaWxsZXIiLAogICAgICAieWVhciI6IDIwMjQsCiAgICAgICJyYXRpbmciOiA3LjIsCiAgICAgICJkdXJhdGlvbiI6IDEwMwogICAgfSwKICAgIHsKICAgICAgImlkIjogMTksCiAgICAgICJ0aXRsZSI6ICJBc2ggJiBFbWJlciIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJkcmFtYSIsCiAgICAgICJ5ZWFyIjogMjAyNCwKICAgICAgInJhdGluZyI6IDguNiwKICAgICAgImR1cmF0aW9uIjogMzYKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDE3LAogICAgICAidGl0bGUiOiAiVGhlIFVuZGVyc3R1ZHkiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAiY29tZWR5IiwKICAgICAgInllYXIiOiAyMDI0LAogICAgICAicmF0aW5nIjogNywKICAgICAgImR1cmF0aW9uIjogMjAKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDE2LAogICAgICAidGl0bGUiOiAiU2FsdCBSb2FkIiwKICAgICAgInR5cGUiOiAibW92aWUiLAogICAgICAiZ2VucmUiOiAiYWR2ZW50dXJlIiwKICAgICAgInllYXIiOiAyMDI0LAogICAgICAicmF0aW5nIjogNy41LAogICAgICAiZHVyYXRpb24iOiAxMTYKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDE1LAogICAgICAidGl0bGUiOiAiWmVybyBHcmF2aXR5IExvdmUiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJyb21hbmNlIiwKICAgICAgInllYXIiOiAyMDI0LAogICAgICAicmF0aW5nIjogNi4yLAogICAgICAiZHVyYXRpb24iOiA5OAogICAgfSwKICAgIHsKICAgICAgImlkIjogMjQsCiAgICAgICJ0aXRsZSI6ICJSZXdpbmQgQ2l0eSIsCiAgICAgICJ0eXBlIjogIm1vdmllIiwKICAgICAgImdlbnJlIjogInNjaS1maSIsCiAgICAgICJ5ZWFyIjogMjAyMywKICAgICAgInJhdGluZyI6IDcuOSwKICAgICAgImR1cmF0aW9uIjogMTIyCiAgICB9LAogICAgewogICAgICAiaWQiOiAyMywKICAgICAgInRpdGxlIjogIlBvY2tldCBIZXJvZXMiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAiZmFtaWx5IiwKICAgICAgInllYXIiOiAyMDIzLAogICAgICAicmF0aW5nIjogNi40LAogICAgICAiZHVyYXRpb24iOiA1MgogICAgfSwKICAgIHsKICAgICAgImlkIjogMTIsCiAgICAgICJ0aXRsZSI6ICJIb2xsb3cgQ3Jvd24gQ291bnR5IiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogInRocmlsbGVyIiwKICAgICAgInllYXIiOiAyMDIzLAogICAgICAicmF0aW5nIjogOC4zLAogICAgICAiZHVyYXRpb24iOiA0OAogICAgfSwKICAgIHsKICAgICAgImlkIjogNiwKICAgICAgInRpdGxlIjogIk5lb24gQWxsZXkiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJhY3Rpb24iLAogICAgICAieWU=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 539600
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 43,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 667700
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 44,
+            "name": "the titles are sorted by \"year\" \"desc\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:96"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1205100
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};sort-titles-by-rating-desc",
+        "keyword": "Scenario Outline",
+        "line": 50,
+        "name": "Sort titles by rating desc",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1093900
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5766799
+            },
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "sortBy",
+                      "rating"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "order",
+                      "desc"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "limit",
+                      "50"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "When ",
+            "line": 39,
+            "name": "I request the titles list with:",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:27"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/c29ydEJ5PXJhdGluZyZvcmRlcj1kZXNjJmxpbWl0PTUwCnsKICAiZGF0YSI6IFsKICAgIHsKICAgICAgImlkIjogMjAsCiAgICAgICJ0aXRsZSI6ICJXaWxkIEF0bGFzIiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImRvY3VtZW50YXJ5IiwKICAgICAgInllYXIiOiAyMDIyLAogICAgICAicmF0aW5nIjogOC44LAogICAgICAiZHVyYXRpb24iOiAxMAogICAgfSwKICAgIHsKICAgICAgImlkIjogMTksCiAgICAgICJ0aXRsZSI6ICJBc2ggJiBFbWJlciIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJkcmFtYSIsCiAgICAgICJ5ZWFyIjogMjAyNCwKICAgICAgInJhdGluZyI6IDguNiwKICAgICAgImR1cmF0aW9uIjogMzYKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDUsCiAgICAgICJ0aXRsZSI6ICJEdXN0ICYgRHluYXN0eSIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJkcmFtYSIsCiAgICAgICJ5ZWFyIjogMjAxOCwKICAgICAgInJhdGluZyI6IDguNSwKICAgICAgImR1cmF0aW9uIjogNTgKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEyLAogICAgICAidGl0bGUiOiAiSG9sbG93IENyb3duIENvdW50eSIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJ0aHJpbGxlciIsCiAgICAgICJ5ZWFyIjogMjAyMywKICAgICAgInJhdGluZyI6IDguMywKICAgICAgImR1cmF0aW9uIjogNDgKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDIsCiAgICAgICJ0aXRsZSI6ICJUaGUgTGFzdCBPcmNoYXJkIiwKICAgICAgInR5cGUiOiAibW92aWUiLAogICAgICAiZ2VucmUiOiAiZHJhbWEiLAogICAgICAieWVhciI6IDIwMjEsCiAgICAgICJyYXRpbmciOiA4LjEsCiAgICAgICJkdXJhdGlvbiI6IDEyOAogICAgfSwKICAgIHsKICAgICAgImlkIjogNywKICAgICAgInRpdGxlIjogIlF1aWV0IFNpZ25hbHMiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAic2NpLWZpIiwKICAgICAgInllYXIiOiAyMDIxLAogICAgICAicmF0aW5nIjogOCwKICAgICAgImR1cmF0aW9uIjogNDIKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDI0LAogICAgICAidGl0bGUiOiAiUmV3aW5kIENpdHkiLAogICAgICAidHlwZSI6ICJtb3ZpZSIsCiAgICAgICJnZW5yZSI6ICJzY2ktZmkiLAogICAgICAieWVhciI6IDIwMjMsCiAgICAgICJyYXRpbmciOiA3LjksCiAgICAgICJkdXJhdGlvbiI6IDEyMgogICAgfSwKICAgIHsKICAgICAgImlkIjogMTMsCiAgICAgICJ0aXRsZSI6ICJTdW5kYXkgS2l0Y2hlbiIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJkb2N1bWVudGFyeSIsCiAgICAgICJ5ZWFyIjogMjAxOSwKICAgICAgInJhdGluZyI6IDcuOSwKICAgICAgImR1cmF0aW9uIjogMTIKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDQsCiAgICAgICJ0aXRsZSI6ICJPcmJpdCBOaW5lIiwKICAgICAgInR5cGUiOiAibW92aWUiLAogICAgICAiZ2VucmUiOiAic2NpLWZpIiwKICAgIA==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1080100
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 43,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1315299
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 44,
+            "name": "the titles are sorted by \"rating\" \"desc\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:96"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1459700
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};sort-titles-by-duration-asc",
+        "keyword": "Scenario Outline",
+        "line": 51,
+        "name": "Sort titles by duration asc",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1070999
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4674199
+            },
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "sortBy",
+                      "duration"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "order",
+                      "asc"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "limit",
+                      "50"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "When ",
+            "line": 39,
+            "name": "I request the titles list with:",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:27"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/c29ydEJ5PWR1cmF0aW9uJm9yZGVyPWFzYyZsaW1pdD01MAp7CiAgImRhdGEiOiBbCiAgICB7CiAgICAgICJpZCI6IDIwLAogICAgICAidGl0bGUiOiAiV2lsZCBBdGxhcyIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJkb2N1bWVudGFyeSIsCiAgICAgICJ5ZWFyIjogMjAyMiwKICAgICAgInJhdGluZyI6IDguOCwKICAgICAgImR1cmF0aW9uIjogMTAKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDEzLAogICAgICAidGl0bGUiOiAiU3VuZGF5IEtpdGNoZW4iLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAiZG9jdW1lbnRhcnkiLAogICAgICAieWVhciI6IDIwMTksCiAgICAgICJyYXRpbmciOiA3LjksCiAgICAgICJkdXJhdGlvbiI6IDEyCiAgICB9LAogICAgewogICAgICAiaWQiOiAxNywKICAgICAgInRpdGxlIjogIlRoZSBVbmRlcnN0dWR5IiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogImNvbWVkeSIsCiAgICAgICJ5ZWFyIjogMjAyNCwKICAgICAgInJhdGluZyI6IDcsCiAgICAgICJkdXJhdGlvbiI6IDIwCiAgICB9LAogICAgewogICAgICAiaWQiOiAzLAogICAgICAidGl0bGUiOiAiTGF1Z2ggVHJhY2siLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAiY29tZWR5IiwKICAgICAgInllYXIiOiAyMDIwLAogICAgICAicmF0aW5nIjogNi45LAogICAgICAiZHVyYXRpb24iOiAyNAogICAgfSwKICAgIHsKICAgICAgImlkIjogMTAsCiAgICAgICJ0aXRsZSI6ICJCYWNrc3RhZ2UgQmx1ZXMiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAiY29tZWR5IiwKICAgICAgInllYXIiOiAyMDIyLAogICAgICAicmF0aW5nIjogNy4zLAogICAgICAiZHVyYXRpb24iOiAzMAogICAgfSwKICAgIHsKICAgICAgImlkIjogMTksCiAgICAgICJ0aXRsZSI6ICJBc2ggJiBFbWJlciIsCiAgICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAgICJnZW5yZSI6ICJkcmFtYSIsCiAgICAgICJ5ZWFyIjogMjAyNCwKICAgICAgInJhdGluZyI6IDguNiwKICAgICAgImR1cmF0aW9uIjogMzYKICAgIH0sCiAgICB7CiAgICAgICJpZCI6IDcsCiAgICAgICJ0aXRsZSI6ICJRdWlldCBTaWduYWxzIiwKICAgICAgInR5cGUiOiAic2VyaWVzIiwKICAgICAgImdlbnJlIjogInNjaS1maSIsCiAgICAgICJ5ZWFyIjogMjAyMSwKICAgICAgInJhdGluZyI6IDgsCiAgICAgICJkdXJhdGlvbiI6IDQyCiAgICB9LAogICAgewogICAgICAiaWQiOiAxMiwKICAgICAgInRpdGxlIjogIkhvbGxvdyBDcm93biBDb3VudHkiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAidGhyaWxsZXIiLAogICAgICAieWVhciI6IDIwMjMsCiAgICAgICJyYXRpbmciOiA4LjMsCiAgICAgICJkdXJhdGlvbiI6IDQ4CiAgICB9LAogICAgewogICAgICAiaWQiOiAyMywKICAgICAgInRpdGxlIjogIlBvY2tldCBIZXJvZXMiLAogICAgICAidHlwZSI6ICJzZXJpZXMiLAogICAgICAiZ2VucmUiOiAiZmFtaWx5Iiw=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 530899
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 43,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 498700
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 44,
+            "name": "the titles are sorted by \"duration\" \"asc\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:96"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1007399
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};pagination-pages-do-not-overlap-and-cover-all-results",
+        "keyword": "Scenario",
+        "line": 53,
+        "name": "Pagination pages do not overlap and cover all results",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 767100
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 12590899
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 54,
+            "name": "I fetch every page of titles with limit 10",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:53"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 769800
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 55,
+            "name": "the pages contain each title exactly once",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:124"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1090499
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};filter-with-no-matches-returns-an-empty-list,-not-an-error",
+        "keyword": "Scenario",
+        "line": 57,
+        "name": "Filter with no matches returns an empty list, not an error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 872899
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5513399
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 58,
+            "name": "I request the titles list with \"q\" set to \"zzzz-no-such-title\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/cT16enp6LW5vLXN1Y2gtdGl0bGUKewogICJkYXRhIjogW10sCiAgIm1ldGEiOiB7CiAgICAidG90YWwiOiAwLAogICAgInBhZ2UiOiAxLAogICAgImxpbWl0IjogMTAsCiAgICAidG90YWxQYWdlcyI6IDEKICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 649300
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 59,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 529599
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 60,
+            "name": "at most 0 titles are returned",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:108"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1600100
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};get-a-title-by-id",
+        "keyword": "Scenario",
+        "line": 62,
+        "name": "Get a title by id",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1107100
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6219500
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 63,
+            "name": "I request the title with id 5",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:36"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCAyMDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXMvNQp7CiAgImRhdGEiOiB7CiAgICAiaWQiOiA1LAogICAgInRpdGxlIjogIkR1c3QgJiBEeW5hc3R5IiwKICAgICJ0eXBlIjogInNlcmllcyIsCiAgICAiZ2VucmUiOiAiZHJhbWEiLAogICAgInllYXIiOiAyMDE4LAogICAgInJhdGluZyI6IDguNSwKICAgICJkdXJhdGlvbiI6IDU4CiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 663699
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 64,
+            "name": "the response status is 200",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1417100
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 65,
+            "name": "the title has id 5 and all expected fields",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:112"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1757900
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-limit=0-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 74,
+        "name": "Invalid list parameter limit=0 is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1776400
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 7309999
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"limit\" set to \"0\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/bGltaXQ9MAp7CiAgImVycm9yIjogewogICAgImNvZGUiOiAiSU5WQUxJRF9QQVJBTUVURVIiLAogICAgIm1lc3NhZ2UiOiAiUGFyYW1ldGVyICdsaW1pdCcgbXVzdCBiZSA+PSAxIiwKICAgICJkZXRhaWxzIjogewogICAgICAicmVjZWl2ZWQiOiAwCiAgICB9CiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 760800
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 830500
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1077100
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-limit=51-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 75,
+        "name": "Invalid list parameter limit=51 is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2359799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8791299
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"limit\" set to \"51\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/bGltaXQ9NTEKewogICJlcnJvciI6IHsKICAgICJjb2RlIjogIklOVkFMSURfUEFSQU1FVEVSIiwKICAgICJtZXNzYWdlIjogIlBhcmFtZXRlciAnbGltaXQnIG11c3QgYmUgPD0gNTAiLAogICAgImRldGFpbHMiOiB7CiAgICAgICJyZWNlaXZlZCI6IDUxCiAgICB9CiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1134000
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1299399
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2470800
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-limit=abc-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 76,
+        "name": "Invalid list parameter limit=abc is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4238499
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 9518900
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"limit\" set to \"abc\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/bGltaXQ9YWJjCnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJJTlZBTElEX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJQYXJhbWV0ZXIgJ2xpbWl0JyBtdXN0IGJlIGEgbnVtYmVyIiwKICAgICJkZXRhaWxzIjogewogICAgICAicmVjZWl2ZWQiOiAiYWJjIgogICAgfQogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1356599
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2157100
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3945900
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-limit=2.5-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 77,
+        "name": "Invalid list parameter limit=2.5 is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2324200
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 20628099
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"limit\" set to \"2.5\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/bGltaXQ9Mi41CnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJJTlZBTElEX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJQYXJhbWV0ZXIgJ2xpbWl0JyBtdXN0IGJlIGFuIGludGVnZXIiLAogICAgImRldGFpbHMiOiB7CiAgICAgICJyZWNlaXZlZCI6ICIyLjUiCiAgICB9CiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3735500
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2856299
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2343299
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-page=0-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 78,
+        "name": "Invalid list parameter page=0 is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1716600
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 12885099
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"page\" set to \"0\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/cGFnZT0wCnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJJTlZBTElEX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJQYXJhbWV0ZXIgJ3BhZ2UnIG11c3QgYmUgPj0gMSIsCiAgICAiZGV0YWlscyI6IHsKICAgICAgInJlY2VpdmVkIjogMAogICAgfQogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1142899
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2049300
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2362499
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-page=-1-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 79,
+        "name": "Invalid list parameter page=-1 is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1644999
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 10762600
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"page\" set to \"-1\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/cGFnZT0tMQp7CiAgImVycm9yIjogewogICAgImNvZGUiOiAiSU5WQUxJRF9QQVJBTUVURVIiLAogICAgIm1lc3NhZ2UiOiAiUGFyYW1ldGVyICdwYWdlJyBtdXN0IGJlID49IDEiLAogICAgImRldGFpbHMiOiB7CiAgICAgICJyZWNlaXZlZCI6IC0xCiAgICB9CiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2352399
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1525100
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4514000
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-minyear=1800-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 80,
+        "name": "Invalid list parameter minYear=1800 is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2449599
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 13684700
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"minYear\" set to \"1800\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/bWluWWVhcj0xODAwCnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJJTlZBTElEX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJQYXJhbWV0ZXIgJ21pblllYXInIG11c3QgYmUgPj0gMTkwMCIsCiAgICAiZGV0YWlscyI6IHsKICAgICAgInJlY2VpdmVkIjogMTgwMAogICAgfQogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1563100
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2778300
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5523400
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-minyear=twenty-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 81,
+        "name": "Invalid list parameter minYear=twenty is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2378499
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 16464199
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"minYear\" set to \"twenty\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/bWluWWVhcj10d2VudHkKewogICJlcnJvciI6IHsKICAgICJjb2RlIjogIklOVkFMSURfUEFSQU1FVEVSIiwKICAgICJtZXNzYWdlIjogIlBhcmFtZXRlciAnbWluWWVhcicgbXVzdCBiZSBhIG51bWJlciIsCiAgICAiZGV0YWlscyI6IHsKICAgICAgInJlY2VpdmVkIjogInR3ZW50eSIKICAgIH0KICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1403299
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1511999
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2238100
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-minrating=11-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 82,
+        "name": "Invalid list parameter minRating=11 is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1253499
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8595100
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"minRating\" set to \"11\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/bWluUmF0aW5nPTExCnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJJTlZBTElEX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJQYXJhbWV0ZXIgJ21pblJhdGluZycgbXVzdCBiZSA8PSAxMCIsCiAgICAiZGV0YWlscyI6IHsKICAgICAgInJlY2VpdmVkIjogMTEKICAgIH0KICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1311900
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2040600
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2457300
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-minrating=-0.5-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 83,
+        "name": "Invalid list parameter minRating=-0.5 is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2369699
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8108099
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"minRating\" set to \"-0.5\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/bWluUmF0aW5nPS0wLjUKewogICJlcnJvciI6IHsKICAgICJjb2RlIjogIklOVkFMSURfUEFSQU1FVEVSIiwKICAgICJtZXNzYWdlIjogIlBhcmFtZXRlciAnbWluUmF0aW5nJyBtdXN0IGJlID49IDAiLAogICAgImRldGFpbHMiOiB7CiAgICAgICJyZWNlaXZlZCI6IC0wLjUKICAgIH0KICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1268399
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1681999
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4441500
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-sortby=popularity-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 84,
+        "name": "Invalid list parameter sortBy=popularity is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2052799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6490499
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"sortBy\" set to \"popularity\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/c29ydEJ5PXBvcHVsYXJpdHkKewogICJlcnJvciI6IHsKICAgICJjb2RlIjogIklOVkFMSURfUEFSQU1FVEVSIiwKICAgICJtZXNzYWdlIjogIlBhcmFtZXRlciAnc29ydEJ5JyBtdXN0IGJlIG9uZSBvZjogdGl0bGUsIHllYXIsIHJhdGluZywgZHVyYXRpb24iLAogICAgImRldGFpbHMiOiB7CiAgICAgICJyZWNlaXZlZCI6ICJwb3B1bGFyaXR5IgogICAgfQogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1022699
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5931000
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5207899
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-order=sideways-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 85,
+        "name": "Invalid list parameter order=sideways is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2812799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 21288299
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"order\" set to \"sideways\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/b3JkZXI9c2lkZXdheXMKewogICJlcnJvciI6IHsKICAgICJjb2RlIjogIklOVkFMSURfUEFSQU1FVEVSIiwKICAgICJtZXNzYWdlIjogIlBhcmFtZXRlciAnb3JkZXInIG11c3QgYmUgb25lIG9mOiBhc2MsIGRlc2MiLAogICAgImRldGFpbHMiOiB7CiAgICAgICJyZWNlaXZlZCI6ICJzaWRld2F5cyIKICAgIH0KICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1423900
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2421600
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2680299
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-genre=horror-xyz-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 86,
+        "name": "Invalid list parameter genre=horror-xyz is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1646900
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 10913000
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"genre\" set to \"horror-xyz\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/Z2VucmU9aG9ycm9yLXh5egp7CiAgImVycm9yIjogewogICAgImNvZGUiOiAiSU5WQUxJRF9QQVJBTUVURVIiLAogICAgIm1lc3NhZ2UiOiAiUGFyYW1ldGVyICdnZW5yZScgbXVzdCBiZSBvbmUgb2Y6IGFjdGlvbiwgYWR2ZW50dXJlLCBjb21lZHksIGRvY3VtZW50YXJ5LCBkcmFtYSwgZmFtaWx5LCByb21hbmNlLCBzY2ktZmksIHRocmlsbGVyIiwKICAgICJkZXRhaWxzIjogewogICAgICAicmVjZWl2ZWQiOiAiaG9ycm9yLXh5eiIKICAgIH0KICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1586000
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1776800
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2382000
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-type=podcast-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 87,
+        "name": "Invalid list parameter type=podcast is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1912299
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8652500
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"type\" set to \"podcast\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/dHlwZT1wb2RjYXN0CnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJJTlZBTElEX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJQYXJhbWV0ZXIgJ3R5cGUnIG11c3QgYmUgb25lIG9mOiBtb3ZpZSwgc2VyaWVzIiwKICAgICJkZXRhaWxzIjogewogICAgICAicmVjZWl2ZWQiOiAicG9kY2FzdCIKICAgIH0KICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1104800
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1602100
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1695699
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};invalid-list-parameter-colour=blue-is-rejected-with-400",
+        "keyword": "Scenario Outline",
+        "line": 88,
+        "name": "Invalid list parameter colour=blue is rejected with 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1044899
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4581799
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I request the titles list with \"colour\" set to \"blue\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/Y29sb3VyPWJsdWUKewogICJlcnJvciI6IHsKICAgICJjb2RlIjogIklOVkFMSURfUEFSQU1FVEVSIiwKICAgICJtZXNzYWdlIjogIlVuc3VwcG9ydGVkIHF1ZXJ5IHBhcmFtZXRlcihzKTogY29sb3VyIiwKICAgICJkZXRhaWxzIjogewogICAgICAiYWxsb3dlZCI6IFsKICAgICAgICAiZ2VucmUiLAogICAgICAgICJ0eXBlIiwKICAgICAgICAibWluWWVhciIsCiAgICAgICAgIm1heFllYXIiLAogICAgICAgICJtaW5SYXRpbmciLAogICAgICAgICJxIiwKICAgICAgICAic29ydEJ5IiwKICAgICAgICAib3JkZXIiLAogICAgICAgICJwYWdlIiwKICAgICAgICAibGltaXQiCiAgICAgIF0KICAgIH0KICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1342000
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1387900
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1663300
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};minyear-greater-than-maxyear-is-rejected",
+        "keyword": "Scenario",
+        "line": 90,
+        "name": "minYear greater than maxYear is rejected",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1503499
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6036700
+            },
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "minYear",
+                      "2024"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "maxYear",
+                      "2020"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "When ",
+            "line": 91,
+            "name": "I request the titles list with:",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:27"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/bWluWWVhcj0yMDI0Jm1heFllYXI9MjAyMAp7CiAgImVycm9yIjogewogICAgImNvZGUiOiAiSU5WQUxJRF9SQU5HRSIsCiAgICAibWVzc2FnZSI6ICInbWluWWVhcicgbXVzdCBub3QgYmUgZ3JlYXRlciB0aGFuICdtYXhZZWFyJyIsCiAgICAiZGV0YWlscyI6IHsKICAgICAgIm1pblllYXIiOiAyMDI0LAogICAgICAibWF4WWVhciI6IDIwMjAKICAgIH0KICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 664999
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 94,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 805100
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 95,
+            "name": "the error response has code \"INVALID_RANGE\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1021400
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};search-text-longer-than-100-characters-is-rejected",
+        "keyword": "Scenario",
+        "line": 97,
+        "name": "Search text longer than 100 characters is rejected",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1686399
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8817700
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 98,
+            "name": "I request the titles list with a search text of 101 characters",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:32"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/cT1hYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYQp7CiAgImVycm9yIjogewogICAgImNvZGUiOiAiSU5WQUxJRF9QQVJBTUVURVIiLAogICAgIm1lc3NhZ2UiOiAiJ3EnIG11c3QgYmUgYXQgbW9zdCAxMDAgY2hhcmFjdGVycyIKICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 705399
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 99,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 778500
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 100,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1306599
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};repeated-parameter-is-rejected-rather-than-guessed",
+        "keyword": "Scenario",
+        "line": 102,
+        "name": "Repeated parameter is rejected rather than guessed",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1053000
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6713700
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 103,
+            "name": "I send the raw request \"/api/titles?genre=drama&genre=comedy\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/Z2VucmU9ZHJhbWEmZ2VucmU9Y29tZWR5CnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJJTlZBTElEX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJQYXJhbWV0ZXIgJ2dlbnJlJyBtdXN0IGJlIGdpdmVuIGV4YWN0bHkgb25jZSBhcyBhIHBsYWluIHZhbHVlIgogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 780200
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 104,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 715499
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 105,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2336299
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};requesting-a-page-beyond-the-last-page-returns-404",
+        "keyword": "Scenario",
+        "line": 107,
+        "name": "Requesting a page beyond the last page returns 404",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1363200
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6624900
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 108,
+            "name": "I request the titles list with \"page\" set to \"99\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:22"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDQgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXM/cGFnZT05OQp7CiAgImVycm9yIjogewogICAgImNvZGUiOiAiUEFHRV9PVVRfT0ZfUkFOR0UiLAogICAgIm1lc3NhZ2UiOiAiUGFnZSA5OSBkb2VzIG5vdCBleGlzdCIsCiAgICAiZGV0YWlscyI6IHsKICAgICAgInRvdGFsUGFnZXMiOiAzCiAgICB9CiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1064600
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 109,
+            "name": "the response status is 404",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1547500
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 110,
+            "name": "the error response has code \"PAGE_OUT_OF_RANGE\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1805899
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};unknown-title-id-returns-404",
+        "keyword": "Scenario",
+        "line": 112,
+        "name": "Unknown title id returns 404",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1103000
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5219999
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 113,
+            "name": "I request the title with id 9999",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:36"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDQgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXMvOTk5OQp7CiAgImVycm9yIjogewogICAgImNvZGUiOiAiTk9UX0ZPVU5EIiwKICAgICJtZXNzYWdlIjogIlRpdGxlIDk5OTkgbm90IGZvdW5kIgogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 704999
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 114,
+            "name": "the response status is 404",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 861899
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 115,
+            "name": "the error response has code \"NOT_FOUND\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2106900
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};non-numeric-title-id-abc-returns-400",
+        "keyword": "Scenario Outline",
+        "line": 124,
+        "name": "Non-numeric title id abc returns 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1656399
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 7232899
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 118,
+            "name": "I send the raw request \"/api/titles/abc\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXMvYWJjCnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJJTlZBTElEX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJQYXRoIHBhcmFtZXRlciAnaWQnIG11c3QgYmUgYSBwb3NpdGl2ZSBpbnRlZ2VyIgogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1058899
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 119,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1125400
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 120,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1366100
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};non-numeric-title-id-1.5-returns-400",
+        "keyword": "Scenario Outline",
+        "line": 125,
+        "name": "Non-numeric title id 1.5 returns 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3067799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 9439399
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 118,
+            "name": "I send the raw request \"/api/titles/1.5\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXMvMS41CnsKICAiZXJyb3IiOiB7CiAgICAiY29kZSI6ICJJTlZBTElEX1BBUkFNRVRFUiIsCiAgICAibWVzc2FnZSI6ICJQYXRoIHBhcmFtZXRlciAnaWQnIG11c3QgYmUgYSBwb3NpdGl2ZSBpbnRlZ2VyIgogIH0KfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1001400
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 119,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1183399
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 120,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3099800
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};non-numeric-title-id--3-returns-400",
+        "keyword": "Scenario Outline",
+        "line": 126,
+        "name": "Non-numeric title id -3 returns 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1716899
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5419800
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 118,
+            "name": "I send the raw request \"/api/titles/-3\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXMvLTMKewogICJlcnJvciI6IHsKICAgICJjb2RlIjogIklOVkFMSURfUEFSQU1FVEVSIiwKICAgICJtZXNzYWdlIjogIlBhdGggcGFyYW1ldGVyICdpZCcgbXVzdCBiZSBhIHBvc2l0aXZlIGludGVnZXIiCiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 545699
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 119,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 546400
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 120,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1460099
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};non-numeric-title-id-1%20x-returns-400",
+        "keyword": "Scenario Outline",
+        "line": 127,
+        "name": "Non-numeric title id 1%20x returns 400",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1850799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5854200
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 118,
+            "name": "I send the raw request \"/api/titles/1%20x\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDAgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS90aXRsZXMvMSUyMHgKewogICJlcnJvciI6IHsKICAgICJjb2RlIjogIklOVkFMSURfUEFSQU1FVEVSIiwKICAgICJtZXNzYWdlIjogIlBhdGggcGFyYW1ldGVyICdpZCcgbXVzdCBiZSBhIHBvc2l0aXZlIGludGVnZXIiCiAgfQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 558500
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 119,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 761600
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 120,
+            "name": "the error response has code \"INVALID_PARAMETER\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1087499
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id};unknown-route-returns-a-json-404",
+        "keyword": "Scenario",
+        "line": 129,
+        "name": "Unknown route returns a JSON 404",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1016799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6890899
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 130,
+            "name": "I send the raw request \"/api/does-not-exist\"",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:40"
+            },
+            "embeddings": [
+              {
+                "data": "SFRUUCA0MDQgaHR0cDovL2xvY2FsaG9zdDozMTAwL2FwaS9kb2VzLW5vdC1leGlzdAp7CiAgImVycm9yIjogewogICAgImNvZGUiOiAiUk9VVEVfTk9UX0ZPVU5EIiwKICAgICJtZXNzYWdlIjogIk5vIHJvdXRlIGZvciBHRVQgL2FwaS9kb2VzLW5vdC1leGlzdCIKICB9Cn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1366399
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 131,
+            "name": "the response status is 404",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1176599
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 132,
+            "name": "the error response has code \"ROUTE_NOT_FOUND\" and a helpful message",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:117"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1685799
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 1
+          },
+          {
+            "name": "@titles",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "titles-catalogue-api---get-/api/titles-and-/api/titles/{id}",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Titles catalogue API - GET /api/titles and /api/titles/{id}",
+    "tags": [
+      {
+        "name": "@api",
+        "line": 1
+      },
+      {
+        "name": "@titles",
+        "line": 1
+      }
+    ],
+    "uri": "features\\api\\titles.feature"
+  }
+]
