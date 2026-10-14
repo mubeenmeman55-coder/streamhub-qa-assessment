@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { BeforeAll, AfterAll, Before, BeforeStep, After, Status } = require('@cucumber/cucumber');
+const { BeforeAll, AfterAll, Before, BeforeStep, AfterStep, After, Status } = require('@cucumber/cucumber');
 const { chromium, request } = require('playwright');
 const config = require('../../config/env');
 const { startServer } = require('../../src/api/server');
@@ -10,15 +10,14 @@ const SHOTS_DIR = path.join('reports', 'screenshots');
 let browser;
 let apiServer;
 let live;
-let currentPage = null;
 const LIVE = process.env.LIVE_VIEW === 'true';
 
 BeforeAll(async () => {
   fs.mkdirSync(SHOTS_DIR, { recursive: true });
   if (LIVE) {
-    live = startLiveView(Number(process.env.LIVE_VIEW_PORT || 3200), () => currentPage);
-    const wait = Number(process.env.LIVE_VIEW_WAIT_MS || 20000);
-    live.setStatus(`Viewer connected - tests start in ${wait / 1000}s`, 'Open/refresh this page, then watch.');
+    live = startLiveView(Number(process.env.LIVE_VIEW_PORT || 3200));
+    const wait = Number(process.env.LIVE_VIEW_WAIT_MS || 10000);
+    live.message(`Viewer connected - tests start in ${wait / 1000}s`, 'Open or refresh this page, then watch.');
     await new Promise((r) => setTimeout(r, wait));
   }
   if (config.startApiServer) {
@@ -28,24 +27,32 @@ BeforeAll(async () => {
 });
 
 AfterAll(async () => {
-  if (live) await live.close();
+  if (live) {
+    live.finish();
+    await new Promise((r) => setTimeout(r, 8000)); // keep the final result on screen
+    await live.close();
+  }
   if (browser) await browser.close();
   if (apiServer) await new Promise((resolve) => apiServer.close(resolve));
 });
 
-Before({ tags: '@ui' }, async function () {
+Before({ tags: '@ui' }, async function ({ pickle }) {
   browser ??= await chromium.launch({ headless: config.headless, slowMo: config.slowMo });
   this.context = await browser.newContext({ viewport: { width: 1366, height: 900 } });
   this.context.setDefaultTimeout(config.timeout);
   this.page = await this.context.newPage();
-  currentPage = this.page;
+  if (live) await live.attach(this.page, pickle.name);
 });
 
-BeforeStep(async function ({ pickleStep, pickle }) {
+BeforeStep(async function ({ pickleStep }) {
   if (live && this.page) {
-    live.setStatus(pickle.name, `${pickleStep.type === 'Outcome' ? 'Then' : pickleStep.type === 'Action' ? 'When' : 'Given'} ${pickleStep.text}`);
-    await new Promise((r) => setTimeout(r, 700)); // let the viewer show each step
+    live.stepStart(pickleStep.text);
+    await new Promise((r) => setTimeout(r, 250)); // brief beat so each step is visible
   }
+});
+
+AfterStep(async function ({ result }) {
+  if (live && this.page) live.stepEnd(result.status === Status.PASSED);
 });
 
 Before({ tags: '@api' }, async function () {
@@ -60,8 +67,10 @@ After(async function (scenario) {
     const file = path.join(SHOTS_DIR, `${failed ? 'FAILED_' : ''}${name}.png`);
     const png = await this.page.screenshot({ path: file, fullPage: false }).catch(() => null);
     if (png) this.attach(png, 'image/png');
-    if (live) await new Promise((r) => setTimeout(r, 2500)); // hold the final state on screen
-    currentPage = null;
+    if (live) {
+      await new Promise((r) => setTimeout(r, 1500)); // hold the final state on screen
+      await live.detach(failed);
+    }
     await this.context.close();
   }
   if (this.api) await this.api.dispose();

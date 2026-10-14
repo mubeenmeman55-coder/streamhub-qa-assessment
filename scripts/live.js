@@ -2,7 +2,7 @@
 // The viewer starts immediately and the first scenario waits LIVE_VIEW_WAIT_MS (default 20s) for you to open it.
 const { spawn } = require('child_process');
 
-const env = { ...process.env, LIVE_VIEW: 'true', SLOW_MO: process.env.SLOW_MO || '600' };
+const env = { ...process.env, LIVE_VIEW: 'true', SLOW_MO: process.env.SLOW_MO || '150' };
 const port = env.LIVE_VIEW_PORT || '3200';
 console.log(`
 Live view: VS Code > Ctrl+Shift+P > "Simple Browser: Show" > http://localhost:${port}
