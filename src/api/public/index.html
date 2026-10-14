@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Streamhub Catalogue</title>
+<style>
+:root{--bg:#f5f7fb;--panel:#fff;--line:#e3e8f0;--txt:#172033;--mut:#667389;--brand:#1f6feb;--brand-2:#14b8a6;--soft:#eaf1fe;--bad:#d1344a;--shadow:0 1px 2px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.05)}
+@media(prefers-color-scheme:dark){:root{--bg:#0e131b;--panel:#161d28;--line:#273244;--txt:#e7edf6;--mut:#92a0b5;--brand:#5b9bff;--brand-2:#2dd4bf;--soft:#1c2a42;--bad:#ff6b81;--shadow:none}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.5 system-ui,"Segoe UI",Roboto,sans-serif}
+header{background:linear-gradient(120deg,#0f2a5c,#1f6feb 60%,#14b8a6);color:#fff;padding:22px 24px 0}
+.wrap{max-width:1180px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px}
+.logo{width:30px;height:30px;border-radius:8px;background:#fff3;display:grid;place-items:center}
+header p{margin:4px 0 14px;color:#dbe7ff;font-size:14px}
+nav{display:flex;gap:4px}
+nav button{background:transparent;border:0;color:#dbe7ff;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;border-radius:10px 10px 0 0}
+nav button[aria-selected=true]{background:var(--bg);color:var(--txt)}
+nav button:focus-visible{outline:2px solid #fff}
+main{padding:20px 24px 48px}
+section[hidden]{display:none}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.stat{padding:14px 16px}.stat b{display:block;font-size:24px}.stat span{color:var(--mut);font-size:13px}
+.layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:18px;align-items:start}
+@media(max-width:860px){.layout{grid-template-columns:1fr}}
+.panel{padding:16px}
+.panel h2{font-size:14px;margin:0 0 12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 4px}
+input,select{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--txt);font:inherit}
+input:focus,select:focus{outline:2px solid var(--brand);border-color:transparent}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{margin-top:14px;width:100%;padding:9px;border-radius:9px;border:1px solid var(--line);background:transparent;color:var(--txt);font:inherit;font-weight:600;cursor:pointer}
+.btn:hover{background:var(--soft)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.toolbar .grow{flex:1;min-width:180px}.toolbar select{width:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;transition:transform .12s,border-color .12s}
+.card:hover{transform:translateY(-2px);border-color:var(--brand)}
+.poster{height:78px;border-radius:10px;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;color:#fff;font-weight:700}
+.poster small{background:#0006;border-radius:99px;padding:1px 8px;font-size:12px}
+.card h3{margin:0;font-size:16px}
+.meta{display:flex;flex-wrap:wrap;gap:6px;color:var(--mut);font-size:12.5px}
+.chip{background:var(--soft);color:var(--brand);border-radius:99px;padding:1px 9px;font-weight:600;font-size:12px}
+.pager{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:18px}
+.pager button{padding:8px 14px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--txt);cursor:pointer;font:inherit}
+.pager button:disabled{opacity:.4;cursor:not-allowed}
+.empty,.err{padding:28px;text-align:center;border:1px dashed var(--line);border-radius:14px;color:var(--mut)}
+.err{color:var(--bad);border-color:var(--bad)}
+.req{margin-top:16px;font:12.5px/1.5 ui-monospace,Consolas,monospace;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;word-break:break-all}
+.req a{color:var(--brand)}
+.bars{display:grid;gap:7px}.bar{display:grid;grid-template-columns:96px 1fr 24px;gap:8px;align-items:center;font-size:13px;cursor:pointer;background:none;border:0;color:var(--txt);text-align:left;padding:0;font-family:inherit}
+.bar i{display:block;height:9px;border-radius:99px;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+.bar:hover span:first-child,.bar[aria-pressed=true] span:first-child{color:var(--brand);font-weight:700}
+.emi{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+@media(max-width:860px){.emi{grid-template-columns:1fr}}
+.slider{margin:14px 0}.slider .top{display:flex;justify-content:space-between;font-size:13px;font-weight:600}
+input[type=range]{padding:0;height:6px;accent-color:var(--brand)}
+.big{font-size:34px;font-weight:800;margin:2px 0}
+.donutwrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:14px}
+.donut{width:150px;height:150px;border-radius:50%;display:grid;place-items:center}
+.donut div{width:96px;height:96px;border-radius:50%;background:var(--panel);display:grid;place-items:center;text-align:center;font-size:12px;color:var(--mut)}
+.donut b{display:block;color:var(--txt);font-size:15px}
+.legend div{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:14px}.sw{width:12px;height:12px;border-radius:3px}
+.explorer a{display:block;padding:8px 0;border-top:1px solid var(--line);color:var(--brand);text-decoration:none}
+.explorer a:hover{text-decoration:underline}.explorer code{color:var(--mut);font-size:12px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;overflow:auto;max-height:340px;font-size:12.5px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brand"><span class="logo" aria-hidden="true">&#9654;</span>Streamhub Catalogue</div>
+  <p>Browse titles, run EMI maths and poke the API &mdash; the same endpoints the Playwright suite tests.</p>
+  <nav role="tablist" aria-label="Sections">
+    <button role="tab" id="tab-catalogue" aria-selected="true" data-tab="catalogue">Catalogue</button>
+    <button role="tab" id="tab-emi" aria-selected="false" data-tab="emi">EMI calculator</button>
+    <button role="tab" id="tab-api" aria-selected="false" data-tab="api">API explorer</button>
+  </nav>
+</div></header>
+
+<main class="wrap">
+<section id="catalogue" aria-labelledby="tab-catalogue">
+  <div class="stats" id="stats"></div>
+  <div class="layout">
+    <aside class="panel" aria-label="Filters">
+      <h2>Filters</h2>
+      <label for="q">Search title</label><input id="q" type="search" placeholder="e.g. orbit" maxlength="100">
+      <label for="genre">Genre</label><select id="genre"><option value="">All genres</option></select>
+      <label for="type">Type</label><select id="type"><option value="">Movies &amp; series</option><option value="movie">Movies</option><option value="series">Series</option></select>
+      <div class="row2"><div><label for="minYear">From year</label><input id="minYear" type="number" min="1900" max="2100" placeholder="2015"></div>
+      <div><label for="maxYear">To year</label><input id="maxYear" type="number" min="1900" max="2100" placeholder="2024"></div></div>
+      <label for="minRating">Min rating: <span id="ratingVal">0</span></label><input id="minRating" type="range" min="0" max="10" step="0.5" value="0">
+      <button class="btn" id="reset" type="button">Reset filters</button>
+      <h2 style="margin-top:22px">Titles by genre</h2><div class="bars" id="genreBars"></div>
+    </aside>
+    <div>
+      <div class="toolbar">
+        <div class="grow" id="summary" aria-live="polite" style="color:var(--mut)"></div>
+        <label for="sortBy" style="margin:0">Sort</label>
+        <select id="sortBy"><option value="">Default</option><option value="title">Title</option><option value="year">Year</option><option value="rating">Rating</option><option value="duration">Duration</option></select>
+        <select id="order" aria-label="Sort order"><option value="asc">Ascending</option><option value="desc">Descending</option></select>
+        <select id="limit" aria-label="Page size"><option>6</option><option selected>12</option><option>24</option></select>
+      </div>
+      <div id="results" aria-live="polite"></div>
+      <div class="pager"><button id="prev" type="button">&larr; Previous</button><span id="pageInfo"></span><button id="next" type="button">Next &rarr;</button></div>
+      <div class="req">Request: <a id="reqLink" target="_blank" rel="noopener"></a></div>
+    </div>
+  </div>
+</section>
+
+<section id="emi" hidden aria-labelledby="tab-emi">
+  <div class="emi">
+    <div class="panel"><h2>Loan details</h2>
+      <div class="slider"><div class="top"><label for="principal" style="margin:0">Loan amount</label><span id="principalVal"></span></div><input type="range" id="principal" min="100000" max="10000000" step="50000" value="2500000"></div>
+      <div class="slider"><div class="top"><label for="rate" style="margin:0">Interest rate</label><span id="rateVal"></span></div><input type="range" id="rate" min="1" max="25" step="0.1" value="10"></div>
+      <div class="slider"><div class="top"><label for="years" style="margin:0">Tenure</label><span id="yearsVal"></span></div><input type="range" id="years" min="1" max="30" step="1" value="10"></div>
+      <div class="req">Request: <a id="emiLink" target="_blank" rel="noopener"></a></div>
+    </div>
+    <div class="panel"><h2>Monthly EMI</h2>
+      <div class="big" id="emiOut">-</div>
+      <div class="donutwrap"><div class="donut" id="donut"><div><span><b id="donutPct">-</b>interest</span></div></div>
+      <div class="legend"><div><i class="sw" style="background:var(--brand)"></i>Principal <b id="pOut"></b></div>
+      <div><i class="sw" style="background:var(--brand-2)"></i>Interest <b id="iOut"></b></div>
+      <div>Total payment <b id="tOut"></b></div></div></div>
+      <div id="emiErr"></div>
+    </div>
+  </div>
+</section>
+
+<section id="api" hidden aria-labelledby="tab-api">
+  <div class="layout">
+    <div class="panel explorer"><h2>Try an endpoint</h2>
+      <a href="/api/health" data-try>Health<br><code>/api/health</code></a>
+      <a href="/api/titles?genre=drama&sortBy=rating&order=desc&limit=3" data-try>Drama, top rated<br><code>/api/titles?genre=drama&amp;sortBy=rating&amp;order=desc&amp;limit=3</code></a>
+      <a href="/api/titles/5" data-try>Title by id<br><code>/api/titles/5</code></a>
+      <a href="/api/genres" data-try>Genres with counts<br><code>/api/genres</code></a>
+      <a href="/api/emi?principal=2500000&rate=10&years=10" data-try>EMI<br><code>/api/emi?principal=2500000&amp;rate=10&amp;years=10</code></a>
+      <a href="/api/titles?limit=0" data-try>Invalid limit (400)<br><code>/api/titles?limit=0</code></a>
+      <a href="/api/emi" data-try>Missing params (400)<br><code>/api/emi</code></a>
+      <a href="/api/titles/9999" data-try>Unknown id (404)<br><code>/api/titles/9999</code></a>
+    </div>
+    <div><div class="req" id="apiReq">Pick an endpoint on the left.</div><pre id="apiOut">{ }</pre></div>
+  </div>
+</section>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const PALETTE = ['#1f6feb', '#14b8a6', '#8b5cf6', '#f59e0b', '#ef4444', '#10b981', '#ec4899', '#0ea5e9', '#84cc16'];
+const state = { page: 1 };
+const inr = (n) => '₹' + Math.round(n).toLocaleString('en-IN');
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let genres = [];
+const colorOf = (g) => PALETTE[Math.max(0, genres.findIndex((x) => x.name === g)) % PALETTE.length];
+
+// ---- tabs
+document.querySelectorAll('[role=tab]').forEach((t) => t.addEventListener('click', () => {
+  document.querySelectorAll('[role=tab]').forEach((b) => b.setAttribute('aria-selected', b === t));
+  document.querySelectorAll('main > section').forEach((s) => (s.hidden = s.id !== t.dataset.tab));
+  if (t.dataset.tab === 'emi') loadEmi();
+}));
+
+// ---- catalogue
+function params() {
+  const p = new URLSearchParams();
+  for (const k of ['q', 'genre', 'type', 'minYear', 'maxYear', 'sortBy', 'order', 'limit']) if ($(k).value !== '') p.set(k, $(k).value);
+  if (Number($('minRating').value) > 0) p.set('minRating', $('minRating').value);
+  p.set('page', state.page);
+  return p;
+}
+async function loadTitles() {
+  const url = '/api/titles?' + params();
+  $('reqLink').textContent = 'GET ' + url; $('reqLink').href = url;
+  const res = await fetch(url); const body = await res.json();
+  if (!res.ok) {
+    $('results').innerHTML = `<div class="err"><b>${esc(body.error.code)}</b><br>${esc(body.error.message)}</div>`;
+    $('summary').textContent = ''; $('pageInfo').textContent = '';
+    $('prev').disabled = $('next').disabled = true; return;
+  }
+  const { data, meta } = body;
+  $('summary').textContent = `${meta.total} title${meta.total === 1 ? '' : 's'} found`;
+  $('pageInfo').textContent = `Page ${meta.page} of ${meta.totalPages}`;
+  $('prev').disabled = meta.page <= 1; $('next').disabled = meta.page >= meta.totalPages;
+  $('results').innerHTML = data.length ? `<div class="cards">${data.map((t) => `
+    <article class="card" data-testid="title-card">
+      <div class="poster" style="background:linear-gradient(135deg,${colorOf(t.genre)},#0b1220)"><span>${esc(t.title.split(' ').map((w) => w[0]).join('').slice(0, 3))}</span><small>&#9733; ${t.rating.toFixed(1)}</small></div>
+      <h3>${esc(t.title)}</h3>
+      <div class="meta"><span class="chip">${esc(t.genre)}</span><span>${esc(t.type)}</span><span>${t.year}</span><span>${t.duration} min</span></div>
+    </article>`).join('')}</div>` : '<div class="empty">No titles match these filters. Try widening them.</div>';
+  document.querySelectorAll('.bar').forEach((b) => b.setAttribute('aria-pressed', b.dataset.genre === $('genre').value));
+}
+async function loadMeta() {
+  genres = (await (await fetch('/api/genres')).json()).data;
+  const all = (await (await fetch('/api/titles?limit=50')).json()).data;
+  $('genre').innerHTML = '<option value="">All genres</option>' + genres.map((g) => `<option>${g.name}</option>`).join('');
+  const max = Math.max(...genres.map((g) => g.count));
+  $('genreBars').innerHTML = genres.map((g) => `<button class="bar" type="button" data-genre="${g.name}"><span>${g.name}</span><i style="width:${(g.count / max) * 100}%"></i><span>${g.count}</span></button>`).join('');
+  document.querySelectorAll('.bar').forEach((b) => b.addEventListener('click', () => { $('genre').value = $('genre').value === b.dataset.genre ? '' : b.dataset.genre; refresh(); }));
+  const avg = all.reduce((s, t) => s + t.rating, 0) / all.length;
+  const top = [...all].sort((a, b) => b.rating - a.rating)[0];
+  $('stats').innerHTML = [[all.length, 'Titles'], [genres.length, 'Genres'], [avg.toFixed(1), 'Average rating'], [top.title, 'Top rated (' + top.rating + ')']]
+    .map(([b, s]) => `<div class="stat"><b style="${String(b).length > 8 ? 'font-size:17px;line-height:36px' : ''}">${esc(b)}</b><span>${s}</span></div>`).join('');
+}
+let timer; function refresh(keepPage) { if (!keepPage) state.page = 1; $('ratingVal').textContent = $('minRating').value; clearTimeout(timer); timer = setTimeout(loadTitles, 150); }
+['q', 'genre', 'type', 'minYear', 'maxYear', 'minRating', 'sortBy', 'order', 'limit'].forEach((k) => $(k).addEventListener('input', () => refresh()));
+$('prev').onclick = () => { state.page--; refresh(true); };
+$('next').onclick = () => { state.page++; refresh(true); };
+$('reset').onclick = () => { ['q', 'genre', 'type', 'minYear', 'maxYear', 'sortBy'].forEach((k) => ($(k).value = '')); $('minRating').value = 0; $('order').value = 'asc'; refresh(); };
+
+// ---- EMI
+async function loadEmi() {
+  const p = new URLSearchParams({ principal: $('principal').value, rate: $('rate').value, years: $('years').value });
+  $('principalVal').textContent = inr($('principal').value); $('rateVal').textContent = $('rate').value + '%'; $('yearsVal').textContent = $('years').value + ' yrs';
+  const url = '/api/emi?' + p; $('emiLink').textContent = 'GET ' + url; $('emiLink').href = url;
+  const res = await fetch(url); const body = await res.json();
+  if (!res.ok) { $('emiErr').innerHTML = `<div class="err">${esc(body.error.message)}</div>`; return; }
+  $('emiErr').innerHTML = ''; const d = body.data;
+  $('emiOut').textContent = inr(d.emi);
+  $('pOut').textContent = inr(d.principal); $('iOut').textContent = inr(d.totalInterest); $('tOut').textContent = inr(d.totalPayment);
+  const pct = (d.totalInterest / d.totalPayment) * 100;
+  $('donutPct').textContent = pct.toFixed(1) + '%';
+  $('donut').style.background = `conic-gradient(var(--brand-2) 0 ${pct}%, var(--brand) ${pct}% 100%)`;
+}
+['principal', 'rate', 'years'].forEach((k) => $(k).addEventListener('input', loadEmi));
+
+// ---- API explorer
+document.querySelectorAll('[data-try]').forEach((a) => a.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const res = await fetch(a.getAttribute('href'));
+  $('apiReq').innerHTML = `GET ${esc(a.getAttribute('href'))} &rarr; <b style="color:${res.ok ? 'var(--brand-2)' : 'var(--bad)'}">${res.status} ${res.statusText || ''}</b>`;
+  $('apiOut').textContent = JSON.stringify(await res.json(), null, 2);
+}));
+
+loadMeta().then(loadTitles);
+</script>
+</body>
+</html>

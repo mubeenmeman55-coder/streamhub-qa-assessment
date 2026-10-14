@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const titles = require('./data/titles.json');
 const { ApiError, allowOnly, single, number, oneOf } = require('./validation');
@@ -96,26 +97,8 @@ function createApp() {
     });
   });
 
-  // Human-friendly landing page so the API can be explored in a browser (e.g. VS Code Simple Browser)
-  app.get('/', (_req, res) => {
-    const links = [
-      ['/api/health', 'Health'],
-      ['/api/titles', 'All titles (page 1)'],
-      ['/api/titles?genre=drama&sortBy=rating&order=desc&limit=3', 'Drama, top rated, 3 per page'],
-      ['/api/titles?type=series&minYear=2022&q=a', 'Series since 2022 containing "a"'],
-      ['/api/titles/5', 'Title by id'],
-      ['/api/genres', 'Genres with counts'],
-      ['/api/emi?principal=2500000&rate=10&years=10', 'EMI: 25L at 10% for 10 years'],
-      ['/api/titles?limit=0', 'Invalid: limit=0 (400)'],
-      ['/api/emi', 'Invalid: missing params (400)'],
-      ['/api/titles/9999', 'Not found (404)'],
-    ];
-    res.type('html').send(`<!doctype html><meta charset="utf-8"><title>Streamhub mock API</title>
-<style>body{font:16px system-ui;max-width:720px;margin:40px auto;padding:0 16px}li{margin:8px 0}code{color:#555}</style>
-<h1>Streamhub mock API</h1><p>Click an endpoint to try it:</p><ul>${links
-      .map(([href, label]) => `<li><a href="${href}">${label}</a><br><code>${href}</code></li>`)
-      .join('')}</ul>`);
-  });
+  // Browser UI for the API (catalogue explorer, EMI calculator, API explorer)
+  app.use(express.static(path.join(__dirname, 'public')));
 
   app.use('/api', router);
 
