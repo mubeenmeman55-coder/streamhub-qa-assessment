@@ -18,6 +18,7 @@ Node 22.5+ is needed for the built-in `node:sqlite` used by the SQL runner (deve
 | `npm test` | all UI + API features (excludes `@broken`) |
 | `npm run test:ui` | EMI Calculator pie/bar chart scenarios against https://emicalculator.net |
 | `npm run test:ui:live` | UI suite with a live viewer: open VS Code Simple Browser at `http://localhost:3200` to watch the test browser and current step |
+| `BLOCK_ADS=false` | env flag: allow the third-party ads (blocked by default in UI tests) |
 | `npm run test:api` | API scenarios; the mock API is started automatically |
 | `npm run test:broken` | the intentionally broken self-healing demo (**expected to fail**) |
 | `npm run sql` | builds the SQLite DB, runs both SQL scenarios, writes outputs + screenshots |

@@ -10,6 +10,8 @@ const SHOTS_DIR = path.join('reports', 'screenshots');
 let browser;
 let apiServer;
 let live;
+// Ad / tracker hosts blocked in the test browser: faster, steadier runs and no ad widgets overlapping the page
+const AD_HOSTS = /(doubleclick\.net|googlesyndication\.com|googleadservices\.com|adservice\.google\.|google-analytics\.com|googletagmanager\.com|googletagservices\.com|amazon-adsystem\.com|adsbygoogle|taboola\.com|outbrain\.com|criteo\.|adnxs\.com|pubmatic\.com|rubiconproject\.com|facebook\.net|hotjar\.com|clarity\.ms|fundingchoices)/i;
 const LIVE = process.env.LIVE_VIEW === 'true';
 
 BeforeAll(async () => {
@@ -40,6 +42,14 @@ Before({ tags: '@ui' }, async function ({ pickle }) {
   browser ??= await chromium.launch({ headless: config.headless, slowMo: config.slowMo });
   this.context = await browser.newContext({ viewport: { width: 1366, height: 900 } });
   this.context.setDefaultTimeout(config.timeout);
+  if (config.blockAds) {
+    // hide whatever ad placeholders remain once their scripts are blocked
+    await this.context.addInitScript(() => {
+      const css = 'ins.adsbygoogle,[class*="goog-rentry"],[id^="google_ads"],iframe[id^="google_ads"],[data-ad-slot],[id*="aswift"]{display:none!important}';
+      document.addEventListener('DOMContentLoaded', () => document.head.appendChild(Object.assign(document.createElement('style'), { textContent: css })));
+    });
+  }
+  if (config.blockAds) await this.context.route((url) => AD_HOSTS.test(url.hostname + url.pathname), (route) => route.abort());
   this.page = await this.context.newPage();
   if (live) await live.attach(this.page, pickle.name);
 });

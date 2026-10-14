@@ -16,6 +16,7 @@ module.exports = {
   baseUrl: required('BASE_URL'),
   apiBaseUrl: required('API_BASE_URL'),
   startApiServer: process.env.START_API_SERVER !== 'false',
+  blockAds: process.env.BLOCK_ADS !== 'false',
   headless: process.env.HEADLESS !== 'false',
   slowMo: Number(process.env.SLOW_MO || 0),
   timeout: Number(process.env.DEFAULT_TIMEOUT_MS || 15000),
