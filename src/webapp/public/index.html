@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EMI Calculator - Streamhub</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="#/dashboard"><span class="logo" aria-hidden="true">%</span>EMI Calculator</a>
+      <nav aria-label="Main">
+        <a href="#/dashboard" id="nav-dashboard" data-testid="nav-dashboard">Dashboard</a>
+        <a href="#/report" id="nav-report" data-testid="nav-report">Report</a>
+      </nav>
+    </div>
+    <h1 id="page-title">Loan EMI dashboard</h1>
+    <p>Plan a loan: see your monthly EMI, the interest you pay, and a year-by-year schedule.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="panel form-panel" aria-labelledby="form-h">
+    <h2 id="form-h">Loan details</h2>
+    <form id="loan-form" novalidate>
+      <div class="field">
+        <label for="amount">Loan amount (&#8377;)</label>
+        <input id="amount" name="amount" type="text" inputmode="numeric" value="25,00,000" autocomplete="off" aria-describedby="err-amount">
+        <input id="amount-range" type="range" min="100000" max="10000000" step="50000" value="2500000" aria-label="Loan amount slider">
+        <p class="error" id="err-amount" data-testid="error-amount" role="alert"></p>
+      </div>
+      <div class="field">
+        <label for="rate">Interest rate (% per annum)</label>
+        <input id="rate" name="rate" type="text" inputmode="decimal" value="10" autocomplete="off" aria-describedby="err-rate">
+        <input id="rate-range" type="range" min="1" max="25" step="0.1" value="10" aria-label="Interest rate slider">
+        <p class="error" id="err-rate" data-testid="error-rate" role="alert"></p>
+      </div>
+      <div class="field">
+        <label for="tenure">Loan tenure</label>
+        <div class="inline">
+          <input id="tenure" name="tenure" type="text" inputmode="numeric" value="10" autocomplete="off" aria-describedby="err-tenure">
+          <select id="tenure-unit" name="tenure-unit" aria-label="Tenure unit"><option value="years">Years</option><option value="months">Months</option></select>
+        </div>
+        <input id="tenure-range" type="range" min="1" max="30" step="1" value="10" aria-label="Loan tenure slider">
+        <p class="error" id="err-tenure" data-testid="error-tenure" role="alert"></p>
+      </div>
+      <div class="field">
+        <label for="start">EMI start month</label>
+        <input id="start" name="start" type="month" value="2027-01">
+        <p class="error" id="err-start" data-testid="error-start" role="alert"></p>
+      </div>
+      <button type="submit" id="calculate" class="primary">Calculate EMI</button>
+      <button type="button" id="reset" class="ghost">Reset</button>
+    </form>
+  </section>
+
+  <div class="views">
+    <!-- DASHBOARD: summary numbers + charts -->
+    <section id="view-dashboard" data-testid="view-dashboard" aria-labelledby="dash-h">
+      <h2 id="dash-h" class="sr-only">Dashboard</h2>
+      <div class="kpis" data-testid="kpis">
+        <article class="kpi"><span>Monthly EMI</span><b id="kpi-emi" data-testid="kpi-emi" data-value="">-</b></article>
+        <article class="kpi"><span>Total interest</span><b id="kpi-interest" data-testid="kpi-interest" data-value="">-</b></article>
+        <article class="kpi"><span>Total payment</span><b id="kpi-total" data-testid="kpi-total" data-value="">-</b></article>
+        <article class="kpi"><span>Interest share</span><b id="kpi-share" data-testid="kpi-share" data-value="">-</b></article>
+      </div>
+      <div class="charts">
+        <section class="panel" aria-labelledby="pie-h">
+          <h3 id="pie-h">Principal vs interest</h3>
+          <div class="pie-wrap">
+            <svg id="pie-chart" data-testid="pie-chart" viewBox="0 0 42 42" role="img" aria-label="Pie chart of principal versus interest">
+              <circle id="pie-principal" data-testid="pie-principal" data-value="0" cx="21" cy="21" r="15.915" fill="none" stroke-width="7"></circle>
+              <circle id="pie-interest" data-testid="pie-interest" data-value="0" cx="21" cy="21" r="15.915" fill="none" stroke-width="7"></circle>
+            </svg>
+            <ul class="legend">
+              <li><i class="sw principal"></i>Principal <b id="legend-principal" data-testid="legend-principal"></b></li>
+              <li><i class="sw interest"></i>Interest <b id="legend-interest" data-testid="legend-interest"></b></li>
+            </ul>
+          </div>
+        </section>
+        <section class="panel" aria-labelledby="bar-h">
+          <h3 id="bar-h">Payments per year</h3>
+          <div class="bar-wrap"><svg id="bar-chart" data-testid="bar-chart" viewBox="0 0 640 260" role="img" aria-label="Stacked bar chart of principal and interest paid each year"></svg>
+          <div id="bar-tooltip" data-testid="bar-tooltip" role="tooltip" hidden></div></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- REPORT: amortisation schedule driven by filters -->
+    <section id="view-report" data-testid="view-report" aria-labelledby="rep-h" hidden>
+      <div class="panel">
+        <div class="report-head">
+          <h2 id="rep-h">Amortisation schedule</h2>
+          <div class="controls">
+            <label for="report-mode">View</label>
+            <select id="report-mode" data-testid="report-mode"><option value="yearly">Yearly</option><option value="monthly">Monthly</option></select>
+            <label for="report-year">Year</label>
+            <select id="report-year" data-testid="report-year"><option value="all">All years</option></select>
+          </div>
+        </div>
+        <p id="report-summary" data-testid="report-summary" class="muted" aria-live="polite"></p>
+        <div class="table-scroll">
+          <table id="schedule" data-testid="schedule" aria-label="Amortisation schedule">
+            <thead><tr><th scope="col">Period</th><th scope="col">Opening balance</th><th scope="col">EMI paid</th><th scope="col">Principal</th><th scope="col">Interest</th><th scope="col">Closing balance</th></tr></thead>
+            <tbody id="schedule-body"></tbody>
+            <tfoot><tr id="schedule-total" data-testid="schedule-total"><th scope="row">Total</th><td></td><td data-col="paid"></td><td data-col="principal"></td><td data-col="interest"></td><td></td></tr></tfoot>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

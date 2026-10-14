@@ -6,11 +6,13 @@ Defined in [pages/LegacyEmiPage.js](../pages/LegacyEmiPage.js), exercised by `fe
 
 | # | Broken selector | Why it is brittle | Healed (POC output) |
 |---|---|---|---|
-| 1 | `#loan-amount` | stale id | `getByRole('textbox', { name: "Home Loan Amount" })` |
-| 2 | `xpath=//div[3]/form/div[2]/div/input` | positional XPath, dies when a wrapper changes | `getByRole('textbox', { name: "Interest Rate" })` |
-| 3 | `role=link[name="Personal Loans"]` | copy changed ("Personal Loan") | `getByRole('link', { name: "Personal Loan", exact: true })` |
-| 4 | `.emi-result > span.value` | class path that no longer exists | `locator('#emiamount').locator('p')` |
-| 5 | `#emi-pie-chart canvas` | wrong container id and element (chart is SVG) | `locator('#emipiechart').locator('svg')` |
+| 1 | `#loan-amount` | stale id (the field is labelled "Loan amount (₹)") | `getByRole('textbox', { name: "Loan amount (₹)" })` |
+| 2 | `xpath=//div[3]/form/div[2]/div/input` | positional XPath, dies when a wrapper changes | `getByRole('textbox', { name: "Interest rate (% per annum)" })` |
+| 3 | `role=link[name="Reports page"]` | link text changed (it is "Report") | `getByTestId("nav-report")` |
+| 4 | `.emi-result > span.value` | class path that no longer exists | `getByTestId("kpi-emi")` |
+| 5 | `#emi-pie-chart canvas` | wrong container and element (the chart is SVG) | `getByTestId("pie-chart")` |
+
+They target the EMI app built in this repo (`src/webapp`).
 
 ## Approach
 
@@ -21,8 +23,7 @@ failures (wrong EMI value) are never healed, only locator failures.
 
 **2. Context for the model.** Do not send the whole DOM. Take a compact snapshot of visible, relevant
 elements: tag, type, role, id, name, label text, visible text, nearest *stable* ancestor id and its heading.
-Auto-generated ids (`highcharts-x7f2…`) are filtered out because they would produce a new brittle locator.
-Ad-injected widgets are dropped too (the live site injects elements with `aria-label="Interest Rate Tracker"`).
+Auto-generated ids (`highcharts-x7f2…` style ids) are filtered out because they would produce a new brittle locator.
 
 **3. Prompt.** Inputs: intent, expected kind, old selector, the candidate list. Rules in the prompt:
 choose by purpose never by position; ignore the old selector's structure; answer only JSON
@@ -30,12 +31,12 @@ choose by purpose never by position; ignore the old selector's structure; answer
 invent a selector removes hallucinated selectors, the main failure mode seen in practice.
 
 **4. Locator construction (not the model's job).** Code turns the chosen candidate into a locator using a
-fixed preference order: role + accessible name, then label, then stable container id, then text. Never positional.
+fixed preference order: an explicit `data-testid` first, then role + accessible name, then label, then stable container id, then text. Never positional.
 
 **5. Validation before anything is applied.** In a real browser, the proposal must pass all of:
 - matches exactly one element, and it is visible
 - compatible with the expected kind
-- behavioural probe: inputs accept typed text, text elements contain a number, charts contain shapes
+- behavioural probe: inputs accept typed text, text elements are a short *leaf* value containing a number, charts contain shapes
 - model confidence at least 0.5
 
 **6. Applying.** The POC only *reports* a suggestion (`reports/self-healing/healing-report.{json,md}`).
@@ -50,8 +51,13 @@ npm run heal                         # offline heuristic ranker + real browser v
 ANTHROPIC_API_KEY=... npm run heal   # LLM picks the candidate; validation is identical
 ```
 
-Verified: the offline mode heals 5 of 5 locators against the live site (see
+Verified: the offline mode heals 5 of 5 locators against the app (see
 [reports/self-healing/healing-report.md](../reports/self-healing/healing-report.md)).
+
+**A bug the POC had, found by reading its own output:** the first version healed the `.emi-result` locator to the whole KPI
+container (`getByTestId("kpis")`) because "contains a number" was the only check for text. A container passes that test,
+but it is not the EMI value. Fix: text candidates must be leaf elements and the probe also checks the element wraps nothing.
+This is the reason validation is separate from the proposer and why a human still reviews the PR.
 **Not verified:** the LLM mode (`llmRank` in `self-healing/heal.js`). I had no API key, so that path has not
 been executed. If it errors, the script falls back to the heuristic ranker and records `llmError` in the report.
 

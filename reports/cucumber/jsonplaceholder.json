@@ -1,0 +1,2277 @@
+[
+  {
+    "description": "  JSONPlaceholder is a *fake* API: it accepts almost anything and answers 201 without validating.\n  These scenarios therefore pin the part of the expected outcome that is true of the live service - it must never\n  fail server-side (no 5xx), must answer with well-formed JSON, and must not corrupt the data it echoes back.\n  The strict reading (\"invalid input must be rejected with 4xx\") is kept as @known-gap scenarios, run on demand\n  with `npm run test:gap`, so the deviation is documented with evidence instead of hidden.",
+    "elements": [
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);control---a-valid-post-is-created",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Control - a valid post is created",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 11719399
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 364048898
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "I create a post using the \"valid\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogIkEgdmFsaWQgdGl0bGUiLAogICJib2R5IjogIkEgdmFsaWQgYm9keSIsCiAgImlkIjogMTAxCn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2859297
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "the response status is 201",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1702198
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "the response body echoes the \"valid\" payload and adds an id",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:34"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2345700
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);excessively-long-title-(title-1k)-never-causes-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 23,
+        "name": "Excessively long title (title-1k) never causes a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2454099
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 430034000
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "I create a post using the \"title-1k\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEuLi4gKDEwNzEgY2hhcnMp",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 664498
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1197297
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 17,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1340699
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1162697
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDEwMDAvMTAwMA==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1599200
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);excessively-long-title-(title-10k)-never-causes-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 24,
+        "name": "Excessively long title (title-10k) never causes a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1463400
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 291438798
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "I create a post using the \"title-10k\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEuLi4gKDEwMDcxIGNoYXJzKQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 609999
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1022699
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 17,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 891298
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 573500
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDEwMDAwLzEwMDAw",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1292699
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);excessively-long-title-(title-100k)-never-causes-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 25,
+        "name": "Excessively long title (title-100k) never causes a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1676300
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 512665298
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "I create a post using the \"title-100k\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEuLi4gKDEwMDA3MSBjaGFycyk=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 708798
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 746198
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 17,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 521199
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 473600
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDEwMDAwMC8xMDAwMDA=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 942199
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);excessively-long-title-(title-1m)-never-causes-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 26,
+        "name": "Excessively long title (title-1m) never causes a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1066300
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1151633099
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "I create a post using the \"title-1m\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEuLi4gKDEwMDAwNzEgY2hhcnMp",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 355099
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 228698
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 17,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 408898
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 554198
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDEwMDAwMDAvMTAwMDAwMA==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1542800
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);unsupported-special-characters-(html-script)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 37,
+        "name": "Unsupported special characters (html-script) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1222699
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 306527299
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 29,
+            "name": "I create a post using the \"html-script\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogIjxzY3JpcHQ+YWxlcnQoXCJ4XCIpPC9zY3JpcHQ+PGltZyBzcmM9eCBvbmVycm9yPWFsZXJ0KDEpPiIsCiAgImJvZHkiOiAiQSB2YWxpZCBib2R5IiwKICAiaWQiOiAxMDEKfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 515999
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 30,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 317700
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 31,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 312999
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 32,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 218498
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 33,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDU1LzU1",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 968999
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);unsupported-special-characters-(sql-injection)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 38,
+        "name": "Unsupported special characters (sql-injection) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1149499
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 263909699
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 29,
+            "name": "I create a post using the \"sql-injection\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogIic7IERST1AgVEFCTEUgcG9zdHM7IC0tIiwKICAiYm9keSI6ICJBIHZhbGlkIGJvZHkiLAogICJpZCI6IDEwMQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2206998
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 30,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 812399
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 31,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1075898
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 32,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 970898
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 33,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDIzLzIz",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1942699
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);unsupported-special-characters-(emoji)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 39,
+        "name": "Unsupported special characters (emoji) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2353699
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 268684199
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 29,
+            "name": "I create a post using the \"emoji\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogIkxhdW5jaCDwn5qA8J+UpSDwn5Go4oCN8J+RqeKAjfCfkacgY2Fmw6kiLAogICJib2R5IjogIkEgdmFsaWQgYm9keSIsCiAgImlkIjogMTAxCn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 509398
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 30,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 480300
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 31,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 353500
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 32,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 233198
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 33,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDI1LzI1",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1616399
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);unsupported-special-characters-(control-chars)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 40,
+        "name": "Unsupported special characters (control-chars) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1978199
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 306715498
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 29,
+            "name": "I create a post using the \"control-chars\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogImxpbmUxXG5saW5lMlx0dGFiXHJcbmVuZFx1MDAwN2JlbGxcdTAwMWJbMzFtIiwKICAiYm9keSI6ICJBIHZhbGlkIGJvZHkiLAogICJpZCI6IDEwMQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 951998
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 30,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1121700
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 31,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1031499
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 32,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 865799
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 33,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDMwLzMw",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1822500
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);unsupported-special-characters-(null-byte)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 41,
+        "name": "Unsupported special characters (null-byte) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2725900
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 262849498
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 29,
+            "name": "I create a post using the \"null-byte\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogImJlZm9yZVx1MDAwMGFmdGVyIiwKICAiYm9keSI6ICJBIHZhbGlkIGJvZHkiLAogICJpZCI6IDEwMQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 401098
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 30,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 301600
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 31,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 547498
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 32,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 303898
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 33,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDEyLzEy",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1147400
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);unsupported-special-characters-(rtl-unicode)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 42,
+        "name": "Unsupported special characters (rtl-unicode) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 937799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 258610798
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 29,
+            "name": "I create a post using the \"rtl-unicode\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogIuKArmV2aWzigKwg2YXYsdit2KjYpyDkvaDlpb0iLAogICJib2R5IjogIkEgdmFsaWQgYm9keSIsCiAgImlkIjogMTAxCn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 491999
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 30,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 433099
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 31,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 487299
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 32,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 339798
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 33,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDE1LzE1",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1207999
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);unsupported-special-characters-(json-breakers)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 43,
+        "name": "Unsupported special characters (json-breakers) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 959200
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 251153897
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 29,
+            "name": "I create a post using the \"json-breakers\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogIlwifV0se1widXNlcklkXCI6OTksXCJ0aXRsZVwiOlwiaW5qZWN0ZWQiLAogICJib2R5IjogIkEgdmFsaWQgYm9keSIsCiAgImlkIjogMTAxCn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 301099
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 30,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 204798
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 31,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 314299
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 32,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 213799
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 33,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDM0LzM0",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 842200
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);unsupported-special-characters-(path-traversal)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 44,
+        "name": "Unsupported special characters (path-traversal) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 801799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 305682298
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 29,
+            "name": "I create a post using the \"path-traversal\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogIi4uLy4uL2V0Yy9wYXNzd2QlMDAlMmUlMmUlMmYiLAogICJib2R5IjogIkEgdmFsaWQgYm9keSIsCiAgImlkIjogMTAxCn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 415099
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 30,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 286999
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 31,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 389999
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 32,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 455997
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 33,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDI4LzI4",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1151400
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);missing-or-malformed-required-fields-(missing-userid)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 54,
+        "name": "Missing or malformed required fields (missing-userId) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 996299
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 267951298
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 47,
+            "name": "I create a post using the \"missing-userId\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInRpdGxlIjogIkEgdmFsaWQgdGl0bGUiLAogICJib2R5IjogIkEgdmFsaWQgYm9keSIsCiAgImlkIjogMTAxCn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 455199
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 48,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 314098
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 49,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 318800
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 50,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 831300
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);missing-or-malformed-required-fields-(missing-title)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 55,
+        "name": "Missing or malformed required fields (missing-title) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 666100
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 264304800
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 47,
+            "name": "I create a post using the \"missing-title\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgImJvZHkiOiAiQSB2YWxpZCBib2R5IiwKICAiaWQiOiAxMDEKfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 389699
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 48,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 212398
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 49,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 317999
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 50,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 779400
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);missing-or-malformed-required-fields-(missing-body)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 56,
+        "name": "Missing or malformed required fields (missing-body) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 867799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 309985500
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 47,
+            "name": "I create a post using the \"missing-body\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogIkEgdmFsaWQgdGl0bGUiLAogICJpZCI6IDEwMQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 368398
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 48,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 208299
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 49,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 415799
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 50,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3073500
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);missing-or-malformed-required-fields-(empty-object)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 57,
+        "name": "Missing or malformed required fields (empty-object) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1142400
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 266215100
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 47,
+            "name": "I create a post using the \"empty-object\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgImlkIjogMTAxCn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 421299
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 48,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 180299
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 49,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 248897
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 50,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 768000
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);missing-or-malformed-required-fields-(userid-string)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 58,
+        "name": "Missing or malformed required fields (userId-string) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1051599
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 304238497
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 47,
+            "name": "I create a post using the \"userId-string\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6ICJub3QtYS1udW1iZXIiLAogICJ0aXRsZSI6ICJBIHZhbGlkIHRpdGxlIiwKICAiYm9keSI6ICJBIHZhbGlkIGJvZHkiLAogICJpZCI6IDEwMQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 550198
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 48,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 482899
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 49,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 332298
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 50,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 918799
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);missing-or-malformed-required-fields-(userid-negative)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 59,
+        "name": "Missing or malformed required fields (userId-negative) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 888100
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 291014999
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 47,
+            "name": "I create a post using the \"userId-negative\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IC0xLAogICJ0aXRsZSI6ICJBIHZhbGlkIHRpdGxlIiwKICAiYm9keSI6ICJBIHZhbGlkIGJvZHkiLAogICJpZCI6IDEwMQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 457398
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 48,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 676200
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 49,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 548299
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 50,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1191200
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);missing-or-malformed-required-fields-(title-null)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 60,
+        "name": "Missing or malformed required fields (title-null) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1504100
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 255935698
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 47,
+            "name": "I create a post using the \"title-null\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogbnVsbCwKICAiYm9keSI6ICJBIHZhbGlkIGJvZHkiLAogICJpZCI6IDEwMQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 325398
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 48,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 184299
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 49,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 472099
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 50,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1036799
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);missing-or-malformed-required-fields-(title-object)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 61,
+        "name": "Missing or malformed required fields (title-object) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 714799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 295330900
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 47,
+            "name": "I create a post using the \"title-object\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogewogICAgIm5lc3RlZCI6IFsKICAgICAgIngiCiAgICBdCiAgfSwKICAiYm9keSI6ICJBIHZhbGlkIGJvZHkiLAogICJpZCI6IDEwMQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 255598
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 48,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 155199
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 49,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 243899
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 50,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 912000
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);missing-or-malformed-required-fields-(extra-fields)-never-cause-a-server-error",
+        "keyword": "Scenario Outline",
+        "line": 62,
+        "name": "Missing or malformed required fields (extra-fields) never cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1033400
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 264284800
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 47,
+            "name": "I create a post using the \"extra-fields\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogIkEgdmFsaWQgdGl0bGUiLAogICJib2R5IjogIkEgdmFsaWQgYm9keSIsCiAgImlzQWRtaW4iOiB0cnVlLAogICJfX3Byb3RvX194IjogIngiLAogICJpZCI6IDEwMQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 265300
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 48,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 166698
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 49,
+            "name": "the API answers with a controlled status of 201, 400, 413 or 422",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:43"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 256798
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 50,
+            "name": "a JSON body is returned when the request was accepted",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 740299
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);a-request-with-the-wrong-content-type-does-not-cause-a-server-error",
+        "keyword": "Scenario",
+        "line": 69,
+        "name": "A request with the wrong content type does not cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 758399
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 254852198
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 70,
+            "name": "I create a post with the content type \"text/plain\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:29"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgImlkIjogMTAxCn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 711199
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 71,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1338600
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3)",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "JSONPlaceholder - POST /posts with boundary and invalid data (Section A3)",
+    "tags": [
+      {
+        "name": "@jsonplaceholder",
+        "line": 1
+      }
+    ],
+    "uri": "features\\jsonplaceholder\\create_post.feature"
+  }
+]

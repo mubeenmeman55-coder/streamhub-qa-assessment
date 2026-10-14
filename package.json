@@ -10,7 +10,11 @@
     "test:broken": "cucumber-js -p broken",
     "sql": "node sql/run-sql.js",
     "heal": "node self-healing/heal.js",
-    "test:ui:live": "node scripts/live.js"
+    "test:ui:live": "node scripts/live.js",
+    "app:start": "node src/webapp/server.js",
+    "test:webapp": "cucumber-js -p webapp",
+    "test:jsonplaceholder": "cucumber-js -p jsonplaceholder",
+    "test:gap": "cucumber-js -p gap"
   },
   "keywords": [],
   "author": "",

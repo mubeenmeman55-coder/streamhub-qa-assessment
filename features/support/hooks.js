@@ -4,11 +4,19 @@ const { BeforeAll, AfterAll, Before, BeforeStep, AfterStep, After, Status } = re
 const { chromium, request } = require('playwright');
 const config = require('../../config/env');
 const { startServer } = require('../../src/api/server');
+const { startWebApp } = require('../../src/webapp/server');
 const { startLiveView } = require('./liveview');
 
 const SHOTS_DIR = path.join('reports', 'screenshots');
 let browser;
 let apiServer;
+let webServer;
+
+// A server that is already listening on the port (e.g. started by hand for demos) is reused instead of failing
+const startOrReuse = (start, port, name) => start(port).catch((e) => {
+  if (e.code === 'EADDRINUSE') return null;
+  throw new Error(`Could not start ${name} on port ${port}: ${e.message}`);
+});
 let live;
 // Ad / tracker hosts blocked in the test browser: faster, steadier runs and no ad widgets overlapping the page
 const AD_HOSTS = /(doubleclick\.net|googlesyndication\.com|googleadservices\.com|adservice\.google\.|google-analytics\.com|googletagmanager\.com|googletagservices\.com|amazon-adsystem\.com|adsbygoogle|taboola\.com|outbrain\.com|criteo\.|adnxs\.com|pubmatic\.com|rubiconproject\.com|facebook\.net|hotjar\.com|clarity\.ms|fundingchoices)/i;
@@ -24,7 +32,10 @@ BeforeAll(async () => {
   }
   if (config.startApiServer) {
     const port = new URL(config.apiBaseUrl).port || 80;
-    apiServer = await startServer(port);
+    apiServer = await startOrReuse(startServer, port, 'mock API');
+  }
+  if (config.startWebApp) {
+    webServer = await startOrReuse(startWebApp, new URL(config.webappUrl).port || 80, 'EMI web app');
   }
 });
 
@@ -36,6 +47,7 @@ AfterAll(async () => {
   }
   if (browser) await browser.close();
   if (apiServer) await new Promise((resolve) => apiServer.close(resolve));
+  if (webServer) await new Promise((resolve) => webServer.close(resolve));
 });
 
 Before({ tags: '@ui' }, async function ({ pickle }) {
@@ -67,6 +79,10 @@ AfterStep(async function ({ result }) {
 
 Before({ tags: '@api' }, async function () {
   this.api = await request.newContext({ baseURL: config.apiBaseUrl });
+});
+
+Before({ tags: '@jsonplaceholder' }, async function () {
+  this.api = await request.newContext({ baseURL: config.jsonPlaceholderUrl, timeout: 30000 });
 });
 
 After(async function (scenario) {

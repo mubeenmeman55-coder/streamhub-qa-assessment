@@ -16,6 +16,6 @@ Then('the legacy EMI result and pie chart are visible', async function () {
   await expect(this.legacy.locator('pieChart')).toBeVisible(FAST);
 });
 
-Then('the legacy Personal Loan tab can be opened', async function () {
-  await this.legacy.locator('personalLoanTab').click(FAST);
+Then('the legacy Report link can be opened', async function () {
+  await this.legacy.locator('reportLink').click(FAST);
 });

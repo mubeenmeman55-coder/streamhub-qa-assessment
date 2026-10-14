@@ -12,6 +12,7 @@ const path = require('path');
 const { chromium } = require('playwright');
 const config = require('../config/env');
 const { BROKEN_LOCATORS } = require('../pages/LegacyEmiPage');
+const { startWebApp } = require('../src/webapp/server');
 
 const OUT = path.join(__dirname, '..', 'reports', 'self-healing');
 const MODEL = process.env.HEAL_MODEL || 'claude-sonnet-5-5';
@@ -50,7 +51,7 @@ async function snapshot(page) {
       const s = getComputedStyle(el);
       return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none';
     };
-    const sel = 'input:not([type=hidden]), select, textarea, button, a[href], [role=link], [role=button], [role=slider], h1, h2, h3, h4, svg.highcharts-root, [id^=emi] p, [id^=emi] span';
+    const sel = 'input:not([type=hidden]), select, button, a[href], [role=link], [data-testid], h1, h2, h3';
     return [...document.querySelectorAll(sel)]
       .filter(visible)
       .filter((el) => !el.closest('[class*=goog-rentry], [id^=google_ads]')) // ignore injected ad widgets
@@ -60,6 +61,8 @@ async function snapshot(page) {
         tag: el.tagName.toLowerCase(),
         type: el.getAttribute('type') || undefined,
         role: el.getAttribute('role') || undefined,
+        leaf: el.children.length === 0,
+        testid: el.getAttribute('data-testid') || undefined,
         id: el.id || undefined,
         name: el.getAttribute('name') || undefined,
         label: labelFor(el) || undefined,
@@ -73,20 +76,20 @@ async function snapshot(page) {
 // ---------------------------------------------------------------- 3. PROPOSE
 const words = (s) => String(s || '').toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 1);
 const KIND_OK = {
-  input: (c) => c.tag === 'input' && c.type !== 'radio',
+  input: (c) => c.tag === 'input' && [undefined, 'text', 'number', 'search'].includes(c.type),
   link: (c) => c.tag === 'a' || c.role === 'link',
-  text: (c) => ['p', 'span', 'div'].includes(c.tag),
+  text: (c) => c.leaf && ['p', 'span', 'div', 'b', 'strong'].includes(c.tag), // a value lives in a leaf; containers merely contain it
   chart: (c) => c.tag === 'svg',
 };
 
 function heuristicRank(entry, candidates) {
-  const noise = new Set(['the', 'where', 'user', 'types', 'in', 'of', 'to', 'that', 'switches', 'shown', 'showing', 'text', 'box', 'amount', 'xpath',
+  const noise = new Set(['the', 'where', 'user', 'types', 'in', 'of', 'to', 'that', 'switches', 'shown', 'showing', 'text', 'box', 'xpath',
     'div', 'form', 'input', 'span', 'value', 'canvas', 'role', 'link', 'name', 'tab', 'is', 'and', 'vs', 'a', 'an']);
   const wanted = [...new Set([...words(entry.intent), ...words(entry.selector)])].filter((w) => !noise.has(w) && !/^\d+$/.test(w));
   return candidates
     .filter((c) => KIND_OK[entry.kind](c))
     .map((c) => {
-      const hay = words([c.id, c.name, c.label, c.text, c.container, c.heading].join(' '));
+      const hay = words([c.testid, c.id, c.name, c.label, c.text, c.container, c.heading].join(' '));
       const hit = (w) => hay.some((h) => h === w || h.startsWith(w) || w.startsWith(h) || (w.length >= 3 && h.includes(w)));
       return { c, score: wanted.filter(hit).length / Math.max(1, wanted.length) };
     })
@@ -97,6 +100,7 @@ function heuristicRank(entry, candidates) {
 
 // Preferred locator order: role+name > label > test id > id > text. Never positional.
 function toLocatorExpression(c, kind) {
+  if (c.testid) return `page.getByTestId(${JSON.stringify(c.testid)})`; // explicit test contract beats everything else
   if (kind === 'input' && c.label) return `page.getByRole('textbox', { name: ${JSON.stringify(c.label)} })`;
   if (kind === 'link' && c.text) return `page.getByRole('link', { name: ${JSON.stringify(c.text)}, exact: true })`;
   // text/chart inside a stable container (e.g. #emiamount p, #emipiechart svg): scope by container id, not by position
@@ -144,8 +148,9 @@ async function validate(page, entry, proposal) {
     await loc.fill(before);
   } else if (entry.kind === 'text') {
     checks.containsNumber = /\d/.test(await loc.innerText());
+    checks.isLeafValue = (await loc.locator('*').count()) === 0 && (await loc.innerText()).length < 40; // not a container wrapping many values
   } else if (entry.kind === 'chart') {
-    checks.hasShapes = (await loc.locator('path, rect').count()) > 0;
+    checks.hasShapes = (await loc.locator('path, rect, circle').count()) > 0;
   } else if (entry.kind === 'link') {
     checks.hasHref = true; // role-based match is sufficient; clicking is left to the owning test
   }
@@ -158,8 +163,9 @@ async function validate(page, entry, proposal) {
   fs.mkdirSync(OUT, { recursive: true });
   const browser = await chromium.launch({ headless: config.headless });
   const page = await (await browser.newContext({ viewport: { width: 1366, height: 900 } })).newPage();
-  await page.goto(config.baseUrl, { waitUntil: 'domcontentloaded' });
-  await page.getByRole('textbox', { name: /Loan Amount$/ }).waitFor();
+  const server = await startWebApp(new URL(config.webappUrl).port || 80).catch(() => null); // reuse if already running
+  await page.goto(config.webappUrl, { waitUntil: 'domcontentloaded' });
+  await page.getByRole('textbox', { name: /Loan amount/ }).waitFor();
 
   const mode = process.env.ANTHROPIC_API_KEY ? `LLM (${MODEL}) + validation` : 'offline heuristic + validation';
   console.log(`Self-healing run - mode: ${mode}\n`);
@@ -198,8 +204,8 @@ async function validate(page, entry, proposal) {
     else if (row.attempts) console.log(`     result : ${row.outcome}`);
   }
 
-  fs.writeFileSync(path.join(OUT, 'healing-report.json'), JSON.stringify({ mode, url: config.baseUrl, results }, null, 2));
-  const md = ['# Self-healing run', '', `Mode: **${mode}**  `, `Target: ${config.baseUrl}`, '', '| Locator | Broken selector | Suggested (validated) |', '|---|---|---|',
+  fs.writeFileSync(path.join(OUT, 'healing-report.json'), JSON.stringify({ mode, url: config.webappUrl, results }, null, 2));
+  const md = ['# Self-healing run', '', `Mode: **${mode}**  `, `Target: ${config.webappUrl}`, '', '| Locator | Broken selector | Suggested (validated) |', '|---|---|---|',
     ...results.map((r) => `| ${r.key} | \`${r.brokenSelector}\` | ${r.suggested ? `\`${r.suggested}\`` : r.outcome} |`)];
   fs.writeFileSync(path.join(OUT, 'healing-report.md'), md.join('\n') + '\n');
   await browser.close();

@@ -1,12 +1,12 @@
 # Self-healing run
 
 Mode: **offline heuristic + validation**  
-Target: https://emicalculator.net
+Target: http://localhost:3300
 
 | Locator | Broken selector | Suggested (validated) |
 |---|---|---|
-| loanAmountInput | `#loan-amount` | `page.getByRole('textbox', { name: "Home Loan Amount" })` |
-| interestRateInput | `xpath=//div[3]/form/div[2]/div/input` | `page.getByRole('textbox', { name: "Interest Rate" })` |
-| personalLoanTab | `role=link[name="Personal Loans"]` | `page.getByRole('link', { name: "Personal Loan", exact: true })` |
-| emiResult | `.emi-result > span.value` | `page.locator('#emiamount').locator('p')` |
-| pieChart | `#emi-pie-chart canvas` | `page.locator('#emipiechart').locator('svg')` |
+| loanAmountInput | `#loan-amount` | `page.getByRole('textbox', { name: "Loan amount (₹)" })` |
+| interestRateInput | `xpath=//div[3]/form/div[2]/div/input` | `page.getByRole('textbox', { name: "Interest rate (% per annum)" })` |
+| reportLink | `role=link[name="Reports page"]` | `page.getByTestId("nav-report")` |
+| emiResult | `.emi-result > span.value` | `page.getByTestId("kpi-emi")` |
+| pieChart | `#emi-pie-chart canvas` | `page.getByTestId("pie-chart")` |

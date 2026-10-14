@@ -1,0 +1,537 @@
+[
+  {
+    "description": "  JSONPlaceholder is a *fake* API: it accepts almost anything and answers 201 without validating.\n  These scenarios therefore pin the part of the expected outcome that is true of the live service - it must never\n  fail server-side (no 5xx), must answer with well-formed JSON, and must not corrupt the data it echoes back.\n  The strict reading (\"invalid input must be rejected with 4xx\") is kept as @known-gap scenarios, run on demand\n  with `npm run test:gap`, so the deviation is documented with evidence instead of hidden.",
+    "elements": [
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);defect-found---a-request-body-that-is-not-valid-json-must-not-cause-a-server-error",
+        "keyword": "Scenario",
+        "line": 65,
+        "name": "DEFECT FOUND - a request body that is not valid JSON must not cause a server error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 12344299
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 448415200
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 66,
+            "name": "I send a malformed JSON body to create a post",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:24"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA1MDAgSW50ZXJuYWwgU2VydmVyIEVycm9yClN5bnRheEVycm9yOiBVbmV4cGVjdGVkIHRva2VuICciJywgIiMiIGlzIG5vdCB2YWxpZCBKU09OCiAgICBhdCBKU09OLnBhcnNlICg8YW5vbnltb3VzPikKICAgIGF0IGNyZWF0ZVN0cmljdFN5bnRheEVycm9yICgvYXBwL25vZGVfbW9kdWxlcy9ib2R5LXBhcnNlci9saWIvdHlwZXMvanNvbi5qczoxNTg6MTApCiAgICBhdCBwYXJzZSAoL2FwcC9ub2RlX21vZHVsZXMvYm9keS1wYXJzZXIvbGliL3R5cGVzL2pzb24uanM6ODM6MTUpCiAgICBhdCAvYXBwL25vZGVfbW9kdWxlcy9ib2R5LXBhcnNlci9saWIvcmVhZC5qczoxMjE6MS4uLiAoNzY2IGNoYXJzKQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "failed",
+              "duration": 3040899,
+              "error_message": "Error: a 5xx means the server failed on this input\n\nexpect(received).toBeLessThan(expected)\n\nExpected: < 500\nReceived:   500\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeLessThan (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:40:81)"
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 67,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3513400
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          },
+          {
+            "name": "@known-gap",
+            "line": 64
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);strict-expectation---invalid-input-is-rejected-with-a-4xx-(title-1m)",
+        "keyword": "Scenario Outline",
+        "line": 80,
+        "name": "Strict expectation - invalid input is rejected with a 4xx (title-1m)",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1458000
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 607914398
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 75,
+            "name": "I create a post using the \"title-1m\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEuLi4gKDEwMDAwNzEgY2hhcnMp",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "failed",
+              "duration": 951499,
+              "error_message": "Error: expected a 4xx rejection but the API answered 201\n\nexpect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 400\nReceived:    201\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeGreaterThanOrEqual (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:64:67)"
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 76,
+            "name": "the API rejects the request with a 4xx status",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:61"
+            },
+            "embeddings": [
+              {
+                "data": "T2JzZXJ2ZWQgc3RhdHVzIDIwMSBmb3IgcGF5bG9hZCAidGl0bGUtMW0i",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2643799
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          },
+          {
+            "name": "@known-gap",
+            "line": 73
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);strict-expectation---invalid-input-is-rejected-with-a-4xx-(missing-userid)",
+        "keyword": "Scenario Outline",
+        "line": 81,
+        "name": "Strict expectation - invalid input is rejected with a 4xx (missing-userId)",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2107600
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 259934897
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 75,
+            "name": "I create a post using the \"missing-userId\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInRpdGxlIjogIkEgdmFsaWQgdGl0bGUiLAogICJib2R5IjogIkEgdmFsaWQgYm9keSIsCiAgImlkIjogMTAxCn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "failed",
+              "duration": 3238899,
+              "error_message": "Error: expected a 4xx rejection but the API answered 201\n\nexpect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 400\nReceived:    201\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeGreaterThanOrEqual (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:64:67)"
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 76,
+            "name": "the API rejects the request with a 4xx status",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:61"
+            },
+            "embeddings": [
+              {
+                "data": "T2JzZXJ2ZWQgc3RhdHVzIDIwMSBmb3IgcGF5bG9hZCAibWlzc2luZy11c2VySWQi",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2757500
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          },
+          {
+            "name": "@known-gap",
+            "line": 73
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);strict-expectation---invalid-input-is-rejected-with-a-4xx-(missing-title)",
+        "keyword": "Scenario Outline",
+        "line": 82,
+        "name": "Strict expectation - invalid input is rejected with a 4xx (missing-title)",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1387299
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 327707698
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 75,
+            "name": "I create a post using the \"missing-title\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgImJvZHkiOiAiQSB2YWxpZCBib2R5IiwKICAiaWQiOiAxMDEKfQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "failed",
+              "duration": 959799,
+              "error_message": "Error: expected a 4xx rejection but the API answered 201\n\nexpect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 400\nReceived:    201\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeGreaterThanOrEqual (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:64:67)"
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 76,
+            "name": "the API rejects the request with a 4xx status",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:61"
+            },
+            "embeddings": [
+              {
+                "data": "T2JzZXJ2ZWQgc3RhdHVzIDIwMSBmb3IgcGF5bG9hZCAibWlzc2luZy10aXRsZSI=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1819599
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          },
+          {
+            "name": "@known-gap",
+            "line": 73
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);strict-expectation---invalid-input-is-rejected-with-a-4xx-(empty-object)",
+        "keyword": "Scenario Outline",
+        "line": 83,
+        "name": "Strict expectation - invalid input is rejected with a 4xx (empty-object)",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1887200
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 766982600
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 75,
+            "name": "I create a post using the \"empty-object\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgImlkIjogMTAxCn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "failed",
+              "duration": 817199,
+              "error_message": "Error: expected a 4xx rejection but the API answered 201\n\nexpect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 400\nReceived:    201\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeGreaterThanOrEqual (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:64:67)"
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 76,
+            "name": "the API rejects the request with a 4xx status",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:61"
+            },
+            "embeddings": [
+              {
+                "data": "T2JzZXJ2ZWQgc3RhdHVzIDIwMSBmb3IgcGF5bG9hZCAiZW1wdHktb2JqZWN0Ig==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 999900
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          },
+          {
+            "name": "@known-gap",
+            "line": 73
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);strict-expectation---invalid-input-is-rejected-with-a-4xx-(userid-string)",
+        "keyword": "Scenario Outline",
+        "line": 84,
+        "name": "Strict expectation - invalid input is rejected with a 4xx (userId-string)",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1325800
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 257261000
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 75,
+            "name": "I create a post using the \"userId-string\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6ICJub3QtYS1udW1iZXIiLAogICJ0aXRsZSI6ICJBIHZhbGlkIHRpdGxlIiwKICAiYm9keSI6ICJBIHZhbGlkIGJvZHkiLAogICJpZCI6IDEwMQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "failed",
+              "duration": 899998,
+              "error_message": "Error: expected a 4xx rejection but the API answered 201\n\nexpect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 400\nReceived:    201\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeGreaterThanOrEqual (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:64:67)"
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 76,
+            "name": "the API rejects the request with a 4xx status",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:61"
+            },
+            "embeddings": [
+              {
+                "data": "T2JzZXJ2ZWQgc3RhdHVzIDIwMSBmb3IgcGF5bG9hZCAidXNlcklkLXN0cmluZyI=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1492700
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          },
+          {
+            "name": "@known-gap",
+            "line": 73
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3);strict-expectation---invalid-input-is-rejected-with-a-4xx-(title-null)",
+        "keyword": "Scenario Outline",
+        "line": 85,
+        "name": "Strict expectation - invalid input is rejected with a 4xx (title-null)",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1412999
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 309042798
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 75,
+            "name": "I create a post using the \"title-null\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7CiAgInVzZXJJZCI6IDEsCiAgInRpdGxlIjogbnVsbCwKICAiYm9keSI6ICJBIHZhbGlkIGJvZHkiLAogICJpZCI6IDEwMQp9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "failed",
+              "duration": 979800,
+              "error_message": "Error: expected a 4xx rejection but the API answered 201\n\nexpect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 400\nReceived:    201\n    at captureRawStack (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright-core\\lib\\coreBundle.js:9282:17)\n    at callMatcherAsStep (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13316:57)\n    at Object.toBeGreaterThanOrEqual (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\node_modules\\playwright\\lib\\matchers\\expect.js:13308:23)\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\jsonplaceholder.steps.js:64:67)"
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 76,
+            "name": "the API rejects the request with a 4xx status",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:61"
+            },
+            "embeddings": [
+              {
+                "data": "T2JzZXJ2ZWQgc3RhdHVzIDIwMSBmb3IgcGF5bG9hZCAidGl0bGUtbnVsbCI=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1586600
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@jsonplaceholder",
+            "line": 1
+          },
+          {
+            "name": "@known-gap",
+            "line": 73
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "jsonplaceholder---post-/posts-with-boundary-and-invalid-data-(section-a3)",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "JSONPlaceholder - POST /posts with boundary and invalid data (Section A3)",
+    "tags": [
+      {
+        "name": "@jsonplaceholder",
+        "line": 1
+      }
+    ],
+    "uri": "features\\jsonplaceholder\\create_post.feature"
+  }
+]
