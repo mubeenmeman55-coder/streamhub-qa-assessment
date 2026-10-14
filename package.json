@@ -9,7 +9,8 @@
     "test:api": "cucumber-js -p api",
     "test:broken": "cucumber-js -p broken",
     "sql": "node sql/run-sql.js",
-    "heal": "node self-healing/heal.js"
+    "heal": "node self-healing/heal.js",
+    "test:ui:live": "node scripts/live.js"
   },
   "keywords": [],
   "author": "",
