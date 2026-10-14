@@ -4,7 +4,7 @@
   const inr = (n) => '₹' + Math.round(n).toLocaleString('en-IN');
   const store = { get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* storage unavailable */ } } };
 
-  // Loan products, as on emicalculator.net: each has its own starting values and slider ranges
+  // Loan products: each has its own starting values and slider ranges
   const PRODUCTS = {
     home: { amount: '25,00,000', rate: '10', tenure: '10', max: { amount: 10000000, rate: 25, tenure: 30 } },
     personal: { amount: '5,00,000', rate: '12', tenure: '3', max: { amount: 3000000, rate: 30, tenure: 7 } },
@@ -87,7 +87,7 @@
   const timing = () => document.querySelector('input[name=timing]:checked').value;
   function readForm() {
     const errors = {};
-    const amountRaw = $('amount').value, rateRaw = $('rate').value, tenureRaw = $('tenure').value, start = $('start').value, extraRaw = $('extra').value;
+    const amountRaw = $('amount').value, rateRaw = $('rate').value, tenureRaw = $('tenure').value, start = $('start').value, extraRaw = $('extra').value, incomeRaw = $('income').value;
     const amount = num(amountRaw), rate = num(rateRaw), tenure = num(tenureRaw), unit = $('tenure-unit').value;
     const extra = extraRaw.trim() === '' ? 0 : num(extraRaw);
     if (amountRaw.trim() === '' || !Number.isFinite(amount)) errors.amount = 'Enter the loan amount as a number.';
@@ -101,11 +101,13 @@
     if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(start)) errors.start = 'Choose a valid start month.';
     if (!Number.isFinite(extra) || extra < 0) errors.extra = 'Extra payment must be zero or a positive number.';
     else if (Number.isFinite(amount) && extra > amount) errors.extra = 'Extra payment cannot be more than the loan amount.';
-    return { errors, values: { amount, rate, months, start, extra, unit, tenure, advance: timing() === 'advance' } };
+    const income = incomeRaw.trim() === '' ? 0 : num(incomeRaw);
+    if (!Number.isFinite(income) || income < 0 || (incomeRaw.trim() !== '' && income === 0)) errors.income = 'Income must be a positive number.';
+    return { errors, values: { amount, rate, months, start, extra, unit, tenure, income, advance: timing() === 'advance' } };
   }
 
   function showErrors(errors) {
-    for (const k of ['amount', 'rate', 'tenure', 'start', 'extra']) {
+    for (const k of ['amount', 'rate', 'tenure', 'start', 'extra', 'income']) {
       $('err-' + k).textContent = errors[k] || '';
       const input = $(k);
       if (errors[k]) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
@@ -153,6 +155,20 @@
     } else {
       box.hidden = true;
     }
+    // insights
+    const cost = (total / loan.principal) * 100;
+    $('cost-per-100').dataset.value = cost.toFixed(2); $('cost-per-100').textContent = '₹' + cost.toFixed(2);
+    const cross = loan.rows.find((r) => r.principal > r.interest);
+    const c = $('crossover');
+    if (cross) { c.dataset.value = String(cross.n); c.textContent = `Month ${cross.n} (${MONTHS[cross.month]} ${cross.year})`; } else { c.dataset.value = '0'; c.textContent = 'Never'; }
+    const aff = $('affordability');
+    if (loan.income > 0) {
+      const ratio = (loan.emi + loan.extra) / loan.income * 100;
+      const status = ratio <= 30 ? 'comfortable' : ratio <= 50 ? 'stretching' : 'risky';
+      $('afford-ratio').dataset.value = ratio.toFixed(2); $('afford-ratio').textContent = ratio.toFixed(1) + '%';
+      $('afford-status').textContent = { comfortable: 'Comfortable', stretching: 'Stretching', risky: 'Risky' }[status];
+      aff.dataset.status = status; aff.hidden = false;
+    } else { aff.hidden = true; aff.dataset.status = ''; }
     renderBars();
   }
 
@@ -212,8 +228,8 @@
       const toggle = mode === 'yearly'
         ? `<button type="button" class="year-toggle" data-testid="year-toggle" data-key="${r.key}" aria-expanded="${open}" aria-label="${open ? 'Hide' : 'Show'} months for ${r.label}">${open ? '&#9662;' : '&#9656;'}</button>` : '';
       let html = `<tr data-testid="schedule-row" ${rowAttrs(r)}>` +
-        `<th scope="row">${toggle}${r.label}</th><td>${inr(r.opening)}</td><td>${inr(r.paid)}</td><td>${inr(r.principal)}</td><td>${inr(r.interest)}</td><td>${inr(r.closing)}</td></tr>`;
-      if (open) html += r.months.map((mo) => `<tr class="month-sub" data-testid="schedule-month-row" ${rowAttrs(mo)}><th scope="row">${mo.label}</th><td>${inr(mo.opening)}</td><td>${inr(mo.paid)}</td><td>${inr(mo.principal)}</td><td>${inr(mo.interest)}</td><td>${inr(mo.closing)}</td></tr>`).join('');
+        `<th scope="row">${toggle}${r.label}</th><td>${inr(r.opening)}</td><td>${inr(r.paid)}</td><td>${inr(r.principal)}</td><td>${inr(r.interest)}</td><td data-testid="cell-closing">${inr(r.closing)}</td></tr>`;
+      if (open) html += r.months.map((mo) => `<tr class="month-sub" data-testid="schedule-month-row" ${rowAttrs(mo)}><th scope="row">${mo.label}</th><td>${inr(mo.opening)}</td><td>${inr(mo.paid)}</td><td>${inr(mo.principal)}</td><td>${inr(mo.interest)}</td><td data-testid="cell-closing">${inr(mo.closing)}</td></tr>`).join('');
       return html;
     }).join('');
     const sum = (k) => display.reduce((a, r) => a + r[k], 0);
@@ -237,7 +253,7 @@
     showErrors({});
     const [sy, sm] = values.start.split('-').map(Number);
     const { emi, rows } = buildSchedule(values.amount, values.rate, values.months, sy, sm - 1, values.extra, values.advance);
-    loan = { principal: values.amount, rate: values.rate, months: values.months, extra: values.extra, advance: values.advance, emi, rows };
+    loan = { principal: values.amount, rate: values.rate, months: values.months, extra: values.extra, advance: values.advance, income: values.income, emi, rows };
     renderDashboard(); populateYearFilter(); renderReport();
     return true;
   }
@@ -287,7 +303,7 @@
 
   // ---------- share link ----------
   function formState() {
-    return { product, amount: $('amount').value, rate: $('rate').value, tenure: $('tenure').value, unit: $('tenure-unit').value, start: $('start').value, extra: $('extra').value, timing: timing(), yfmt: $('year-format').value };
+    return { product, amount: $('amount').value, rate: $('rate').value, tenure: $('tenure').value, unit: $('tenure-unit').value, start: $('start').value, extra: $('extra').value, income: $('income').value, timing: timing(), yfmt: $('year-format').value };
   }
   function shareUrl() {
     return `${location.origin}${location.pathname}?${new URLSearchParams(formState())}${location.hash}`;
@@ -304,7 +320,7 @@
     $('amount').value = s.amount ?? cfg.amount; $('rate').value = s.rate ?? cfg.rate;
     $('tenure-unit').value = s.unit === 'months' ? 'months' : 'years';
     $('tenure-range').max = $('tenure-unit').value === 'years' ? cfg.max.tenure : cfg.max.tenure * 12;
-    $('tenure').value = s.tenure ?? cfg.tenure; $('start').value = s.start ?? BASE.start; $('extra').value = s.extra ?? BASE.extra;
+    $('tenure').value = s.tenure ?? cfg.tenure; $('start').value = s.start ?? BASE.start; $('extra').value = s.extra ?? BASE.extra; $('income').value = s.income ?? '';
     document.getElementById(s.timing === 'advance' ? 'timing-advance' : 'timing-arrears').checked = true;
     $('year-format').value = s.yfmt === 'financial' ? 'financial' : 'calendar';
     $('amount-range').value = num($('amount').value) || num(cfg.amount); $('rate-range').value = num($('rate').value) || num(cfg.rate); $('tenure-range').value = num($('tenure').value) || num(cfg.tenure);
@@ -373,6 +389,7 @@
     $(text).addEventListener('input', () => { const v = num($(text).value); if (Number.isFinite(v)) $(range).value = v; updateWords(); live(); });
   }
   $('extra').addEventListener('input', live);
+  $('income').addEventListener('input', live);
   $('start').addEventListener('input', live);
   document.querySelectorAll('input[name=timing]').forEach((r) => r.addEventListener('change', () => calculate(true)));
   $('tenure-unit').addEventListener('change', () => {

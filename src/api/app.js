@@ -74,7 +74,7 @@ function createApp() {
     res.json({ data: GENRES.map((name) => ({ name, count: titles.filter((t) => t.genre === name).length })) });
   });
 
-  // GET /api/emi?principal&rate&years - same maths the UI tests verify against emicalculator.net
+  // GET /api/emi?principal&rate&years - same EMI formula the web app uses
   router.get('/emi', (req, res) => {
     const q = req.query;
     allowOnly(q, ['principal', 'rate', 'years']);

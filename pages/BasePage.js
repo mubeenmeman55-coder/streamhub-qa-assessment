@@ -6,7 +6,7 @@ class BasePage {
   }
 
   async goto(path = '/') {
-    await this.page.goto(new URL(path, config.baseUrl).toString(), { waitUntil: 'domcontentloaded' });
+    await this.page.goto(new URL(path, config.webappUrl).toString(), { waitUntil: 'domcontentloaded' });
   }
 }
 

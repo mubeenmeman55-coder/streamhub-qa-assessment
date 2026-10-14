@@ -1,7 +1,7 @@
 @ui @webapp
 Feature: EMI calculator app - dynamic behaviour (loan types, timing, financial year, drill-down, live results)
-  Features modelled on emicalculator.net: loan-type tabs, EMI at start/end of month, calendar vs financial year,
-  expandable yearly rows, a balance line on the bar chart and results that update as you type or drag.
+  Loan-type tabs, EMI at start/end of month, calendar vs financial year, expandable yearly rows,
+  a balance line on the bar chart and results that update as you type or drag.
 
   Background:
     Given I open the EMI app

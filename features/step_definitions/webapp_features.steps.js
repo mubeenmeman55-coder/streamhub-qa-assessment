@@ -356,3 +356,43 @@ Then('the year-end balances match my own calculation', async function () {
   const got = await balances(this);
   want.forEach((w, i) => expect(Math.abs(got[i] - w.closing), `year ${w.year}`).toBeLessThan(CENT));
 });
+
+// ---------- affordability and insights (emi_app_insights.feature) ----------
+When('I enter a monthly income of {string} and calculate', async function (income) {
+  await this.app.income.fill(income);
+  await this.app.calculate();
+  this.state.income = Number(income.replace(/,/g, ''));
+});
+
+Then('the affordability shows {string} at the EMI share of income', async function (status) {
+  const want = summary(loanOf(this).principal, loanOf(this).rate, yearsOf(this)).emi / this.state.income * 100;
+  await expect(this.app.affordability).toBeVisible();
+  expect(Math.abs(Number(await this.page.getByTestId('afford-ratio').getAttribute('data-value')) - want)).toBeLessThan(0.01);
+  await expect(this.app.affordability).toHaveAttribute('data-status', status);
+  await expect(this.page.getByTestId('afford-status')).toHaveText(status.charAt(0).toUpperCase() + status.slice(1));
+});
+
+Then('the affordability box is not shown', async function () {
+  await expect(this.app.affordability).toBeHidden();
+});
+
+Then('the cost of every hundred rupees borrowed matches my own calculation', async function () {
+  const l = loanOf(this);
+  const want = (summary(l.principal, l.rate, yearsOf(this)).totalPayment / l.principal) * 100;
+  expect(Math.abs(Number(await this.page.getByTestId('cost-per-100').getAttribute('data-value')) - want)).toBeLessThan(0.01);
+  expect(await this.page.getByTestId('cost-per-100').innerText()).toBe(`\u20B9${want.toFixed(2)}`);
+});
+
+Then('the month principal overtakes interest matches my own closed-form calculation', async function () {
+  // principal part of payment k = (E - P*r) * (1+r)^(k-1); it first exceeds half the EMI at k > 1 + ln(E / (2(E - P*r))) / ln(1+r)
+  const l = loanOf(this);
+  const r = l.rate / 12 / 100;
+  const e = summary(l.principal, l.rate, yearsOf(this)).emi;
+  const x = 1 + Math.log(e / (2 * (e - l.principal * r))) / Math.log(1 + r);
+  const want = Math.max(1, Math.floor(x) + 1);
+  const got = Number(await this.page.getByTestId('crossover').getAttribute('data-value'));
+  this.attach(`Crossover: expected month ${want} (x = ${x.toFixed(3)}), app says ${got}`);
+  expect(got).toBe(want);
+  const date = new Date(l.startYear, l.startMonth + want - 1, 1);
+  await expect(this.page.getByTestId('crossover')).toHaveText(`Month ${want} (${date.toLocaleString('en-US', { month: 'short' })} ${date.getFullYear()})`);
+});

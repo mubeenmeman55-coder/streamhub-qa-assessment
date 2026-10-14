@@ -5,7 +5,6 @@
   "scripts": {
     "api:start": "node src/api/server.js",
     "test": "cucumber-js",
-    "test:ui": "cucumber-js -p ui",
     "test:api": "cucumber-js -p api",
     "test:broken": "cucumber-js -p broken",
     "sql": "node sql/run-sql.js",

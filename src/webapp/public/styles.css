@@ -90,3 +90,8 @@ main.single{grid-template-columns:1fr}main.single .side{display:none}
 #bar-chart .balance-line{fill:none;stroke:#12a150;stroke-width:2.5}#bar-chart .balance-dot{fill:#12a150}
 .year-toggle{background:var(--soft);color:var(--brand);border:0;border-radius:6px;width:24px;height:24px;padding:0;margin-right:8px;font-size:12px;line-height:1}
 tr.month-sub td,tr.month-sub th{background:var(--bg);color:var(--mut);font-size:12.5px}tr.month-sub th{padding-left:44px;font-weight:500}
+
+.insights{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:16px}
+.insights .kpi b{font-size:20px}
+.afford em{display:inline-block;margin-top:4px;font-style:normal;font-weight:800;font-size:12.5px;padding:2px 10px;border-radius:99px;background:var(--soft)}
+.afford[data-status=comfortable] em{background:#dff5e8;color:#0d7a3c}.afford[data-status=stretching] em{background:#fdf0d3;color:#8a5a00}.afford[data-status=risky] em{background:#fde0e4;color:#a4192b}

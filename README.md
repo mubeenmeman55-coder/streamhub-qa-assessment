@@ -1,12 +1,12 @@
 # Streamhub QA Automation Assessment
 
 Playwright + Cucumber (BDD) framework. **Submitted for Section A** (own web application + UI automation + API test + SQL),
-plus the self-healing exercise. Parts of Section B that I also built are kept as clearly separated extras (see the end).
+plus the self-healing exercise. A small mock API that I also built is kept as a clearly separated optional extra (see the end).
 
 | Brief item | What I built | Where |
 |---|---|---|
 | **A1** web app | EMI Calculator: dashboard (KPIs, pie, bar + balance line), report (filters, drill-down, CSV), compare view, prepayment, saved scenarios | `src/webapp/` |
-| **A2** Playwright tests | 56 Cucumber scenarios, page object, independent EMI oracle | `features/webapp/`, `pages/WebAppPage.js`, `features/step_definitions/webapp.steps.js` |
+| **A2** Playwright tests | 68 Cucumber scenarios, page object, independent EMI oracle | `features/webapp/`, `pages/WebAppPage.js`, `features/step_definitions/webapp.steps.js` |
 | **A3** API test | JSONPlaceholder `POST /posts`: long titles, special characters, missing fields | `features/jsonplaceholder/`, `pages/api/PostsApi.js` |
 | **A4** SQL | schema + round-trip transfers + IPL streaks, with output screenshots | `sql/`, `reports/sql/` |
 | Self-healing | 5 deliberately broken locators, write-up, working POC | `pages/LegacyEmiPage.js`, `docs/SELF_HEALING.md`, `self-healing/heal.js` |
@@ -32,9 +32,8 @@ No manual server start is needed: the test hooks start the EMI app automatically
 | `npm run sql` | **A4** - builds the DB, runs both queries, writes outputs + screenshots |
 | `npm run heal` | self-healing POC |
 | `npm run test:broken` | the intentionally broken locators (**expected to fail**) |
-| `npm test` | everything that should pass (A2 + A3 + the Section B extras) |
+| `npm test` | everything that should pass (A2 + A3 + the optional mock-API suite) |
 | `npm run app:start` | run the EMI app yourself at `WEBAPP_URL` (http://localhost:3300) |
-| `BLOCK_ADS=false` | env flag: allow third-party ads on emicalculator.net (blocked by default in its tests) |
 
 Watch a run in a visible browser: `$env:HEADLESS='false'; $env:SLOW_MO='300'; npm run test:webapp` (PowerShell).
 Watch it inside VS Code's Simple Browser: `npm run test:ui:live`, then open `http://localhost:3200`.
@@ -50,13 +49,14 @@ See "Latest results" at the end for the numbers.
 
 ## A1 - the EMI Calculator app (`src/webapp`)
 
-Plain HTML/CSS/JS served by a tiny Express static server. Several ideas are borrowed from https://emicalculator.net/ (loan-type tabs, sliders with
+Plain HTML/CSS/JS served by a tiny Express static server, in the spirit of the public EMI calculators the brief mentions (loan-type tabs, sliders with
 tick marks, EMI at start/end of month, calendar vs financial year, expandable yearly rows, balance line on the bar chart, live results), then extended.
 - **Dashboard** (`#/dashboard`): Monthly EMI, total interest, total payment, interest share; a **pie chart** (principal vs interest), a **stacked bar chart**
   per year with hover tooltips and an outstanding-**balance line** (right axis); a **prepayment impact** box (interest and time saved) when an extra monthly payment is entered.
 - **Report** (`#/report`): amortisation table driven by controls - Yearly/Monthly view, Year filter, **Calendar vs Financial year (Apr-Mar)**, click a year to
   **drill into its months**, totals row, and **Download CSV** of what is on screen.
 - **Compare** (`#/compare`): two loans side by side with differences, the cheaper one highlighted, and a plain-language verdict.
+- **Insights**: cost of every ₹100 borrowed, the month when principal overtakes interest, and an **affordability check** (EMI as a share of monthly income: comfortable / stretching / risky).
 - **Loan types**: Home / Personal / Car tabs with their own defaults and slider ranges. **EMI timing**: end of month (arrears) or start of month (advance).
 - **Dynamic**: results update live while typing or dragging sliders (invalid values never wipe the last good result); amount spelled out in words (Indian
   numbering); **saved scenarios** (kept in the browser); **share link** that restores the exact loan; light/dark theme.
@@ -112,11 +112,11 @@ Five broken locators live in `pages/LegacyEmiPage.js` and are left broken. `docs
 
 ```
 config/               env loading (config/environments/qa.env); no URLs in code
-features/webapp/      A2 scenarios            features/jsonplaceholder/   A3 scenarios
-features/step_definitions/   thin steps       features/support/   world + hooks (browser, servers, screenshots, ad-blocking, live view)
-pages/                WebAppPage, EmiCalculatorPage, LegacyEmiPage;  pages/api/ PostsApi, CatalogApi
+features/webapp/      A2 scenarios            features/jsonplaceholder/   A3 scenarios       features/self-healing/  broken-locator demo
+features/step_definitions/   thin steps       features/support/   world + hooks (browser, servers, screenshots, live view)
+pages/                WebAppPage, LegacyEmiPage (broken locators);  pages/api/ PostsApi, CatalogApi
 utils/                independent EMI maths (test oracle) and number parsing
-src/webapp/           A1 app                  src/api/   mock API (Section B extra)
+src/webapp/           A1 app                  src/api/   mock API (optional extra, see end)
 sql/                  schema, data, queries, runner
 self-healing/         POC;   docs/SELF_HEALING.md
 ```
@@ -124,34 +124,21 @@ self-healing/         POC;   docs/SELF_HEALING.md
 ## Claude Code reflection
 
 **Worked well**
-- Scaffolding the framework layers, the app, and ~80 scenarios quickly; the gaps-and-islands SQL; the self-healing pipeline shape.
+- Scaffolding the framework layers, the app, and ~150 scenarios quickly; the gaps-and-islands SQL; the self-healing pipeline shape.
 - Letting it inspect real pages first (a script that dumped DOM and chart data) before writing locators.
 - The oracle pattern: a separate EMI implementation in the tests, so a bug copied into the app would still be caught.
 
 **Wrong or needed correcting**
-- It chose `getByLabel('Interest Rate')` on a third-party page; injected ad widgets used the same aria-label (strict-mode violation). Moved to role-based locators and blocked ads in the test browser.
-- It counted 12 bars instead of 10 because legend swatches share the bar class; I confirmed against the chart's data before changing the selector (rather than changing the expected number).
-- A hover on a pie slice's bounding-box centre landed on the neighbouring slice, causing an intermittent failure; fixed by computing a point on the slice's own arc.
+- Hovering the centre of a chart element's bounding box can land on a neighbouring element (an arc-shaped pie slice, in an earlier version of the tests), causing an intermittent failure; fixed by aiming at a point on the shape itself.
+- Its first locators for a form field matched hidden helper elements with the same name (strict-mode violations); role-based locators with exact accessible names fixed that.
+- A "green on the first run" suite for the new features was not trusted until mutation-tested: I broke the start-of-month formula, the financial-year boundary and the balance line in the app and confirmed 7 scenarios failed.
+- A scenario of mine failed because my own test data was wrong (₹33,038 EMI on a ₹1,00,000 income is 33%, i.e. "stretching", not "comfortable"); the app was right, so I fixed the data, not the assertion.
 - The self-healing POC first "healed" the EMI value to the whole KPI container because validation only checked "contains a number". Found by reading its output, fixed with a leaf-element check.
 - Generating files through shell heredocs repeatedly broke on quoting; writing files directly was more reliable.
 - An API suite that was green on its first run was not trusted until mutation-checked (I broke sorting and limit validation; the tests failed as they should).
 - JSONPlaceholder does not behave as the brief's expected outcome assumes; I documented the deviation and kept the failing evidence instead of bending assertions.
 
-## Section B extras (built, optional)
+## Optional extra: mock catalogue API
 
-Not required when Section A is chosen, but built and passing: a mock catalogue API with a browser UI (`src/api`, `npm run api:start`, http://localhost:3100) and 58 API scenarios
-(`npm run test:api`); UI tests against https://emicalculator.net for the Home Loan pie chart and Personal Loan bar chart (`npm run test:ui`, uses sliders, the calendar widget and tooltips).
-
-## Latest results
-
-| Suite | Result |
-|---|---|
-| **A2** EMI web app (`test:webapp`) | 56 scenarios passed |
-| **A3** JSONPlaceholder (`test:jsonplaceholder`) | 23 scenarios passed |
-| A3 known gaps (`test:gap`) | 7 failed **by design** - API returns 201 for invalid input and 500 for malformed JSON |
-| Full run `npm test` | 140 scenarios / 858 steps passed |
-| `@broken` self-healing demo | 1 failed - **expected** |
-| **A4** SQL | scenario 1: 6 rows, scenario 2: 5 rows (match hand-worked expectations) |
-| `npm run heal` (offline) | 5/5 healed |
-
-The emicalculator.net tests (Section B extra) hit a live third-party site, so they depend on network access and its current markup.
+Not part of Section A. A small Express mock API (`src/api`, `npm run api:start`, http://localhost:3100) with filtering, sorting, pagination and error handling,
+plus 58 API scenarios (`npm run test:api`). It can be deleted without affecting anything above (`src/api`, `features/api`, `pages/api/CatalogApi.js`).

@@ -75,6 +75,11 @@
           <input id="extra" name="extra" type="text" inputmode="numeric" value="0" autocomplete="off" aria-describedby="err-extra">
           <p class="error" id="err-extra" data-testid="error-extra" role="alert"></p>
         </div>
+        <div class="field">
+          <label for="income">Monthly income (&#8377;, optional)</label>
+          <input id="income" name="income" type="text" inputmode="numeric" value="" autocomplete="off" placeholder="e.g. 1,00,000" aria-describedby="err-income">
+          <p class="error" id="err-income" data-testid="error-income" role="alert"></p>
+        </div>
         <button type="submit" id="calculate" class="primary">Calculate EMI</button>
         <div class="btnrow">
           <button type="button" id="reset" class="ghost">Reset</button>
@@ -105,6 +110,11 @@
         <article class="kpi"><span>Total interest</span><b id="kpi-interest" data-testid="kpi-interest" data-value="">-</b></article>
         <article class="kpi"><span>Total payment</span><b id="kpi-total" data-testid="kpi-total" data-value="">-</b></article>
         <article class="kpi"><span>Interest share</span><b id="kpi-share" data-testid="kpi-share" data-value="">-</b></article>
+      </div>
+      <div class="insights" data-testid="insights">
+        <article class="kpi"><span>Cost of every &#8377;100 borrowed</span><b id="cost-per-100" data-testid="cost-per-100" data-value="">-</b></article>
+        <article class="kpi"><span>Principal overtakes interest in</span><b id="crossover" data-testid="crossover" data-value="">-</b></article>
+        <article class="kpi afford" id="affordability" data-testid="affordability" data-status="" hidden aria-live="polite"><span>EMI as share of income</span><b id="afford-ratio" data-testid="afford-ratio" data-value="">-</b><em id="afford-status" data-testid="afford-status"></em></article>
       </div>
       <article class="savings" id="savings" data-testid="savings" hidden aria-live="polite">
         <h3>Prepayment impact</h3>

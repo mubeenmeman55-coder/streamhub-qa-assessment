@@ -32,6 +32,8 @@ class WebAppPage extends BasePage {
     this.monthRows = page.getByTestId('schedule-month-row');
     this.balancePoints = page.getByTestId('balance-point');
     this.balanceLine = page.getByTestId('balance-line');
+    this.income = page.getByRole('textbox', { name: 'Monthly income (₹, optional)' });
+    this.affordability = page.getByTestId('affordability');
     this.amountSlider = page.getByRole('slider', { name: 'Loan amount slider' });
     this.calculateButton = page.getByRole('button', { name: 'Calculate EMI' });
     this.resetButton = page.getByRole('button', { name: 'Reset' });
@@ -140,7 +142,7 @@ class WebAppPage extends BasePage {
   }
 
   async lastRowClosingBalance() {
-    return toNumber(await this.scheduleRows.last().locator('td').last().innerText());
+    return toNumber(await this.scheduleRows.last().getByTestId('cell-closing').innerText());
   }
 }
 

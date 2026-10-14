@@ -11,10 +11,9 @@ const fmt = (name) => [
 
 module.exports = {
   default: { ...common, paths: ['features/**/*.feature'], format: fmt('all') },
-  ui: { ...common, paths: ['features/ui/**/*.feature'], format: fmt('ui') },
   api: { ...common, paths: ['features/api/**/*.feature'], format: fmt('api') },
   webapp: { ...common, paths: ['features/webapp/**/*.feature'], format: fmt('webapp') },
   jsonplaceholder: { ...common, paths: ['features/jsonplaceholder/**/*.feature'], format: fmt('jsonplaceholder') },
   gap: { ...common, tags: '@known-gap', paths: ['features/jsonplaceholder/**/*.feature'], format: fmt('known-gap') },
-  broken: { ...common, tags: '@broken', paths: ['features/ui/**/*.feature'], format: fmt('broken') },
+  broken: { ...common, tags: '@broken', paths: ['features/self-healing/**/*.feature'], format: fmt('broken') },
 };
