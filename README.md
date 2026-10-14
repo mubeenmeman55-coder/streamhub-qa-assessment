@@ -53,7 +53,7 @@ self-healing/        POC;  docs/SELF_HEALING.md  the write-up
 `page`/`limit`), `GET /api/titles/:id`, `GET /api/genres`, `GET /api/emi` (required params). Errors are JSON
 `{error:{code,message,details}}` with 400 (invalid/missing/unsupported/repeated params), 404 (unknown id, page out of range, unknown route).
 
-**Browser UI**: `npm run api:start`, then open `http://localhost:3100` - a catalogue explorer (search, filters, sort, pagination, genre chart), an EMI calculator with a live donut chart, and an API explorer. It only consumes the API endpoints above.
+**Browser UI**: `npm run api:start`, then open `http://localhost:3100`. Catalogue explorer (search, filters, sort, pagination, grid/list, favourites, detail drawer, ratings-by-year chart, filters kept in the URL), EMI calculator (sliders + typed values, year-by-year chart, schedule table) and an API explorer. Light/dark theme, keyboard friendly (`/` focuses search, `Esc` closes the drawer). It only consumes the API endpoints above.
 
 **B2 tests**: 58 scenarios incl. every filter and sort, pagination coverage, combined parameters, and ~35 invalid-input cases.
 I mutation-checked them (broke sort order and limit validation in the API; the tests failed as they should).

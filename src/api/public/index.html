@@ -1,77 +1,129 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="auto">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Streamhub Catalogue</title>
 <style>
-:root{--bg:#f5f7fb;--panel:#fff;--line:#e3e8f0;--txt:#172033;--mut:#667389;--brand:#1f6feb;--brand-2:#14b8a6;--soft:#eaf1fe;--bad:#d1344a;--shadow:0 1px 2px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.05)}
-@media(prefers-color-scheme:dark){:root{--bg:#0e131b;--panel:#161d28;--line:#273244;--txt:#e7edf6;--mut:#92a0b5;--brand:#5b9bff;--brand-2:#2dd4bf;--soft:#1c2a42;--bad:#ff6b81;--shadow:none}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.5 system-ui,"Segoe UI",Roboto,sans-serif}
-header{background:linear-gradient(120deg,#0f2a5c,#1f6feb 60%,#14b8a6);color:#fff;padding:22px 24px 0}
-.wrap{max-width:1180px;margin:0 auto}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px}
-.logo{width:30px;height:30px;border-radius:8px;background:#fff3;display:grid;place-items:center}
-header p{margin:4px 0 14px;color:#dbe7ff;font-size:14px}
-nav{display:flex;gap:4px}
-nav button{background:transparent;border:0;color:#dbe7ff;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;border-radius:10px 10px 0 0}
-nav button[aria-selected=true]{background:var(--bg);color:var(--txt)}
-nav button:focus-visible{outline:2px solid #fff}
-main{padding:20px 24px 48px}
-section[hidden]{display:none}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
-.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
-.stat{padding:14px 16px}.stat b{display:block;font-size:24px}.stat span{color:var(--mut);font-size:13px}
-.layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:18px;align-items:start}
-@media(max-width:860px){.layout{grid-template-columns:1fr}}
-.panel{padding:16px}
-.panel h2{font-size:14px;margin:0 0 12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
-label{display:block;font-size:13px;font-weight:600;margin:12px 0 4px}
-input,select{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--txt);font:inherit}
-input:focus,select:focus{outline:2px solid var(--brand);border-color:transparent}
+:root{--bg:#f4f6fb;--panel:#fff;--panel2:#f8fafd;--line:#e2e8f1;--txt:#162033;--mut:#64748b;--brand:#1f6feb;--brand2:#14b8a6;--soft:#e8f0fe;--bad:#d1344a;--ok:#12a150;--shadow:0 1px 2px rgba(16,24,40,.05),0 6px 20px rgba(16,24,40,.06);--ring:rgba(31,111,235,.35)}
+:root[data-theme=dark]{--bg:#0c1118;--panel:#141b26;--panel2:#101722;--line:#253044;--txt:#e8eef7;--mut:#8fa0b8;--brand:#5b9bff;--brand2:#2dd4bf;--soft:#1a2942;--bad:#ff6b81;--ok:#3ddc84;--shadow:0 6px 24px rgba(0,0,0,.35);--ring:rgba(91,155,255,.45)}
+@media(prefers-color-scheme:dark){:root[data-theme=auto]{--bg:#0c1118;--panel:#141b26;--panel2:#101722;--line:#253044;--txt:#e8eef7;--mut:#8fa0b8;--brand:#5b9bff;--brand2:#2dd4bf;--soft:#1a2942;--bad:#ff6b81;--ok:#3ddc84;--shadow:0 6px 24px rgba(0,0,0,.35);--ring:rgba(91,155,255,.45)}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.5 Inter,system-ui,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+header{background:linear-gradient(125deg,#0b1f4a 0%,#1f6feb 58%,#14b8a6 100%);color:#fff;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:auto -10% -60% auto;width:520px;height:520px;border-radius:50%;background:radial-gradient(#ffffff26,transparent 65%);pointer-events:none}
+.top{display:flex;align-items:center;gap:14px;padding-top:20px;position:relative;z-index:1}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.01em}
+.logo{width:32px;height:32px;border-radius:9px;background:#ffffff29;display:grid;place-items:center;backdrop-filter:blur(6px)}
+.grow{flex:1}
+.iconbtn{position:relative;background:#ffffff1f;border:1px solid #ffffff30;color:#fff;border-radius:10px;height:36px;min-width:36px;padding:0 11px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:13px}
+.iconbtn:hover{background:#ffffff33}
+.badge{background:#fff;color:#0b1f4a;border-radius:99px;font-size:11px;padding:0 6px;font-weight:800;min-width:18px;text-align:center}
+header p{margin:10px 0 16px;color:#dbe7ff;max-width:640px;position:relative;z-index:1}
+nav{display:flex;gap:4px;position:relative;z-index:1;overflow-x:auto}
+nav button{background:transparent;border:0;color:#dbe7ff;padding:11px 18px;font-weight:700;cursor:pointer;border-radius:12px 12px 0 0;white-space:nowrap}
+nav button:hover{color:#fff}nav button[aria-selected=true]{background:var(--bg);color:var(--txt)}
+main{padding:22px 0 64px}section[hidden]{display:none}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}
+.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+.stat{padding:15px 18px;display:flex;align-items:center;gap:14px}
+.stat .ic{width:40px;height:40px;border-radius:12px;background:var(--soft);display:grid;place-items:center;font-size:18px;flex:none}
+.stat b{display:block;font-size:24px;line-height:1.1;letter-spacing:-.02em}.stat span{color:var(--mut);font-size:12.5px}
+.layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:20px;align-items:start}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+.panel{padding:18px}
+.panel h2{font-size:12px;margin:0 0 12px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut)}
+label{display:block;font-size:13px;font-weight:600;margin:13px 0 5px}
+input,select{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel2)}
+input:focus,select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--ring)}
+.searchbox{position:relative}.searchbox kbd{position:absolute;right:10px;top:50%;transform:translateY(-50%);font:11px ui-monospace,monospace;color:var(--mut);border:1px solid var(--line);border-radius:5px;padding:0 6px;background:var(--panel)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn{margin-top:14px;width:100%;padding:9px;border-radius:9px;border:1px solid var(--line);background:transparent;color:var(--txt);font:inherit;font-weight:600;cursor:pointer}
+.btn{margin-top:14px;width:100%;padding:9px;border-radius:10px;border:1px solid var(--line);background:transparent;cursor:pointer;font-weight:600}
 .btn:hover{background:var(--soft)}
-.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
-.toolbar .grow{flex:1;min-width:180px}.toolbar select{width:auto}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;transition:transform .12s,border-color .12s}
-.card:hover{transform:translateY(-2px);border-color:var(--brand)}
-.poster{height:78px;border-radius:10px;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;color:#fff;font-weight:700}
-.poster small{background:#0006;border-radius:99px;padding:1px 8px;font-size:12px}
-.card h3{margin:0;font-size:16px}
-.meta{display:flex;flex-wrap:wrap;gap:6px;color:var(--mut);font-size:12.5px}
-.chip{background:var(--soft);color:var(--brand);border-radius:99px;padding:1px 9px;font-weight:600;font-size:12px}
-.pager{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:18px}
-.pager button{padding:8px 14px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--txt);cursor:pointer;font:inherit}
+.btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}.btn.primary:hover{filter:brightness(1.08)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.toolbar select{width:auto}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}
+.seg button{border:0;background:transparent;padding:7px 12px;cursor:pointer;color:var(--mut);font-weight:600}
+.seg button[aria-pressed=true]{background:var(--soft);color:var(--brand)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.fchip{display:inline-flex;gap:6px;align-items:center;background:var(--soft);color:var(--brand);border:0;border-radius:99px;padding:3px 6px 3px 12px;font-size:12.5px;font-weight:700;cursor:pointer}
+.fchip span{width:18px;height:18px;border-radius:50%;background:#0000001a;display:grid;place-items:center;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.cards.list{grid-template-columns:1fr;gap:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s;position:relative;text-align:left;padding:0;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-3px);border-color:var(--brand)}
+.poster{height:96px;display:flex;align-items:flex-end;justify-content:space-between;padding:10px 12px;color:#fff;font-weight:800;font-size:20px;position:relative}
+.poster small{background:#0007;border-radius:99px;padding:2px 9px;font-size:12px;font-weight:700}
+.cbody{padding:12px 14px 14px}.cbody h3{margin:0 0 6px;font-size:16px;letter-spacing:-.01em}
+.meta{display:flex;flex-wrap:wrap;gap:6px 8px;color:var(--mut);font-size:12.5px;align-items:center}
+.chip{background:var(--soft);color:var(--brand);border-radius:99px;padding:1px 10px;font-weight:700;font-size:12px}
+.fav{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:50%;border:0;background:#0006;color:#fff;cursor:pointer;font-size:16px;display:grid;place-items:center;backdrop-filter:blur(4px)}
+.fav[aria-pressed=true]{background:#fff;color:#e11d48}
+.list .card{flex-direction:row;align-items:stretch}.list .poster{width:120px;height:auto;flex:none}.list .cbody{flex:1;display:flex;flex-direction:column;justify-content:center}
+.skel{background:linear-gradient(90deg,var(--panel2) 25%,var(--line) 37%,var(--panel2) 63%);background-size:400% 100%;animation:sh 1.3s infinite;border-radius:16px;height:178px;border:1px solid var(--line)}
+@keyframes sh{0%{background-position:100% 50%}100%{background-position:0 50%}}
+.pager{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:20px;flex-wrap:wrap}
+.pager button{min-width:38px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);cursor:pointer;font-weight:600}
+.pager button[aria-current=page]{background:var(--brand);border-color:var(--brand);color:#fff}
 .pager button:disabled{opacity:.4;cursor:not-allowed}
-.empty,.err{padding:28px;text-align:center;border:1px dashed var(--line);border-radius:14px;color:var(--mut)}
+.empty,.err{padding:40px 20px;text-align:center;border:1px dashed var(--line);border-radius:16px;color:var(--mut)}
 .err{color:var(--bad);border-color:var(--bad)}
-.req{margin-top:16px;font:12.5px/1.5 ui-monospace,Consolas,monospace;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;word-break:break-all}
-.req a{color:var(--brand)}
-.bars{display:grid;gap:7px}.bar{display:grid;grid-template-columns:96px 1fr 24px;gap:8px;align-items:center;font-size:13px;cursor:pointer;background:none;border:0;color:var(--txt);text-align:left;padding:0;font-family:inherit}
-.bar i{display:block;height:9px;border-radius:99px;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
-.bar:hover span:first-child,.bar[aria-pressed=true] span:first-child{color:var(--brand);font-weight:700}
-.emi{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
-@media(max-width:860px){.emi{grid-template-columns:1fr}}
-.slider{margin:14px 0}.slider .top{display:flex;justify-content:space-between;font-size:13px;font-weight:600}
-input[type=range]{padding:0;height:6px;accent-color:var(--brand)}
-.big{font-size:34px;font-weight:800;margin:2px 0}
-.donutwrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:14px}
-.donut{width:150px;height:150px;border-radius:50%;display:grid;place-items:center}
-.donut div{width:96px;height:96px;border-radius:50%;background:var(--panel);display:grid;place-items:center;text-align:center;font-size:12px;color:var(--mut)}
-.donut b{display:block;color:var(--txt);font-size:15px}
-.legend div{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:14px}.sw{width:12px;height:12px;border-radius:3px}
-.explorer a{display:block;padding:8px 0;border-top:1px solid var(--line);color:var(--brand);text-decoration:none}
-.explorer a:hover{text-decoration:underline}.explorer code{color:var(--mut);font-size:12px}
-pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;overflow:auto;max-height:340px;font-size:12.5px}
+.req{margin-top:16px;font:12.5px/1.5 ui-monospace,Consolas,monospace;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;word-break:break-all;display:flex;gap:10px;align-items:center}
+.req a{color:var(--brand);flex:1}.req button{border:1px solid var(--line);background:var(--panel2);border-radius:8px;padding:3px 10px;cursor:pointer;font-size:12px}
+.bars{display:grid;gap:6px}
+.bar{display:grid;grid-template-columns:92px 1fr 22px;gap:8px;align-items:center;font-size:13px;cursor:pointer;background:none;border:0;text-align:left;padding:3px 0}
+.bar i{display:block;height:9px;border-radius:99px;background:var(--line);position:relative;overflow:hidden}
+.bar i b{position:absolute;inset:0 auto 0 0;border-radius:99px;transition:width .5s}
+.bar:hover span:first-child,.bar[aria-pressed=true] span:first-child{color:var(--brand);font-weight:800}
+.chartcard{margin-top:22px}.chartcard h3{margin:0 0 2px;font-size:15px}.chartcard p{margin:0 0 10px;color:var(--mut);font-size:13px}
+svg text{fill:var(--mut);font-size:11px}
+.tip{position:fixed;z-index:50;pointer-events:none;background:#0b1220;color:#fff;border-radius:9px;padding:7px 10px;font-size:12.5px;box-shadow:0 8px 24px #0006;opacity:0;transition:opacity .08s;max-width:220px}
+.dot{cursor:pointer;transition:r .1s}.dot:hover{r:8}
+/* drawer */
+.scrim{position:fixed;inset:0;background:#0009;z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--panel);z-index:31;transform:translateX(102%);transition:transform .25s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:-12px 0 40px #0004;overflow:auto}
+.drawer.on{transform:none}
+.dposter{height:170px;display:flex;align-items:flex-end;padding:18px;color:#fff;font-size:38px;font-weight:800;position:relative}
+.dclose{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;border:0;background:#0006;color:#fff;cursor:pointer;font-size:18px}
+.dbody{padding:18px 20px 24px}.dbody h2{margin:0;font-size:24px;letter-spacing:-.02em;text-transform:none;color:var(--txt)}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}.kv>div{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 12px}.kv>div>span{display:block;color:var(--mut);font-size:12px}.kv b{font-size:16px}
+.rate{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:6px}.rate i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand2))}
+.similar{display:grid;gap:8px;margin-top:8px}.similar button{display:flex;justify-content:space-between;gap:10px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:9px 12px;cursor:pointer;text-align:left}
+.similar button:hover{border-color:var(--brand)}
+/* emi */
+.emi{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:20px}@media(max-width:900px){.emi{grid-template-columns:1fr}}
+.field{margin:16px 0}.field .top{display:flex;justify-content:space-between;align-items:center;gap:10px}.field .top label{margin:0}
+.field .num{width:130px;text-align:right;font-weight:700;padding:6px 10px}
+input[type=range]{padding:0;height:6px;accent-color:var(--brand);margin-top:8px;border:0;background:transparent}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.presets button{border:1px solid var(--line);background:var(--panel2);border-radius:99px;padding:4px 12px;cursor:pointer;font-size:12.5px;font-weight:600}.presets button:hover{border-color:var(--brand);color:var(--brand)}
+.big{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}@media(max-width:600px){.kpis{grid-template-columns:1fr}}
+.kpis div{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 12px}.kpis span{display:flex;gap:6px;align-items:center;color:var(--mut);font-size:12px}.kpis b{font-size:17px}
+.sw{width:10px;height:10px;border-radius:3px;display:inline-block}
+.split{height:12px;border-radius:99px;overflow:hidden;display:flex;margin:6px 0 4px;background:var(--line)}.split i{display:block;transition:width .3s}
+table{width:100%;border-collapse:collapse;font-size:13.5px}th,td{padding:8px 10px;text-align:right;border-top:1px solid var(--line)}th:first-child,td:first-child{text-align:left}th{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.scroll{max-height:300px;overflow:auto;border:1px solid var(--line);border-radius:12px}
+.explorer a{display:block;padding:10px 0;border-top:1px solid var(--line);color:var(--brand);text-decoration:none;font-weight:600}
+.explorer a:first-of-type{border-top:0}.explorer a:hover{text-decoration:underline}.explorer code{color:var(--mut);font-size:12px;font-weight:400}
+pre{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px;overflow:auto;max-height:420px;font-size:12.5px;margin:12px 0 0}
+.status{display:inline-block;padding:1px 10px;border-radius:99px;font-weight:800;font-size:12px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:#0b1220;color:#fff;padding:10px 16px;border-radius:12px;z-index:60;opacity:0;transition:.2s;pointer-events:none;font-weight:600;font-size:14px}.toast.on{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <header><div class="wrap">
-  <div class="brand"><span class="logo" aria-hidden="true">&#9654;</span>Streamhub Catalogue</div>
-  <p>Browse titles, run EMI maths and poke the API &mdash; the same endpoints the Playwright suite tests.</p>
+  <div class="top">
+    <div class="brand"><span class="logo" aria-hidden="true">&#9654;</span>Streamhub Catalogue</div><div class="grow"></div>
+    <button class="iconbtn" id="favBtn" type="button" aria-label="Show favourites">&#9825; Favourites <span class="badge" id="favCount">0</span></button>
+    <button class="iconbtn" id="themeBtn" type="button" aria-label="Toggle theme">&#9680;</button>
+  </div>
+  <p>Browse titles, run EMI maths and poke the API &mdash; every screen is powered by the same endpoints the Playwright suite tests.</p>
   <nav role="tablist" aria-label="Sections">
     <button role="tab" id="tab-catalogue" aria-selected="true" data-tab="catalogue">Catalogue</button>
     <button role="tab" id="tab-emi" aria-selected="false" data-tab="emi">EMI calculator</button>
@@ -83,28 +135,33 @@ pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;padd
 <section id="catalogue" aria-labelledby="tab-catalogue">
   <div class="stats" id="stats"></div>
   <div class="layout">
-    <aside class="panel" aria-label="Filters">
-      <h2>Filters</h2>
-      <label for="q">Search title</label><input id="q" type="search" placeholder="e.g. orbit" maxlength="100">
-      <label for="genre">Genre</label><select id="genre"><option value="">All genres</option></select>
-      <label for="type">Type</label><select id="type"><option value="">Movies &amp; series</option><option value="movie">Movies</option><option value="series">Series</option></select>
-      <div class="row2"><div><label for="minYear">From year</label><input id="minYear" type="number" min="1900" max="2100" placeholder="2015"></div>
-      <div><label for="maxYear">To year</label><input id="maxYear" type="number" min="1900" max="2100" placeholder="2024"></div></div>
-      <label for="minRating">Min rating: <span id="ratingVal">0</span></label><input id="minRating" type="range" min="0" max="10" step="0.5" value="0">
-      <button class="btn" id="reset" type="button">Reset filters</button>
-      <h2 style="margin-top:22px">Titles by genre</h2><div class="bars" id="genreBars"></div>
+    <aside>
+      <div class="panel" aria-label="Filters">
+        <h2>Filters</h2>
+        <label for="q" style="margin-top:0">Search title</label>
+        <div class="searchbox"><input id="q" type="search" placeholder="e.g. orbit" maxlength="100" autocomplete="off"><kbd>/</kbd></div>
+        <label for="genre">Genre</label><select id="genre"><option value="">All genres</option></select>
+        <label for="type">Type</label><select id="type"><option value="">Movies &amp; series</option><option value="movie">Movies</option><option value="series">Series</option></select>
+        <div class="row2"><div><label for="minYear">From year</label><input id="minYear" type="number" min="1900" max="2100" placeholder="2015"></div>
+        <div><label for="maxYear">To year</label><input id="maxYear" type="number" min="1900" max="2100" placeholder="2024"></div></div>
+        <label for="minRating">Min rating: <b id="ratingVal">0</b></label><input id="minRating" type="range" min="0" max="10" step="0.5" value="0">
+        <button class="btn" id="reset" type="button">Reset filters</button>
+      </div>
+      <div class="panel" style="margin-top:16px"><h2>Titles by genre</h2><div class="bars" id="genreBars"></div></div>
     </aside>
     <div>
+      <div class="chips" id="chips"></div>
       <div class="toolbar">
-        <div class="grow" id="summary" aria-live="polite" style="color:var(--mut)"></div>
-        <label for="sortBy" style="margin:0">Sort</label>
-        <select id="sortBy"><option value="">Default</option><option value="title">Title</option><option value="year">Year</option><option value="rating">Rating</option><option value="duration">Duration</option></select>
+        <div class="grow" id="summary" aria-live="polite" style="color:var(--mut);font-weight:600"></div>
+        <select id="sortBy" aria-label="Sort by"><option value="">Sort: default</option><option value="title">Title</option><option value="year">Year</option><option value="rating">Rating</option><option value="duration">Duration</option></select>
         <select id="order" aria-label="Sort order"><option value="asc">Ascending</option><option value="desc">Descending</option></select>
-        <select id="limit" aria-label="Page size"><option>6</option><option selected>12</option><option>24</option></select>
+        <select id="limit" aria-label="Page size"><option value="6">6 / page</option><option value="12" selected>12 / page</option><option value="24">24 / page</option></select>
+        <div class="seg" role="group" aria-label="View"><button id="vGrid" type="button" aria-pressed="true">Grid</button><button id="vList" type="button" aria-pressed="false">List</button></div>
       </div>
       <div id="results" aria-live="polite"></div>
-      <div class="pager"><button id="prev" type="button">&larr; Previous</button><span id="pageInfo"></span><button id="next" type="button">Next &rarr;</button></div>
-      <div class="req">Request: <a id="reqLink" target="_blank" rel="noopener"></a></div>
+      <nav class="pager" id="pager" aria-label="Pagination" style="overflow:visible"></nav>
+      <div class="req"><span>Request</span><a id="reqLink" target="_blank" rel="noopener"></a><button id="copyReq" type="button">Copy</button></div>
+      <div class="panel chartcard"><h3>Rating by release year</h3><p>Every dot is a title - hover for details, click to open it.</p><div id="scatter"></div></div>
     </div>
   </div>
 </section>
@@ -112,18 +169,25 @@ pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;padd
 <section id="emi" hidden aria-labelledby="tab-emi">
   <div class="emi">
     <div class="panel"><h2>Loan details</h2>
-      <div class="slider"><div class="top"><label for="principal" style="margin:0">Loan amount</label><span id="principalVal"></span></div><input type="range" id="principal" min="100000" max="10000000" step="50000" value="2500000"></div>
-      <div class="slider"><div class="top"><label for="rate" style="margin:0">Interest rate</label><span id="rateVal"></span></div><input type="range" id="rate" min="1" max="25" step="0.1" value="10"></div>
-      <div class="slider"><div class="top"><label for="years" style="margin:0">Tenure</label><span id="yearsVal"></span></div><input type="range" id="years" min="1" max="30" step="1" value="10"></div>
-      <div class="req">Request: <a id="emiLink" target="_blank" rel="noopener"></a></div>
+      <div class="field"><div class="top"><label for="principal">Loan amount (&#8377;)</label><input class="num" id="principalNum" type="text" inputmode="numeric" aria-label="Loan amount value"></div><input type="range" id="principal" min="100000" max="10000000" step="50000" value="2500000"></div>
+      <div class="field"><div class="top"><label for="rate">Interest rate (%)</label><input class="num" id="rateNum" type="text" inputmode="decimal" aria-label="Interest rate value"></div><input type="range" id="rate" min="1" max="25" step="0.1" value="10"></div>
+      <div class="field"><div class="top"><label for="years">Tenure (years)</label><input class="num" id="yearsNum" type="text" inputmode="numeric" aria-label="Tenure value"></div><input type="range" id="years" min="1" max="30" step="1" value="10"></div>
+      <label>Presets</label>
+      <div class="presets"><button type="button" data-p="2500000,10,10">25L &middot; 10% &middot; 10y</button><button type="button" data-p="5000000,7.5,15">50L &middot; 7.5% &middot; 15y</button><button type="button" data-p="1000000,12,5">10L &middot; 12% &middot; 5y</button></div>
+      <div class="req" style="margin-top:20px"><a id="emiLink" target="_blank" rel="noopener"></a></div>
     </div>
     <div class="panel"><h2>Monthly EMI</h2>
       <div class="big" id="emiOut">-</div>
-      <div class="donutwrap"><div class="donut" id="donut"><div><span><b id="donutPct">-</b>interest</span></div></div>
-      <div class="legend"><div><i class="sw" style="background:var(--brand)"></i>Principal <b id="pOut"></b></div>
-      <div><i class="sw" style="background:var(--brand-2)"></i>Interest <b id="iOut"></b></div>
-      <div>Total payment <b id="tOut"></b></div></div></div>
+      <div class="kpis">
+        <div><span><i class="sw" style="background:var(--brand)"></i>Principal</span><b id="pOut"></b></div>
+        <div><span><i class="sw" style="background:var(--brand2)"></i>Interest</span><b id="iOut"></b></div>
+        <div><span>Total payment</span><b id="tOut"></b></div>
+      </div>
+      <div class="split" id="split" aria-label="Principal versus interest share"><i style="background:var(--brand)"></i><i style="background:var(--brand2)"></i></div>
+      <div style="color:var(--mut);font-size:12.5px" id="splitTxt"></div>
       <div id="emiErr"></div>
+      <div class="chartcard"><h3>Year-by-year payments</h3><p>Principal vs interest paid each year (computed in the browser from the same formula) - hover a bar.</p><div id="yearChart"></div></div>
+      <div class="chartcard"><h3>Payment schedule</h3><div class="scroll"><table id="sched"><thead><tr><th>Year</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead><tbody></tbody></table></div></div>
     </div>
   </div>
 </section>
@@ -136,102 +200,242 @@ pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;padd
       <a href="/api/titles/5" data-try>Title by id<br><code>/api/titles/5</code></a>
       <a href="/api/genres" data-try>Genres with counts<br><code>/api/genres</code></a>
       <a href="/api/emi?principal=2500000&rate=10&years=10" data-try>EMI<br><code>/api/emi?principal=2500000&amp;rate=10&amp;years=10</code></a>
-      <a href="/api/titles?limit=0" data-try>Invalid limit (400)<br><code>/api/titles?limit=0</code></a>
-      <a href="/api/emi" data-try>Missing params (400)<br><code>/api/emi</code></a>
-      <a href="/api/titles/9999" data-try>Unknown id (404)<br><code>/api/titles/9999</code></a>
+      <a href="/api/titles?limit=0" data-try>Invalid limit &rarr; 400<br><code>/api/titles?limit=0</code></a>
+      <a href="/api/emi" data-try>Missing params &rarr; 400<br><code>/api/emi</code></a>
+      <a href="/api/titles/9999" data-try>Unknown id &rarr; 404<br><code>/api/titles/9999</code></a>
     </div>
-    <div><div class="req" id="apiReq">Pick an endpoint on the left.</div><pre id="apiOut">{ }</pre></div>
+    <div class="panel"><h2>Response</h2><div id="apiReq" style="font:13px ui-monospace,Consolas,monospace">Pick an endpoint on the left.</div><pre id="apiOut">{ }</pre></div>
   </div>
 </section>
 </main>
 
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dtitle" aria-hidden="true"></aside>
+<div class="tip" id="tip" role="tooltip"></div>
+<div class="toast" id="toast" role="status"></div>
+
 <script>
 const $ = (id) => document.getElementById(id);
 const PALETTE = ['#1f6feb', '#14b8a6', '#8b5cf6', '#f59e0b', '#ef4444', '#10b981', '#ec4899', '#0ea5e9', '#84cc16'];
-const state = { page: 1 };
 const inr = (n) => '₹' + Math.round(n).toLocaleString('en-IN');
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-let genres = [];
+const store = { get: (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } }, set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
+let genres = [], allTitles = [], favs = new Set(store.get('favs', []));
+let state = { page: 1, favOnly: false, view: store.get('view', 'grid') };
 const colorOf = (g) => PALETTE[Math.max(0, genres.findIndex((x) => x.name === g)) % PALETTE.length];
+const initials = (t) => t.split(/\s+/).map((w) => w[0]).join('').replace(/[^A-Za-z&]/g, '').slice(0, 3);
 
-// ---- tabs
-document.querySelectorAll('[role=tab]').forEach((t) => t.addEventListener('click', () => {
-  document.querySelectorAll('[role=tab]').forEach((b) => b.setAttribute('aria-selected', b === t));
-  document.querySelectorAll('main > section').forEach((s) => (s.hidden = s.id !== t.dataset.tab));
-  if (t.dataset.tab === 'emi') loadEmi();
-}));
+// ---------- helpers: toast, tooltip, theme
+let toastT; function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 1800); }
+function tip(e, html) { const t = $('tip'); if (!html) { t.style.opacity = 0; return; } t.innerHTML = html; t.style.opacity = 1; t.style.left = Math.min(e.clientX + 14, innerWidth - 230) + 'px'; t.style.top = e.clientY + 14 + 'px'; }
+function applyTheme(t) { document.documentElement.dataset.theme = t; store.set('theme', t); }
+applyTheme(store.get('theme', 'auto'));
+$('themeBtn').onclick = () => { const dark = getComputedStyle(document.body).backgroundColor === 'rgb(12, 17, 24)'; applyTheme(dark ? 'light' : 'dark'); };
 
-// ---- catalogue
-function params() {
+// ---------- tabs
+function showTab(name) {
+  document.querySelectorAll('[role=tab]').forEach((b) => b.setAttribute('aria-selected', b.dataset.tab === name));
+  document.querySelectorAll('main > section').forEach((s) => (s.hidden = s.id !== name));
+  if (name === 'emi') loadEmi();
+}
+document.querySelectorAll('[role=tab]').forEach((t) => t.addEventListener('click', () => showTab(t.dataset.tab)));
+
+// ---------- URL <-> filters (shareable views)
+const FIELDS = ['q', 'genre', 'type', 'minYear', 'maxYear', 'minRating', 'sortBy', 'order', 'limit'];
+function readUrl() {
+  const p = new URLSearchParams(location.search);
+  FIELDS.forEach((k) => { if (p.has(k)) $(k).value = p.get(k); });
+  state.page = Number(p.get('page')) || 1; state.favOnly = p.get('fav') === '1';
+  $('ratingVal').textContent = $('minRating').value;
+}
+function apiParams() {
   const p = new URLSearchParams();
-  for (const k of ['q', 'genre', 'type', 'minYear', 'maxYear', 'sortBy', 'order', 'limit']) if ($(k).value !== '') p.set(k, $(k).value);
-  if (Number($('minRating').value) > 0) p.set('minRating', $('minRating').value);
-  p.set('page', state.page);
-  return p;
+  FIELDS.forEach((k) => { if ($(k).value !== '' && !(k === 'minRating' && Number($(k).value) === 0)) p.set(k, $(k).value); });
+  p.set('page', state.page); return p;
+}
+function pushUrl() {
+  const p = apiParams(); if (p.get('page') === '1') p.delete('page'); if (state.favOnly) p.set('fav', '1');
+  const q = p.toString(); history.replaceState(null, '', q ? '?' + q : location.pathname);
+}
+
+// ---------- catalogue
+function cardHtml(t) {
+  const fav = favs.has(t.id);
+  return `<article class="card" tabindex="0" role="button" data-id="${t.id}" data-testid="title-card" aria-label="${esc(t.title)}, open details">
+    <div class="poster" style="background:linear-gradient(135deg,${colorOf(t.genre)},#0b1220)"><span>${esc(initials(t.title))}</span><small>&#9733; ${t.rating.toFixed(1)}</small></div>
+    <button class="fav" type="button" data-fav="${t.id}" aria-pressed="${fav}" aria-label="${fav ? 'Remove from' : 'Add to'} favourites">${fav ? '&#9829;' : '&#9825;'}</button>
+    <div class="cbody"><h3>${esc(t.title)}</h3><div class="meta"><span class="chip">${esc(t.genre)}</span><span>${esc(t.type)}</span><span>${t.year}</span><span>${t.duration} min</span></div></div></article>`;
+}
+function renderPager(meta) {
+  const { page, totalPages } = meta; const items = [];
+  const nums = new Set([1, totalPages, page - 1, page, page + 1]);
+  const list = [...nums].filter((n) => n >= 1 && n <= totalPages).sort((a, b) => a - b);
+  items.push(`<button data-page="${page - 1}" ${page <= 1 ? 'disabled' : ''} aria-label="Previous page">&larr;</button>`);
+  let last = 0; for (const n of list) { if (n - last > 1) items.push('<span style="color:var(--mut)">&hellip;</span>'); items.push(`<button data-page="${n}" ${n === page ? 'aria-current="page"' : ''}>${n}</button>`); last = n; }
+  items.push(`<button data-page="${page + 1}" ${page >= totalPages ? 'disabled' : ''} aria-label="Next page">&rarr;</button>`);
+  $('pager').innerHTML = totalPages > 1 ? items.join('') : '';
+}
+function renderChips() {
+  const out = [];
+  for (const k of ['q', 'genre', 'type', 'minYear', 'maxYear']) if ($(k).value) out.push([k, `${{ q: 'Search', genre: 'Genre', type: 'Type', minYear: 'From', maxYear: 'To' }[k]}: ${$(k).value}`]);
+  if (Number($('minRating').value) > 0) out.push(['minRating', `Rating ≥ ${$('minRating').value}`]);
+  if (state.favOnly) out.push(['fav', 'Favourites only']);
+  $('chips').innerHTML = out.map(([k, t]) => `<button class="fchip" type="button" data-clear="${k}">${esc(t)}<span aria-hidden="true">&times;</span></button>`).join('');
 }
 async function loadTitles() {
-  const url = '/api/titles?' + params();
-  $('reqLink').textContent = 'GET ' + url; $('reqLink').href = url;
-  const res = await fetch(url); const body = await res.json();
-  if (!res.ok) {
-    $('results').innerHTML = `<div class="err"><b>${esc(body.error.code)}</b><br>${esc(body.error.message)}</div>`;
-    $('summary').textContent = ''; $('pageInfo').textContent = '';
-    $('prev').disabled = $('next').disabled = true; return;
+  renderChips(); pushUrl();
+  $('results').className = '';
+  const box = $('results');
+  if (!box.innerHTML || box.querySelector('.skel') === null) box.innerHTML = `<div class="cards">${'<div class="skel"></div>'.repeat(6)}</div>`;
+  let data, meta, status = 200;
+  if (state.favOnly) {
+    const q = $('q').value.toLowerCase();
+    data = allTitles.filter((t) => favs.has(t.id) && t.title.toLowerCase().includes(q) && (!$('genre').value || t.genre === $('genre').value));
+    meta = { total: data.length, page: 1, totalPages: 1 };
+    $('reqLink').textContent = 'client-side: favourites saved in this browser'; $('reqLink').removeAttribute('href');
+  } else {
+    const url = '/api/titles?' + apiParams();
+    $('reqLink').textContent = 'GET ' + url; $('reqLink').href = url;
+    const res = await fetch(url); const body = await res.json(); status = res.status;
+    if (!res.ok) {
+      box.innerHTML = `<div class="err"><b>${esc(body.error.code)}</b><br>${esc(body.error.message)}${status === 404 ? '<br><br><button class="btn" id="goFirst" style="max-width:200px;margin:auto">Back to page 1</button>' : ''}</div>`;
+      $('summary').textContent = ''; $('pager').innerHTML = ''; const b = $('goFirst'); if (b) b.onclick = () => { state.page = 1; loadTitles(); }; return;
+    }
+    ({ data, meta } = body);
   }
-  const { data, meta } = body;
-  $('summary').textContent = `${meta.total} title${meta.total === 1 ? '' : 's'} found`;
-  $('pageInfo').textContent = `Page ${meta.page} of ${meta.totalPages}`;
-  $('prev').disabled = meta.page <= 1; $('next').disabled = meta.page >= meta.totalPages;
-  $('results').innerHTML = data.length ? `<div class="cards">${data.map((t) => `
-    <article class="card" data-testid="title-card">
-      <div class="poster" style="background:linear-gradient(135deg,${colorOf(t.genre)},#0b1220)"><span>${esc(t.title.split(' ').map((w) => w[0]).join('').slice(0, 3))}</span><small>&#9733; ${t.rating.toFixed(1)}</small></div>
-      <h3>${esc(t.title)}</h3>
-      <div class="meta"><span class="chip">${esc(t.genre)}</span><span>${esc(t.type)}</span><span>${t.year}</span><span>${t.duration} min</span></div>
-    </article>`).join('')}</div>` : '<div class="empty">No titles match these filters. Try widening them.</div>';
+  $('summary').textContent = `${meta.total} title${meta.total === 1 ? '' : 's'}`;
+  box.innerHTML = data.length ? `<div class="cards ${state.view === 'list' ? 'list' : ''}">${data.map(cardHtml).join('')}</div>` : '<div class="empty"><div style="font-size:34px">&#128269;</div><b>No titles match</b><br>Try widening the filters or clear them above.</div>';
+  renderPager(meta);
   document.querySelectorAll('.bar').forEach((b) => b.setAttribute('aria-pressed', b.dataset.genre === $('genre').value));
 }
+let debounce; function refresh(keep) { if (!keep) state.page = 1; $('ratingVal').textContent = $('minRating').value; clearTimeout(debounce); debounce = setTimeout(loadTitles, 160); }
+FIELDS.forEach((k) => $(k).addEventListener('input', () => refresh()));
+$('reset').onclick = () => { ['q', 'genre', 'type', 'minYear', 'maxYear', 'sortBy'].forEach((k) => ($(k).value = '')); $('minRating').value = 0; $('order').value = 'asc'; state.favOnly = false; syncFavBtn(); refresh(); };
+$('chips').addEventListener('click', (e) => { const b = e.target.closest('[data-clear]'); if (!b) return; const k = b.dataset.clear; if (k === 'fav') { state.favOnly = false; syncFavBtn(); } else $(k).value = k === 'minRating' ? 0 : ''; refresh(); });
+$('pager').addEventListener('click', (e) => { const b = e.target.closest('[data-page]'); if (!b || b.disabled) return; state.page = Number(b.dataset.page); loadTitles(); scrollTo({ top: 0 }); });
+function setView(v) { state.view = v; store.set('view', v); $('vGrid').setAttribute('aria-pressed', v === 'grid'); $('vList').setAttribute('aria-pressed', v === 'list'); const c = document.querySelector('#results .cards'); if (c) c.classList.toggle('list', v === 'list'); }
+$('vGrid').onclick = () => setView('grid'); $('vList').onclick = () => setView('list');
+$('copyReq').onclick = async () => { try { await navigator.clipboard.writeText(new URL($('reqLink').getAttribute('href') || location.href, location.origin).href); toast('Request URL copied'); } catch { toast('Copy not available here'); } };
+
+// ---------- favourites
+function syncFavBtn() { $('favCount').textContent = favs.size; $('favBtn').style.background = state.favOnly ? '#ffffff55' : ''; }
+function toggleFav(id) { favs.has(id) ? favs.delete(id) : favs.add(id); store.set('favs', [...favs]); syncFavBtn(); const t = allTitles.find((x) => x.id === id); toast(favs.has(id) ? `Added "${t.title}" to favourites` : 'Removed from favourites'); }
+$('favBtn').onclick = () => { state.favOnly = !state.favOnly; state.page = 1; syncFavBtn(); loadTitles(); if (state.favOnly && !favs.size) toast('No favourites yet - tap the heart on a title'); };
+$('results').addEventListener('click', (e) => {
+  const f = e.target.closest('[data-fav]'); if (f) { e.stopPropagation(); const id = Number(f.dataset.fav); toggleFav(id); const on = favs.has(id); f.setAttribute('aria-pressed', on); f.innerHTML = on ? '&#9829;' : '&#9825;'; if (state.favOnly) loadTitles(); return; }
+  const c = e.target.closest('.card'); if (c) openDrawer(Number(c.dataset.id), c);
+});
+$('results').addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('card')) { e.preventDefault(); openDrawer(Number(e.target.dataset.id), e.target); } });
+
+// ---------- detail drawer
+let lastFocus;
+async function openDrawer(id, from) {
+  lastFocus = from || document.activeElement;
+  const res = await fetch('/api/titles/' + id); const { data: t } = await res.json();
+  const similar = allTitles.filter((x) => x.genre === t.genre && x.id !== t.id).slice(0, 4);
+  $('drawer').innerHTML = `<div class="dposter" style="background:linear-gradient(135deg,${colorOf(t.genre)},#0b1220)"><button class="dclose" id="dclose" type="button" aria-label="Close">&times;</button>${esc(initials(t.title))}</div>
+   <div class="dbody"><span class="chip">${esc(t.genre)}</span><h2 id="dtitle" style="margin-top:8px">${esc(t.title)}</h2>
+   <div class="kv"><div><span>Type</span><b>${esc(t.type)}</b></div><div><span>Released</span><b>${t.year}</b></div><div><span>${t.type === 'movie' ? 'Runtime' : 'Episode length'}</span><b>${t.duration} min</b></div>
+   <div><span>Rating</span><b>&#9733; ${t.rating.toFixed(1)} / 10</b><div class="rate"><i style="width:${t.rating * 10}%"></i></div></div></div>
+   <button class="btn primary" id="dfav" type="button" style="margin-top:0">${favs.has(t.id) ? '&#9829; In favourites' : '&#9825; Add to favourites'}</button>
+   <div class="req" style="margin-top:14px"><a href="/api/titles/${t.id}" target="_blank" rel="noopener">GET /api/titles/${t.id}</a></div>
+   <h2 style="margin:22px 0 4px">More in ${esc(t.genre)}</h2><div class="similar">${similar.length ? similar.map((s) => `<button type="button" data-open="${s.id}"><span>${esc(s.title)}</span><span style="color:var(--mut)">&#9733; ${s.rating.toFixed(1)}</span></button>`).join('') : '<span style="color:var(--mut)">No other titles in this genre yet.</span>'}</div></div>`;
+  $('drawer').classList.add('on'); $('scrim').classList.add('on'); $('drawer').setAttribute('aria-hidden', 'false'); $('dclose').focus();
+  $('dclose').onclick = closeDrawer;
+  $('dfav').onclick = () => { toggleFav(t.id); $('dfav').innerHTML = favs.has(t.id) ? '&#9829; In favourites' : '&#9825; Add to favourites'; loadTitles(); };
+  $('drawer').querySelectorAll('[data-open]').forEach((b) => (b.onclick = () => openDrawer(Number(b.dataset.open), lastFocus)));
+}
+function closeDrawer() { $('drawer').classList.remove('on'); $('scrim').classList.remove('on'); $('drawer').setAttribute('aria-hidden', 'true'); if (lastFocus && document.contains(lastFocus)) lastFocus.focus(); }
+$('scrim').onclick = closeDrawer;
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDrawer();
+  if (e.key === '/' && !/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); showTab('catalogue'); $('q').focus(); }
+});
+
+// ---------- stats, genre bars, scatter
+function countUp(el, to, dec = 0) { const t0 = performance.now(); const step = (t) => { const k = Math.min(1, (t - t0) / 700); el.textContent = (to * (1 - Math.pow(1 - k, 3))).toFixed(dec); if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
 async function loadMeta() {
   genres = (await (await fetch('/api/genres')).json()).data;
-  const all = (await (await fetch('/api/titles?limit=50')).json()).data;
+  allTitles = (await (await fetch('/api/titles?limit=50')).json()).data;
+  const wantedGenre = new URLSearchParams(location.search).get('genre') || '';
   $('genre').innerHTML = '<option value="">All genres</option>' + genres.map((g) => `<option>${g.name}</option>`).join('');
+  $('genre').value = wantedGenre; // options only exist now, so restore the genre from the URL here
   const max = Math.max(...genres.map((g) => g.count));
-  $('genreBars').innerHTML = genres.map((g) => `<button class="bar" type="button" data-genre="${g.name}"><span>${g.name}</span><i style="width:${(g.count / max) * 100}%"></i><span>${g.count}</span></button>`).join('');
-  document.querySelectorAll('.bar').forEach((b) => b.addEventListener('click', () => { $('genre').value = $('genre').value === b.dataset.genre ? '' : b.dataset.genre; refresh(); }));
-  const avg = all.reduce((s, t) => s + t.rating, 0) / all.length;
-  const top = [...all].sort((a, b) => b.rating - a.rating)[0];
-  $('stats').innerHTML = [[all.length, 'Titles'], [genres.length, 'Genres'], [avg.toFixed(1), 'Average rating'], [top.title, 'Top rated (' + top.rating + ')']]
-    .map(([b, s]) => `<div class="stat"><b style="${String(b).length > 8 ? 'font-size:17px;line-height:36px' : ''}">${esc(b)}</b><span>${s}</span></div>`).join('');
+  $('genreBars').innerHTML = genres.map((g) => `<button class="bar" type="button" data-genre="${g.name}" aria-pressed="false"><span>${g.name}</span><i><b style="width:${(g.count / max) * 100}%;background:${colorOf(g.name)}"></b></i><span>${g.count}</span></button>`).join('');
+  $('genreBars').addEventListener('click', (e) => { const b = e.target.closest('.bar'); if (!b) return; $('genre').value = $('genre').value === b.dataset.genre ? '' : b.dataset.genre; refresh(); });
+  const avg = allTitles.reduce((s, t) => s + t.rating, 0) / allTitles.length, top = [...allTitles].sort((a, b) => b.rating - a.rating)[0];
+  const series = allTitles.filter((t) => t.type === 'series').length;
+  $('stats').innerHTML = [['&#127910;', allTitles.length, 'Titles', 0], ['&#127991;', genres.length, 'Genres', 0], ['&#128250;', series, 'Series', 0], ['&#9733;', avg, 'Average rating', 1]]
+    .map(([ic, v, l, d]) => `<div class="stat"><div class="ic">${ic}</div><div><b data-to="${v}" data-d="${d}">0</b><span>${l}</span></div></div>`).join('') +
+    `<div class="stat" style="cursor:pointer" data-open-top="${top.id}"><div class="ic">&#127942;</div><div><b style="font-size:17px">${esc(top.title)}</b><span>Top rated &middot; ${top.rating}</span></div></div>`;
+  document.querySelectorAll('[data-to]').forEach((el) => countUp(el, Number(el.dataset.to), Number(el.dataset.d)));
+  $('stats').addEventListener('click', (e) => { const t = e.target.closest('[data-open-top]'); if (t) openDrawer(Number(t.dataset.openTop), t); });
+  drawScatter();
 }
-let timer; function refresh(keepPage) { if (!keepPage) state.page = 1; $('ratingVal').textContent = $('minRating').value; clearTimeout(timer); timer = setTimeout(loadTitles, 150); }
-['q', 'genre', 'type', 'minYear', 'maxYear', 'minRating', 'sortBy', 'order', 'limit'].forEach((k) => $(k).addEventListener('input', () => refresh()));
-$('prev').onclick = () => { state.page--; refresh(true); };
-$('next').onclick = () => { state.page++; refresh(true); };
-$('reset').onclick = () => { ['q', 'genre', 'type', 'minYear', 'maxYear', 'sortBy'].forEach((k) => ($(k).value = '')); $('minRating').value = 0; $('order').value = 'asc'; refresh(); };
+function drawScatter() {
+  const W = 760, H = 250, m = { l: 34, r: 14, t: 10, b: 28 };
+  const years = allTitles.map((t) => t.year), y0 = Math.min(...years) - 1, y1 = Math.max(...years) + 1, r0 = 5.5, r1 = 9.5;
+  const X = (y) => m.l + ((y - y0) / (y1 - y0)) * (W - m.l - m.r), Y = (r) => H - m.b - ((r - r0) / (r1 - r0)) * (H - m.t - m.b);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Scatter chart of ratings by release year">`;
+  for (let r = 6; r <= 9; r++) s += `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(r)}" y2="${Y(r)}" stroke="var(--line)"/><text x="${m.l - 8}" y="${Y(r) + 4}" text-anchor="end">${r}</text>`;
+  for (let y = Math.ceil(y0); y <= y1; y += 2) s += `<text x="${X(y)}" y="${H - 8}" text-anchor="middle">${y}</text>`;
+  allTitles.forEach((t) => (s += `<circle class="dot" tabindex="0" r="6" cx="${X(t.year)}" cy="${Y(t.rating)}" fill="${colorOf(t.genre)}" fill-opacity=".85" stroke="var(--panel)" stroke-width="2" data-id="${t.id}"/>`));
+  $('scatter').innerHTML = s + '</svg>';
+  const sc = $('scatter');
+  const info = (id) => { const t = allTitles.find((x) => x.id === Number(id)); return `<b>${esc(t.title)}</b><br>${t.year} &middot; &#9733; ${t.rating} &middot; ${esc(t.genre)}`; };
+  sc.addEventListener('mousemove', (e) => { const d = e.target.closest('.dot'); tip(e, d ? info(d.dataset.id) : null); });
+  sc.addEventListener('mouseleave', () => tip(null, null));
+  sc.addEventListener('click', (e) => { const d = e.target.closest('.dot'); if (d) openDrawer(Number(d.dataset.id), d); });
+  sc.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.classList.contains('dot')) openDrawer(Number(e.target.dataset.id), e.target); });
+}
 
-// ---- EMI
-async function loadEmi() {
-  const p = new URLSearchParams({ principal: $('principal').value, rate: $('rate').value, years: $('years').value });
-  $('principalVal').textContent = inr($('principal').value); $('rateVal').textContent = $('rate').value + '%'; $('yearsVal').textContent = $('years').value + ' yrs';
-  const url = '/api/emi?' + p; $('emiLink').textContent = 'GET ' + url; $('emiLink').href = url;
-  const res = await fetch(url); const body = await res.json();
-  if (!res.ok) { $('emiErr').innerHTML = `<div class="err">${esc(body.error.message)}</div>`; return; }
+// ---------- EMI
+const num = (s) => Number(String(s).replace(/[^0-9.]/g, ''));
+function schedule(P, rate, years) {
+  const r = rate / 1200, n = years * 12, emi = (P * r * (1 + r) ** n) / ((1 + r) ** n - 1); let bal = P; const rows = [];
+  for (let y = 1; y <= years; y++) { let pr = 0, it = 0; for (let m = 0; m < 12; m++) { const i = bal * r, p = emi - i; it += i; pr += p; bal -= p; } rows.push({ y, pr, it, bal: Math.max(0, bal) }); }
+  return rows;
+}
+function drawYears(rows) {
+  const W = 700, H = 230, m = { l: 52, r: 8, t: 8, b: 26 }, max = Math.max(...rows.map((r) => r.pr + r.it)), bw = (W - m.l - m.r) / rows.length;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Stacked bar chart of principal and interest per year">`;
+  for (let k = 0; k <= 4; k++) { const v = (max / 4) * k, y = H - m.b - (v / max) * (H - m.t - m.b); s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y}" y2="${y}" stroke="var(--line)"/><text x="${m.l - 6}" y="${y + 4}" text-anchor="end">${v >= 1e5 ? (v / 1e5).toFixed(1) + 'L' : Math.round(v / 1e3) + 'k'}</text>`; }
+  rows.forEach((r, i) => {
+    const x = m.l + i * bw + bw * 0.14, w = bw * 0.72, h = (H - m.t - m.b), hp = (r.pr / max) * h, hi = (r.it / max) * h, yb = H - m.b;
+    s += `<g class="yb" data-y="${i}"><rect x="${x}" y="${yb - hp}" width="${w}" height="${hp}" fill="var(--brand)" rx="2"/><rect x="${x}" y="${yb - hp - hi}" width="${w}" height="${hi}" fill="var(--brand2)" rx="2"/><rect x="${m.l + i * bw}" y="${m.t}" width="${bw}" height="${h}" fill="transparent"/></g>`;
+    if (rows.length <= 15 || i % 2 === 0) s += `<text x="${x + w / 2}" y="${H - 8}" text-anchor="middle">${r.y}</text>`;
+  });
+  $('yearChart').innerHTML = s + '</svg>';
+  $('yearChart').onmousemove = (e) => { const g = e.target.closest('.yb'); if (!g) return tip(e, null); const r = rows[g.dataset.y]; tip(e, `<b>Year ${r.y}</b><br>Principal ${inr(r.pr)}<br>Interest ${inr(r.it)}<br>Balance ${inr(r.bal)}`); };
+  $('yearChart').onmouseleave = () => tip(null, null);
+}
+let emiSeq = 0;
+async function loadEmi(fromNum) {
+  const P = fromNum ? num($('principalNum').value) : Number($('principal').value), R = fromNum ? num($('rateNum').value) : Number($('rate').value), Y = fromNum ? num($('yearsNum').value) : Number($('years').value);
+  if (!fromNum || ($('principalNum').value === '')) { $('principalNum').value = P.toLocaleString('en-IN'); $('rateNum').value = R; $('yearsNum').value = Y; }
+  if (fromNum) { $('principal').value = P; $('rate').value = R; $('years').value = Y; }
+  const url = '/api/emi?' + new URLSearchParams({ principal: P, rate: R, years: Y }); $('emiLink').textContent = 'GET ' + url; $('emiLink').href = url;
+  const seq = ++emiSeq, res = await fetch(url), body = await res.json(); if (seq !== emiSeq) return;
+  if (!res.ok) { $('emiErr').innerHTML = `<div class="err" style="margin-top:12px;padding:14px">${esc(body.error.message)}</div>`; return; }
   $('emiErr').innerHTML = ''; const d = body.data;
-  $('emiOut').textContent = inr(d.emi);
-  $('pOut').textContent = inr(d.principal); $('iOut').textContent = inr(d.totalInterest); $('tOut').textContent = inr(d.totalPayment);
-  const pct = (d.totalInterest / d.totalPayment) * 100;
-  $('donutPct').textContent = pct.toFixed(1) + '%';
-  $('donut').style.background = `conic-gradient(var(--brand-2) 0 ${pct}%, var(--brand) ${pct}% 100%)`;
+  $('emiOut').textContent = inr(d.emi); $('pOut').textContent = inr(d.principal); $('iOut').textContent = inr(d.totalInterest); $('tOut').textContent = inr(d.totalPayment);
+  const pct = (d.totalInterest / d.totalPayment) * 100, [a, b] = $('split').children; a.style.width = 100 - pct + '%'; b.style.width = pct + '%';
+  $('splitTxt').textContent = `${(100 - pct).toFixed(1)}% principal  ·  ${pct.toFixed(1)}% interest`;
+  const rows = schedule(d.principal, d.rate, d.years); drawYears(rows);
+  $('sched').tBodies[0].innerHTML = rows.map((r) => `<tr><td>${r.y}</td><td>${inr(r.pr)}</td><td>${inr(r.it)}</td><td>${inr(r.bal)}</td></tr>`).join('');
 }
-['principal', 'rate', 'years'].forEach((k) => $(k).addEventListener('input', loadEmi));
+['principal', 'rate', 'years'].forEach((k) => { $(k).addEventListener('input', () => { $(k + 'Num').value = k === 'principal' ? Number($(k).value).toLocaleString('en-IN') : $(k).value; loadEmi(); }); $(k + 'Num').addEventListener('change', () => loadEmi(true)); });
+document.querySelector('.presets').addEventListener('click', (e) => { const b = e.target.closest('[data-p]'); if (!b) return; const [p, r, y] = b.dataset.p.split(','); $('principal').value = p; $('rate').value = r; $('years').value = y; $('principalNum').value = ''; loadEmi(); });
 
-// ---- API explorer
+// ---------- API explorer
 document.querySelectorAll('[data-try]').forEach((a) => a.addEventListener('click', async (e) => {
-  e.preventDefault();
-  const res = await fetch(a.getAttribute('href'));
-  $('apiReq').innerHTML = `GET ${esc(a.getAttribute('href'))} &rarr; <b style="color:${res.ok ? 'var(--brand-2)' : 'var(--bad)'}">${res.status} ${res.statusText || ''}</b>`;
+  e.preventDefault(); const href = a.getAttribute('href'), t0 = performance.now(), res = await fetch(href), ms = Math.round(performance.now() - t0);
+  $('apiReq').innerHTML = `GET ${esc(href)} &nbsp; <span class="status" style="background:${res.ok ? 'var(--ok)' : 'var(--bad)'};color:#fff">${res.status}</span> <span style="color:var(--mut)">${ms} ms</span>`;
   $('apiOut').textContent = JSON.stringify(await res.json(), null, 2);
 }));
 
+// ---------- boot
+readUrl(); setView(state.view); syncFavBtn();
 loadMeta().then(loadTitles);
 </script>
 </body>
