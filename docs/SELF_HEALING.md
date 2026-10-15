@@ -2,7 +2,7 @@
 
 ## The broken locators (left broken on purpose)
 
-Defined in [pages/LegacyEmiPage.js](../pages/LegacyEmiPage.js), exercised by `features/ui/self_healing_demo.feature` (tag `@broken`, excluded from the default run).
+Defined in [pages/LegacyEmiPage.js](../pages/LegacyEmiPage.js), verified by `features/self-healing/self_healing_demo.feature` (`npm run test:self-healing`), which asserts that each one matches nothing on the live page while its intended element still exists - so they are detected as broken and stay broken.
 
 | # | Broken selector | Why it is brittle | Healed (POC output) |
 |---|---|---|---|

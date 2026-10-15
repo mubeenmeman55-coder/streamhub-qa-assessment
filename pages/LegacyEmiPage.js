@@ -1,7 +1,7 @@
 /**
  * INTENTIONALLY BROKEN LOCATORS - part of the AI self-healing exercise (see docs/SELF_HEALING.md).
- * These are left broken on purpose. Run `npm run test:broken` to watch them fail and `npm run heal`
- * to see the proof-of-concept propose validated replacements. Do NOT "fix" them by hand.
+ * These are left broken on purpose. `npm run test:self-healing` verifies that they are detected as broken, and
+ * `npm run heal` shows the proof-of-concept proposing validated replacements. Do NOT "fix" them by hand.
  *
  * `intent` is the human-readable purpose of each locator: the stable thing an AI can reason about
  * when the selector itself has rotted.

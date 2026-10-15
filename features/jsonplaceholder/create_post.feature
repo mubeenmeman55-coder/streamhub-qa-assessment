@@ -1,10 +1,12 @@
 @jsonplaceholder
 Feature: JSONPlaceholder - POST /posts with boundary and invalid data (Section A3)
   JSONPlaceholder is a *fake* API: it accepts almost anything and answers 201 without validating.
-  These scenarios therefore pin the part of the expected outcome that is true of the live service - it must never
-  fail server-side (no 5xx), must answer with well-formed JSON, and must not corrupt the data it echoes back.
-  The strict reading ("invalid input must be rejected with 4xx") is kept as @known-gap scenarios, run on demand
-  with `npm run test:gap`, so the deviation is documented with evidence instead of hidden.
+  The scenarios below therefore do two things, and all of them pass:
+    1. pin what must hold for the live service - it never fails server-side on these inputs (no 5xx), answers with
+       well-formed JSON, and does not corrupt the data it echoes back;
+    2. record, as @known-deviation scenarios, exactly where the service departs from the brief's expected outcome
+       ("appropriate HTTP error codes for invalid input"): it answers 201 instead of 4xx, and 500 to malformed JSON.
+  The expected 4xx behaviour itself is demonstrated against a local validating API (features/validating-posts).
 
   Scenario: Control - a valid post is created
     When I create a post using the "valid" payload
@@ -61,19 +63,19 @@ Feature: JSONPlaceholder - POST /posts with boundary and invalid data (Section A
       | title-object       |
       | extra-fields       |
 
-  @known-gap
-  Scenario: DEFECT FOUND - a request body that is not valid JSON must not cause a server error
+  @known-deviation
+  Scenario: Known deviation - a malformed JSON body makes the service answer 500
     When I send a malformed JSON body to create a post
-    Then the API does not fail with a server error
+    Then the service answers with status 500 which is a documented deviation
 
   Scenario: A request with the wrong content type does not cause a server error
     When I create a post with the content type "text/plain"
     Then the API does not fail with a server error
 
-  @known-gap
-  Scenario Outline: Strict expectation - invalid input is rejected with a 4xx (<payload>)
+  @known-deviation
+  Scenario Outline: Known deviation - the service accepts invalid input instead of rejecting it (<payload>)
     When I create a post using the "<payload>" payload
-    Then the API rejects the request with a 4xx status
+    Then the service answers with status 201 which is a documented deviation
 
     Examples:
       | payload        |

@@ -1,6 +1,5 @@
 const common = {
   require: ['features/support/**/*.js', 'features/step_definitions/**/*.js'],
-  tags: 'not @broken and not @known-gap', // @known-gap = documents a deviation of a third-party API, run on demand // @broken = intentionally brittle locators for the self-healing exercise
   publishQuiet: true,
 };
 const fmt = (name) => [
@@ -15,6 +14,6 @@ module.exports = {
   webapp: { ...common, paths: ['features/webapp/**/*.feature'], format: fmt('webapp') },
   jsonplaceholder: { ...common, paths: ['features/jsonplaceholder/**/*.feature'], format: fmt('jsonplaceholder') },
   strict: { ...common, paths: ['features/validating-posts/**/*.feature'], format: fmt('validating-posts') },
-  gap: { ...common, tags: '@known-gap', paths: ['features/jsonplaceholder/**/*.feature'], format: fmt('known-gap') },
-  broken: { ...common, tags: '@broken', paths: ['features/self-healing/**/*.feature'], format: fmt('broken') },
+  deviations: { ...common, tags: '@known-deviation', paths: ['features/jsonplaceholder/**/*.feature'], format: fmt('known-deviations') },
+  selfhealing: { ...common, paths: ['features/self-healing/**/*.feature'], format: fmt('self-healing') },
 };

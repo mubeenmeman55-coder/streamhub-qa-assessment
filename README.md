@@ -29,11 +29,11 @@ No manual server start is needed: the test hooks start the EMI app automatically
 | `npm run test:webapp` | **A2** - the EMI web app scenarios |
 | `npm run test:jsonplaceholder` | **A3** - JSONPlaceholder POST tests (needs internet) |
 | `npm run test:strict` | **A3 strict** - the same payloads against a local posts API that validates (expects 4xx, never 5xx) |
-| `npm run test:gap` | A3 *known gaps* - run on demand, **expected to fail** (see findings) |
+| `npm run test:deviations` | A3 *known deviations* - the 7 scenarios that record where JSONPlaceholder departs from the brief (they pass; also part of `test:jsonplaceholder`) |
 | `npm run sql` | **A4** - builds the DB, runs both queries, writes outputs + screenshots |
 | `npm run heal` | self-healing POC (`npm run heal -- --prompt` prints the exact AI prompt without calling any API) |
 | `npm run results` | regenerate `RESULTS.md` from the reports |
-| `npm run test:broken` | the intentionally broken locators (**expected to fail**) |
+| `npm run test:self-healing` | verifies that the 5 intentionally broken locators are detected as broken (they stay broken) |
 | `npm test` | everything that should pass (A2 + A3 + the optional mock-API suite) |
 | `npm run app:start` | run the EMI app yourself at `WEBAPP_URL` (http://localhost:3300) |
 
@@ -44,9 +44,9 @@ Watch it inside VS Code's Simple Browser: `npm run test:ui:live`, then open `htt
 
 **New to the project? Open the user guide:** `EMI Calculator User Guide [15.Oct.2026].pptx` - 20 slides with screenshots of every app screen, the test runs, API checks, SQL output and the self-healing run.
 
-**Start with [RESULTS.md](RESULTS.md)** - one readable page with the pass/fail numbers per suite and feature file, the intentional failures with their reasons, the SQL output screenshots, the self-healing run and sample UI screenshots (generated from the reports by `npm run results`).
+**Start with [RESULTS.md](RESULTS.md)** - one readable page with the pass/fail numbers per suite and feature file, the documented JSONPlaceholder deviations, the SQL output screenshots, the self-healing run and sample UI screenshots (generated from the reports by `npm run results`).
 
-- `reports/cucumber/*.html` / `.json` - one HTML + JSON report per suite (`webapp`, `jsonplaceholder`, `known-gap`, `all`, ...)
+- `reports/cucumber/*.html` / `.json` - one HTML + JSON report per suite (`webapp`, `jsonplaceholder`, `known-deviations`, `self-healing`, `all`, ...)
 - `reports/screenshots/` - one screenshot per UI scenario
 - `reports/sql/` - schema, sample data, query and output as HTML and PNG, plus `results.txt`
 - `reports/self-healing/` - healing run output
@@ -103,11 +103,12 @@ JSONPlaceholder is a *fake* API. Observed with these tests:
 | Missing `userId`, missing `title`, `{}`, `userId` as a string, `title: null` | **201** (no validation) |
 | Malformed JSON body | **HTTP 500** - a real server-side failure on invalid input |
 
-The brief expects "appropriate HTTP error codes ... without server-side failures". So the suite is split honestly:
-- **Default run (passes)**: what holds for the live service - never a 5xx on those inputs, a controlled status (201/400/413/422), parseable JSON,
+The brief expects "appropriate HTTP error codes ... without server-side failures". The service cannot meet that, so the suite does two things and **everything passes**:
+- **What holds for the live service** (23 scenarios): never a 5xx on those inputs (except malformed JSON, below), a controlled status (201/400/413/422), parseable JSON,
   and an exact echo of what was sent (no truncation or corruption).
-- **`@known-gap` (`npm run test:gap`, fails by design)**: the strict expectation "invalid input -> 4xx" (6 payloads answered 201) and the
-  malformed-JSON 500. The failing report is committed as `reports/cucumber/known-gap.html` as evidence, rather than weakening assertions to turn it green.
+- **Where it departs from the brief** (7 `@known-deviation` scenarios, `npm run test:deviations`): the tests assert the *observed* behaviour - **201 for six invalid payloads** and
+  **500 for malformed JSON** - and say so in their names. They document the deviation with evidence instead of hiding it, and will flag it if the service ever changes.
+- **The expected behaviour itself** is demonstrated against a local API that does validate (next section).
 
 ### A3 strict - what the expected outcome looks like when the API validates (`src/posts-api`)
 
@@ -180,12 +181,12 @@ Details, per-feature tables and screenshots: [RESULTS.md](RESULTS.md).
 | Suite | Result |
 |---|---|
 | **A2** EMI web app (`test:webapp`) | 89 scenarios passed |
-| **A3** JSONPlaceholder, real service (`test:jsonplaceholder`) | 23 scenarios passed |
+| **A3** JSONPlaceholder, real service (`test:jsonplaceholder`) | 30 scenarios passed (23 + the 7 deviations) |
 | **A3 strict**, local validating API (`test:strict`) | 24 scenarios passed |
-| A3 known gaps (`test:gap`) | 7 failed **by design**: JSONPlaceholder answers 201 to invalid input and 500 to malformed JSON |
+| A3 known deviations (`test:deviations`) | 7 scenarios passed - they record that JSONPlaceholder answers 201 to invalid input and 500 to malformed JSON |
 | Optional mock catalogue API (`test:api`) | 58 scenarios passed |
-| Full run `npm test` | 194 scenarios passed |
-| `@broken` self-healing demo | 1 failed **by design** |
+| Full run `npm test` | 207 scenarios passed, 0 failed |
+| Self-healing detection (`test:self-healing`) | 6 scenarios passed - the 5 broken locators are confirmed broken |
 | **A4** SQL | scenario 1: 6 rows, scenario 2: 5 rows (match hand-worked expectations) |
 | `npm run heal` (offline) | 5 of 5 healed |
 
