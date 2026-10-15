@@ -42,6 +42,8 @@ Watch it inside VS Code's Simple Browser: `npm run test:ui:live`, then open `htt
 
 ## Results (committed in `reports/`)
 
+**New to the project? Open the user guide:** `EMI Calculator User Guide [15.Oct.2026].pptx` - 20 slides with screenshots of every app screen, the test runs, API checks, SQL output and the self-healing run.
+
 **Start with [RESULTS.md](RESULTS.md)** - one readable page with the pass/fail numbers per suite and feature file, the intentional failures with their reasons, the SQL output screenshots, the self-healing run and sample UI screenshots (generated from the reports by `npm run results`).
 
 - `reports/cucumber/*.html` / `.json` - one HTML + JSON report per suite (`webapp`, `jsonplaceholder`, `known-gap`, `all`, ...)

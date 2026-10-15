@@ -1,3 +1,6 @@
 node_modules/
 .env
 *.log
+
+# Reference deck supplied for styling only - never publish
+PREZ*.pptx
