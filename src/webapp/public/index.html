@@ -16,6 +16,7 @@
           <a href="#/dashboard" id="nav-dashboard" data-testid="nav-dashboard">Dashboard</a>
           <a href="#/report" id="nav-report" data-testid="nav-report">Report</a>
           <a href="#/compare" id="nav-compare" data-testid="nav-compare">Compare</a>
+          <a href="#/eligibility" id="nav-eligibility" data-testid="nav-eligibility">Eligibility</a>
         </nav>
         <button type="button" id="theme-toggle" class="themebtn" aria-label="Toggle dark mode" aria-pressed="false">&#9680;</button>
       </div>
@@ -74,6 +75,16 @@
           <label for="extra">Extra monthly payment (&#8377;, optional)</label>
           <input id="extra" name="extra" type="text" inputmode="numeric" value="0" autocomplete="off" aria-describedby="err-extra">
           <p class="error" id="err-extra" data-testid="error-extra" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="lump">One-time prepayment (&#8377;, optional)</label>
+          <div class="inline lump-row">
+            <input id="lump" name="lump" type="text" inputmode="numeric" value="0" autocomplete="off" aria-describedby="err-lump">
+            <input id="lump-month" name="lump-month" type="text" inputmode="numeric" value="12" autocomplete="off" aria-label="Prepay after payment number" aria-describedby="err-lump-month">
+          </div>
+          <p class="hint">Amount, then the payment number after which you pay it.</p>
+          <p class="error" id="err-lump" data-testid="error-lump" role="alert"></p>
+          <p class="error" id="err-lump-month" data-testid="error-lump-month" role="alert"></p>
         </div>
         <div class="field">
           <label for="income">Monthly income (&#8377;, optional)</label>
@@ -136,7 +147,11 @@
           </div>
         </section>
         <section class="panel" aria-labelledby="bar-h">
-          <h3 id="bar-h">Payments per year</h3>
+          <div class="chart-head"><h3 id="bar-h">Payments per year</h3>
+            <div class="seg" role="group" aria-label="Chart view">
+              <button type="button" id="view-bars" data-testid="view-bars" aria-pressed="true">Yearly bars</button>
+              <button type="button" id="view-cumulative" data-testid="view-cumulative" aria-pressed="false">Cumulative</button>
+            </div></div>
           <div class="bar-wrap"><svg id="bar-chart" data-testid="bar-chart" viewBox="0 0 640 260" role="img" aria-label="Stacked bar chart of principal and interest paid each year"></svg>
           <div id="bar-tooltip" data-testid="bar-tooltip" role="tooltip" hidden></div></div>
           <ul class="legend inline-legend"><li><i class="sw principal"></i>Principal</li><li><i class="sw interest"></i>Interest</li><li><i class="sw balance"></i>Balance (right axis)</li></ul>
@@ -157,6 +172,7 @@
             <label for="report-year">Year</label>
             <select id="report-year" data-testid="report-year"><option value="all">All years</option></select>
             <button type="button" id="download-csv" class="ghost" style="margin:0;width:auto">Download CSV</button>
+            <button type="button" id="print-report" class="ghost" style="margin:0;width:auto">Print report</button>
           </div>
         </div>
         <p id="report-summary" data-testid="report-summary" class="muted" aria-live="polite"></p>
@@ -166,6 +182,32 @@
             <tbody id="schedule-body"></tbody>
             <tfoot><tr id="schedule-total" data-testid="schedule-total"><th scope="row">Total</th><td></td><td data-col="paid"></td><td data-col="principal"></td><td data-col="interest"></td><td></td></tr></tfoot>
           </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ELIGIBILITY: reverse calculator -->
+    <section id="view-eligibility" data-testid="view-eligibility" aria-labelledby="el-h" hidden>
+      <div class="panel">
+        <h2 id="el-h">How much can I borrow?</h2>
+        <p class="muted">Enter the EMI you are comfortable paying each month and we work out the largest loan it can service.</p>
+        <form id="eligibility-form" novalidate>
+          <div class="cmp-grid three">
+            <div><label for="el-budget">Monthly EMI you can afford (&#8377;)</label><input id="el-budget" type="text" inputmode="numeric" value="40,000" aria-label="Eligibility EMI budget"></div>
+            <div><label for="el-rate">Interest rate (%)</label><input id="el-rate" type="text" inputmode="decimal" value="9" aria-label="Eligibility interest rate"></div>
+            <div><label for="el-years">Tenure (years)</label><input id="el-years" type="text" inputmode="numeric" value="20" aria-label="Eligibility tenure in years"></div>
+          </div>
+          <p class="error" id="err-eligibility" data-testid="error-eligibility" role="alert"></p>
+          <button type="submit" id="el-btn" class="primary" style="width:auto">Check eligibility</button>
+        </form>
+        <div id="el-result" hidden>
+          <div class="kpis">
+            <article class="kpi"><span>You can borrow up to</span><b id="el-amount" data-testid="el-amount" data-value="">-</b></article>
+            <article class="kpi"><span>Total interest</span><b id="el-interest" data-testid="el-interest" data-value="">-</b></article>
+            <article class="kpi"><span>Total payment</span><b id="el-total" data-testid="el-total" data-value="">-</b></article>
+          </div>
+          <p class="hint" id="el-words" data-testid="el-words"></p>
+          <button type="button" id="el-use" class="ghost" style="width:auto">Use this loan in the calculator</button>
         </div>
       </div>
     </section>

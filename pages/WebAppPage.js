@@ -34,6 +34,18 @@ class WebAppPage extends BasePage {
     this.balanceLine = page.getByTestId('balance-line');
     this.income = page.getByRole('textbox', { name: 'Monthly income (₹, optional)' });
     this.affordability = page.getByTestId('affordability');
+    this.lump = page.getByRole('textbox', { name: 'One-time prepayment (₹, optional)' });
+    this.lumpMonth = page.getByRole('textbox', { name: 'Prepay after payment number' });
+    this.yearlyBarsButton = page.getByRole('button', { name: 'Yearly bars' });
+    this.cumulativeButton = page.getByRole('button', { name: 'Cumulative' });
+    this.printButton = page.getByRole('button', { name: 'Print report' });
+    this.cumPrincipalPoints = page.getByTestId('cum-principal-point');
+    this.cumInterestPoints = page.getByTestId('cum-interest-point');
+    this.eligibilityBudget = page.getByRole('textbox', { name: 'Eligibility EMI budget' });
+    this.eligibilityRate = page.getByRole('textbox', { name: 'Eligibility interest rate' });
+    this.eligibilityYears = page.getByRole('textbox', { name: 'Eligibility tenure in years' });
+    this.eligibilityButton = page.getByRole('button', { name: 'Check eligibility' });
+    this.useEligibleButton = page.getByRole('button', { name: 'Use this loan in the calculator' });
     this.amountSlider = page.getByRole('slider', { name: 'Loan amount slider' });
     this.calculateButton = page.getByRole('button', { name: 'Calculate EMI' });
     this.resetButton = page.getByRole('button', { name: 'Reset' });
@@ -48,7 +60,7 @@ class WebAppPage extends BasePage {
     this.barTooltip = page.getByTestId('bar-tooltip');
 
     // report
-    this.reportMode = page.getByLabel('View');
+    this.reportMode = page.getByLabel('View', { exact: true });
     this.reportYear = page.getByLabel('Year', { exact: true });
     this.scheduleRows = page.getByTestId('schedule-row');
     this.scheduleTotal = page.getByTestId('schedule-total');
@@ -64,13 +76,15 @@ class WebAppPage extends BasePage {
     await this.page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name, exact: true }).click();
   }
 
-  async enterLoan({ amount, rate, tenure, unit = 'Years', start, extra }) {
+  async enterLoan({ amount, rate, tenure, unit = 'Years', start, extra, lump, lumpMonth }) {
     await this.amount.fill(String(amount));
     await this.rate.fill(String(rate));
     await this.tenure.fill(String(tenure));
     await this.tenureUnit.selectOption({ label: unit });
     if (start) await this.startMonth.fill(start);
     if (extra !== undefined) await this.extra.fill(String(extra));
+    if (lump !== undefined) await this.lump.fill(String(lump));
+    if (lumpMonth !== undefined) await this.lumpMonth.fill(String(lumpMonth));
   }
 
   async calculate() {

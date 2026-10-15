@@ -24,7 +24,7 @@
   }
 
   /** Month-by-month amortisation; `extra` is an additional payment every month (prepayment). */
-  function buildSchedule(P, annualRate, months, startYear, startMonth, extra = 0, advance = false) {
+  function buildSchedule(P, annualRate, months, startYear, startMonth, extra = 0, advance = false, lump = { amount: 0, month: 0 }) {
     const r = annualRate / 12 / 100;
     const emi = emiFor(P, annualRate, months, advance);
     let balance = P;
@@ -38,11 +38,14 @@
       if (principal >= balance || i === months - 1) { principal = balance; paid = principal + interest; }
       const opening = balance;
       balance = principal >= balance ? 0 : balance - principal;
+      // one-time prepayment: paid right after this month's EMI, straight off the principal
+      let lumpPaid = 0;
+      if (lump.amount > 0 && i + 1 === lump.month && balance > 0.005) { lumpPaid = Math.min(lump.amount, balance); balance -= lumpPaid; }
       rows.push({
         n: i + 1,
         year: startYear + Math.floor((startMonth + i) / 12),
         month: (startMonth + i) % 12,
-        opening, paid, principal, interest, closing: balance,
+        opening, paid: paid + lumpPaid, principal: principal + lumpPaid, interest, closing: balance, lump: lumpPaid,
       });
     }
     return { emi, rows };
@@ -87,7 +90,7 @@
   const timing = () => document.querySelector('input[name=timing]:checked').value;
   function readForm() {
     const errors = {};
-    const amountRaw = $('amount').value, rateRaw = $('rate').value, tenureRaw = $('tenure').value, start = $('start').value, extraRaw = $('extra').value, incomeRaw = $('income').value;
+    const amountRaw = $('amount').value, rateRaw = $('rate').value, tenureRaw = $('tenure').value, start = $('start').value, extraRaw = $('extra').value, incomeRaw = $('income').value, lumpRaw = $('lump').value, lumpMonthRaw = $('lump-month').value;
     const amount = num(amountRaw), rate = num(rateRaw), tenure = num(tenureRaw), unit = $('tenure-unit').value;
     const extra = extraRaw.trim() === '' ? 0 : num(extraRaw);
     if (amountRaw.trim() === '' || !Number.isFinite(amount)) errors.amount = 'Enter the loan amount as a number.';
@@ -101,13 +104,18 @@
     if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(start)) errors.start = 'Choose a valid start month.';
     if (!Number.isFinite(extra) || extra < 0) errors.extra = 'Extra payment must be zero or a positive number.';
     else if (Number.isFinite(amount) && extra > amount) errors.extra = 'Extra payment cannot be more than the loan amount.';
+    const lump = lumpRaw.trim() === '' ? 0 : num(lumpRaw);
+    const lumpMonth = num(lumpMonthRaw);
+    if (!Number.isFinite(lump) || lump < 0) errors.lump = 'One-time prepayment must be zero or a positive number.';
+    else if (Number.isFinite(amount) && lump > amount) errors.lump = 'One-time prepayment cannot be more than the loan amount.';
+    else if (lump > 0 && (!Number.isInteger(lumpMonth) || lumpMonth < 1 || (Number.isFinite(months) && lumpMonth > months))) errors['lump-month'] = `Prepayment month must be a whole number between 1 and ${Number.isFinite(months) ? months : 'the loan term'}.`;
     const income = incomeRaw.trim() === '' ? 0 : num(incomeRaw);
     if (!Number.isFinite(income) || income < 0 || (incomeRaw.trim() !== '' && income === 0)) errors.income = 'Income must be a positive number.';
-    return { errors, values: { amount, rate, months, start, extra, unit, tenure, income, advance: timing() === 'advance' } };
+    return { errors, values: { amount, rate, months, start, extra, unit, tenure, income, lump, lumpMonth, advance: timing() === 'advance' } };
   }
 
   function showErrors(errors) {
-    for (const k of ['amount', 'rate', 'tenure', 'start', 'extra', 'income']) {
+    for (const k of ['amount', 'rate', 'tenure', 'start', 'extra', 'income', 'lump', 'lump-month']) {
       $('err-' + k).textContent = errors[k] || '';
       const input = $(k);
       if (errors[k]) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
@@ -125,7 +133,8 @@
 
   function renderDashboard() {
     const baseTotal = loan.emi * loan.months;
-    const total = loan.extra > 0 ? loan.rows.reduce((a, r) => a + r.paid, 0) : baseTotal;
+    const prepaying = loan.extra > 0 || loan.lump > 0;
+    const total = prepaying ? loan.rows.reduce((a, r) => a + r.paid, 0) : baseTotal;
     const interest = total - loan.principal;
     setKpi('kpi-emi', loan.emi.toFixed(2), inr(loan.emi));
     setKpi('kpi-interest', interest.toFixed(2), inr(interest));
@@ -144,7 +153,7 @@
     $('legend-interest').textContent = `${inr(interest)} (${share.toFixed(1)}%)`;
 
     const box = $('savings');
-    if (loan.extra > 0) {
+    if (prepaying) {
       const savedInterest = (baseTotal - loan.principal) - interest;
       const savedMonths = loan.months - loan.rows.length;
       const fmtMonths = (m) => `${Math.floor(m / 12) ? Math.floor(m / 12) + ' yr ' : ''}${m % 12} mo`.trim();
@@ -158,7 +167,7 @@
     // insights
     const cost = (total / loan.principal) * 100;
     $('cost-per-100').dataset.value = cost.toFixed(2); $('cost-per-100').textContent = '₹' + cost.toFixed(2);
-    const cross = loan.rows.find((r) => r.principal > r.interest);
+    const cross = loan.rows.find((r) => r.principal - r.lump > r.interest);
     const c = $('crossover');
     if (cross) { c.dataset.value = String(cross.n); c.textContent = `Month ${cross.n} (${MONTHS[cross.month]} ${cross.year})`; } else { c.dataset.value = '0'; c.textContent = 'Never'; }
     const aff = $('affordability');
@@ -173,6 +182,8 @@
   }
 
   function renderBars() {
+    if (chartView === 'cumulative') { renderCumulative(); return; }
+    document.querySelector('.legend li:has(.sw.balance)')?.classList.remove('hide');
     const years = byYear(loan.rows, fyMode());
     const W = 640, H = 260, m = { l: 54, r: 46, t: 12, b: 28 };
     const max = Math.max(...years.map((y) => y.paid));
@@ -198,6 +209,36 @@
     svg += `<path class="balance-line" data-testid="balance-line" d="${pts.map(([x, y], i) => (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1)).join(' ')}"/>`;
     pts.forEach(([x, y, yr]) => { svg += `<circle class="balance-dot" data-testid="balance-point" data-year="${yr.key}" data-balance="${yr.closing.toFixed(2)}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3"/>`; });
     $('bar-chart').innerHTML = svg;
+  }
+
+  let chartView = 'bars';
+  function renderCumulative() {
+    document.querySelector('.legend li:has(.sw.balance)')?.classList.add('hide');
+    const years = byYear(loan.rows, fyMode());
+    const W = 640, H = 260, m = { l: 54, r: 16, t: 12, b: 28 }, h = H - m.t - m.b, base = H - m.b;
+    let cp = 0, ci = 0;
+    const pts = years.map((y) => { cp += y.principal; ci += y.interest; return { y, cp, ci }; });
+    const max = Math.max(cp, ci);
+    const X = (i) => m.l + (years.length === 1 ? (W - m.l - m.r) / 2 : (i / (years.length - 1)) * (W - m.l - m.r));
+    const Y = (v) => base - (v / max) * h;
+    let svg = '';
+    for (let k = 0; k <= 4; k++) {
+      const v = (max / 4) * k;
+      svg += `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${m.l - 6}" y="${Y(v) + 4}" text-anchor="end">${v >= 1e7 ? (v / 1e7).toFixed(1) + 'Cr' : v >= 1e5 ? (v / 1e5).toFixed(1) + 'L' : Math.round(v / 1e3) + 'k'}</text>`;
+    }
+    for (const kind of ['principal', 'interest']) {
+      const key = kind === 'principal' ? 'cp' : 'ci';
+      svg += `<path class="cum-line-${kind}" data-testid="cum-line-${kind}" d="${pts.map((p, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(p[key]).toFixed(1)).join(' ')}"/>`;
+      pts.forEach((p, i) => { svg += `<circle class="cum-dot-${kind}" data-testid="cum-${kind}-point" data-year="${p.y.key}" data-value="${p[key].toFixed(2)}" cx="${X(i).toFixed(1)}" cy="${Y(p[key]).toFixed(1)}" r="3.5"><title>${p.y.label}: ${inr(p[key])} cumulative ${kind}</title></circle>`; });
+    }
+    pts.forEach((p, i) => { if (years.length <= 16 || i % 2 === 0) svg += `<text x="${X(i)}" y="${H - 9}" text-anchor="middle">${fyMode() ? `${String(p.y.key).slice(2)}-${String(p.y.key + 1).slice(2)}` : p.y.key}</text>`; });
+    $('bar-chart').innerHTML = svg;
+  }
+  function setChartView(v) {
+    chartView = v;
+    $('view-bars').setAttribute('aria-pressed', String(v === 'bars')); $('view-cumulative').setAttribute('aria-pressed', String(v === 'cumulative'));
+    $('bar-h').textContent = v === 'bars' ? 'Payments per year' : 'Cumulative paid';
+    if (loan) renderBars();
   }
 
   function populateYearFilter() {
@@ -252,8 +293,8 @@
     }
     showErrors({});
     const [sy, sm] = values.start.split('-').map(Number);
-    const { emi, rows } = buildSchedule(values.amount, values.rate, values.months, sy, sm - 1, values.extra, values.advance);
-    loan = { principal: values.amount, rate: values.rate, months: values.months, extra: values.extra, advance: values.advance, income: values.income, emi, rows };
+    const { emi, rows } = buildSchedule(values.amount, values.rate, values.months, sy, sm - 1, values.extra, values.advance, { amount: values.lump, month: values.lumpMonth });
+    loan = { principal: values.amount, rate: values.rate, months: values.months, extra: values.extra, lump: values.lump, advance: values.advance, income: values.income, emi, rows };
     renderDashboard(); populateYearFilter(); renderReport();
     return true;
   }
@@ -303,7 +344,7 @@
 
   // ---------- share link ----------
   function formState() {
-    return { product, amount: $('amount').value, rate: $('rate').value, tenure: $('tenure').value, unit: $('tenure-unit').value, start: $('start').value, extra: $('extra').value, income: $('income').value, timing: timing(), yfmt: $('year-format').value };
+    return { product, amount: $('amount').value, rate: $('rate').value, tenure: $('tenure').value, unit: $('tenure-unit').value, start: $('start').value, extra: $('extra').value, income: $('income').value, lump: $('lump').value, lumpMonth: $('lump-month').value, timing: timing(), yfmt: $('year-format').value };
   }
   function shareUrl() {
     return `${location.origin}${location.pathname}?${new URLSearchParams(formState())}${location.hash}`;
@@ -320,7 +361,7 @@
     $('amount').value = s.amount ?? cfg.amount; $('rate').value = s.rate ?? cfg.rate;
     $('tenure-unit').value = s.unit === 'months' ? 'months' : 'years';
     $('tenure-range').max = $('tenure-unit').value === 'years' ? cfg.max.tenure : cfg.max.tenure * 12;
-    $('tenure').value = s.tenure ?? cfg.tenure; $('start').value = s.start ?? BASE.start; $('extra').value = s.extra ?? BASE.extra; $('income').value = s.income ?? '';
+    $('tenure').value = s.tenure ?? cfg.tenure; $('start').value = s.start ?? BASE.start; $('extra').value = s.extra ?? BASE.extra; $('income').value = s.income ?? ''; $('lump').value = s.lump ?? '0'; $('lump-month').value = s.lumpMonth ?? '12';
     document.getElementById(s.timing === 'advance' ? 'timing-advance' : 'timing-arrears').checked = true;
     $('year-format').value = s.yfmt === 'financial' ? 'financial' : 'calendar';
     $('amount-range').value = num($('amount').value) || num(cfg.amount); $('rate-range').value = num($('rate').value) || num(cfg.rate); $('tenure-range').value = num($('tenure').value) || num(cfg.tenure);
@@ -382,6 +423,31 @@
     $('compare-result').hidden = false;
   }
 
+  // ---------- eligibility (reverse calculator) ----------
+  let eligible = null;
+  function eligibilityCheck() {
+    const budget = num($('el-budget').value), rate = num($('el-rate').value), years = num($('el-years').value);
+    let err = '';
+    if ([$('el-budget').value, $('el-rate').value, $('el-years').value].some((v) => v.trim() === '') || ![budget, rate, years].every(Number.isFinite)) err = 'Enter numbers for the EMI, rate and tenure.';
+    else if (budget < 500 || budget > 10000000) err = 'Monthly EMI must be between \u20B9500 and \u20B91 crore.';
+    else if (rate < 0.1 || rate > 50) err = 'Interest rate must be between 0.1% and 50%.';
+    else if (!Number.isInteger(years) || years < 1 || years > 40) err = 'Tenure must be a whole number of years from 1 to 40.';
+    $('err-eligibility').textContent = err;
+    if (err) { $('el-result').hidden = true; eligible = null; return; }
+    const r = rate / 12 / 100, n = years * 12;
+    const principal = (budget * ((1 + r) ** n - 1)) / (r * (1 + r) ** n);
+    const total = budget * n;
+    eligible = { principal, rate, years };
+    for (const [id, v] of [['el-amount', principal], ['el-interest', total - principal], ['el-total', total]]) { $(id).dataset.value = v.toFixed(2); $(id).textContent = inr(v); }
+    $('el-words').textContent = inWords(principal) + ' rupees';
+    $('el-result').hidden = false;
+  }
+  function useEligible() {
+    if (!eligible) return;
+    applyState({ product, amount: (Math.floor(eligible.principal / 1000) * 1000).toLocaleString('en-IN'), rate: String(eligible.rate), tenure: String(eligible.years), unit: 'years' });
+    showErrors({}); calculate(); location.hash = '#/dashboard'; toast('Loan loaded from eligibility');
+  }
+
   // ---------- wiring ----------
   const pairs = [['amount', 'amount-range', (v) => v.toLocaleString('en-IN')], ['rate', 'rate-range', String], ['tenure', 'tenure-range', String]];
   for (const [text, range, fmt] of pairs) {
@@ -390,6 +456,8 @@
   }
   $('extra').addEventListener('input', live);
   $('income').addEventListener('input', live);
+  $('lump').addEventListener('input', live);
+  $('lump-month').addEventListener('input', live);
   $('start').addEventListener('input', live);
   document.querySelectorAll('input[name=timing]').forEach((r) => r.addEventListener('change', () => calculate(true)));
   $('tenure-unit').addEventListener('change', () => {
@@ -423,6 +491,11 @@
     document.querySelector(`.year-toggle[data-key="${key}"]`)?.focus();
   });
   $('download-csv').addEventListener('click', downloadCsv);
+  $('print-report').addEventListener('click', () => window.print());
+  $('view-bars').addEventListener('click', () => setChartView('bars'));
+  $('view-cumulative').addEventListener('click', () => setChartView('cumulative'));
+  $('eligibility-form').addEventListener('submit', (e) => { e.preventDefault(); eligibilityCheck(); });
+  $('el-use').addEventListener('click', useEligible);
   $('compare-form').addEventListener('submit', (e) => { e.preventDefault(); compare(); });
   $('compare-use-current').addEventListener('click', () => {
     const { values } = readForm();
@@ -453,16 +526,17 @@
   $('bar-chart').addEventListener('mouseleave', () => { tip.hidden = true; });
 
   // routing
-  const TITLES = { dashboard: 'Loan EMI dashboard', report: 'Amortisation report', compare: 'Compare loans' };
+  const TITLES = { dashboard: 'Loan EMI dashboard', report: 'Amortisation report', compare: 'Compare loans', eligibility: 'Loan eligibility' };
   function route() {
-    const view = ['#/report', '#/compare'].includes(location.hash) ? location.hash.slice(2) : 'dashboard';
+    const view = ['#/report', '#/compare', '#/eligibility'].includes(location.hash) ? location.hash.slice(2) : 'dashboard';
     for (const v of Object.keys(TITLES)) {
       $('view-' + v).hidden = v !== view;
       const a = $('nav-' + v);
       if (v === view) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
     }
-    $('form-panel').hidden = $('saved-panel').hidden = view === 'compare';
-    document.querySelector('main').classList.toggle('single', view === 'compare');
+    const wide = view === 'compare' || view === 'eligibility';
+    $('form-panel').hidden = $('saved-panel').hidden = wide;
+    document.querySelector('main').classList.toggle('single', wide);
     $('page-title').textContent = TITLES[view];
     document.title = `${TITLES[view].replace('Loan EMI d', 'D')} - EMI Calculator - Streamhub`;
   }

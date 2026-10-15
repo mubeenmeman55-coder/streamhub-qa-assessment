@@ -15,7 +15,7 @@ function expectedFor(world) {
   return { ...summary(principal, rate, years, advance), schedule: yearlySchedule(principal, rate, years, startYear, startMonth, { advance, fy }) };
 }
 
-function rememberLoan(world, { amount, rate, tenure, unit, start = '2027-01', extra: extraRaw = '0' }) {
+function rememberLoan(world, { amount, rate, tenure, unit, start = '2027-01', extra: extraRaw = '0', lump: lumpRaw = '0', lumpMonth: lumpMonthRaw = '12' }) {
   const [startYear, month] = start.split('-').map(Number);
   const principal = Number(String(amount).replace(/,/g, ''));
   if (![principal, Number(rate), Number(tenure)].every(Number.isFinite) || String(rate).trim() === '') return; // invalid-input scenarios keep the last valid loan
@@ -28,6 +28,8 @@ function rememberLoan(world, { amount, rate, tenure, unit, start = '2027-01', ex
   };
   const extra = Number(String(extraRaw).replace(/,/g, ''));
   if (Number.isFinite(extra)) world.state.loan.extra = extra;
+  const lump = Number(String(lumpRaw).replace(/,/g, ''));
+  if (Number.isFinite(lump)) { world.state.loan.lump = lump; world.state.loan.lumpMonth = Number(lumpMonthRaw); }
 }
 
 Given('I open the EMI app', async function () {
@@ -61,14 +63,14 @@ Then('the form is pre-filled with amount {string}, rate {string} and tenure {str
 
 When('I enter loan amount {string}, rate {string}, tenure {string} {string} and calculate', async function (amount, rate, tenure, unit) {
   this.state.emiBefore = await this.app.kpiValue('emi');
-  await this.app.enterLoan({ amount, rate, tenure, unit, extra: 0 });
+  await this.app.enterLoan({ amount, rate, tenure, unit, extra: 0, lump: 0 });
   await this.app.calculate();
   rememberLoan(this, { amount, rate, tenure, unit });
 });
 
 When('I enter loan amount {string}, rate {string}, tenure {string} {string} with an extra monthly payment of {string} and calculate', async function (amount, rate, tenure, unit, extra) {
   this.state.emiBefore = await this.app.kpiValue('emi');
-  await this.app.enterLoan({ amount, rate, tenure, unit, extra });
+  await this.app.enterLoan({ amount, rate, tenure, unit, extra, lump: 0 });
   await this.app.calculate();
   rememberLoan(this, { amount, rate, tenure, unit, extra });
 });
@@ -77,6 +79,14 @@ When('I enter loan amount {string}, rate {string}, tenure {string} {string} star
   await this.app.enterLoan({ amount, rate, tenure, unit, start });
   await this.app.calculate();
   rememberLoan(this, { amount, rate, tenure, unit, start });
+});
+
+// (one-time prepayment variant of the entry step)
+When('I enter loan amount {string}, rate {string}, tenure {string} {string} with a one-time prepayment of {string} after payment {string} and calculate', async function (amount, rate, tenure, unit, lump, month) {
+  this.state.emiBefore = await this.app.kpiValue('emi');
+  await this.app.enterLoan({ amount, rate, tenure, unit, extra: 0, lump, lumpMonth: month });
+  await this.app.calculate();
+  rememberLoan(this, { amount, rate, tenure, unit, lump, lumpMonth: month });
 });
 
 Then('the dashboard figures match my own calculation', async function () {

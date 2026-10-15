@@ -5,7 +5,7 @@ const path = require('path');
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
 const { WebAppPage } = require('../../pages/WebAppPage');
-const { summary, yearlySchedule, prepayment } = require('../../utils/emi');
+const { summary, yearlySchedule, prepayment, lumpPrepayment, maxLoan, emi: emiOf } = require('../../utils/emi');
 const { toNumber } = require('../../utils/parse');
 
 const CENT = 0.05;
@@ -62,6 +62,7 @@ Then('the prepayment impact is not shown', async function () {
 
 function prepayOracle(w) {
   const l = loanOf(w);
+  if (l.lump > 0) return lumpPrepayment(l.principal, l.rate, yearsOf(w), l.lump, l.lumpMonth);
   return prepayment(l.principal, l.rate, yearsOf(w), l.extra);
 }
 
@@ -395,4 +396,102 @@ Then('the month principal overtakes interest matches my own closed-form calculat
   expect(got).toBe(want);
   const date = new Date(l.startYear, l.startMonth + want - 1, 1);
   await expect(this.page.getByTestId('crossover')).toHaveText(`Month ${want} (${date.toLocaleString('en-US', { month: 'short' })} ${date.getFullYear()})`);
+});
+
+// ---------- planning tools (emi_app_planning.feature) ----------
+Then('payment {int} repays its normal principal plus the prepayment', async function (n) {
+  const l = loanOf(this);
+  const r = l.rate / 12 / 100;
+  const e = summary(l.principal, l.rate, yearsOf(this)).emi;
+  const balanceBefore = l.principal * (1 + r) ** (n - 1) - (e * ((1 + r) ** (n - 1) - 1)) / r; // closed form, no loop
+  const normalPrincipal = e - balanceBefore * r;
+  const row = this.app.scheduleRows.nth(11); // Dec of the filtered year = the 12th row
+  await expect(row).toHaveAttribute('data-period', 'Dec 2028');
+  const got = Number(await row.getAttribute('data-principal'));
+  expect(Math.abs(got - (normalPrincipal + l.lump))).toBeLessThan(CENT);
+});
+
+Then('the balance after payment {int} is lower by exactly the prepayment', async function (n) {
+  const l = loanOf(this);
+  const r = l.rate / 12 / 100;
+  const e = summary(l.principal, l.rate, yearsOf(this)).emi;
+  const regular = l.principal * (1 + r) ** n - (e * ((1 + r) ** n - 1)) / r; // balance with no prepayment
+  const got = Number(await this.app.scheduleRows.nth(11).locator('[data-testid=cell-closing]').innerText().then((t) => t.replace(/[^0-9]/g, '')));
+  expect(Math.abs(got - (regular - l.lump))).toBeLessThan(1); // the table shows whole rupees
+});
+
+// cumulative chart
+When('I switch the chart to the cumulative view', async function () {
+  await this.app.cumulativeButton.click();
+});
+When('I switch the chart back to yearly bars', async function () {
+  await this.app.yearlyBarsButton.click();
+});
+Then('the cumulative chart has one point per year for principal and for interest', async function () {
+  const n = schedule(this).length;
+  await expect(this.app.cumPrincipalPoints).toHaveCount(n);
+  await expect(this.app.cumInterestPoints).toHaveCount(n);
+});
+async function cumulative(world, kind) {
+  return world.page.getByTestId(`cum-${kind}-point`).evaluateAll((els) => els.map((e) => Number(e.dataset.value)));
+}
+Then('the cumulative totals equal the loan amount and total interest', async function () {
+  const want = summary(loanOf(this).principal, loanOf(this).rate, yearsOf(this));
+  const p = await cumulative(this, 'principal'), i = await cumulative(this, 'interest');
+  expect(Math.abs(p.at(-1) - loanOf(this).principal)).toBeLessThan(CENT * 10);
+  expect(Math.abs(i.at(-1) - want.totalInterest)).toBeLessThan(CENT * 10);
+});
+Then('the cumulative lines never decrease', async function () {
+  for (const kind of ['principal', 'interest']) {
+    const v = await cumulative(this, kind);
+    for (let k = 1; k < v.length; k++) expect(v[k], `${kind} year ${k}`).toBeGreaterThanOrEqual(v[k - 1]);
+    expect(v[0]).toBeGreaterThan(0);
+  }
+});
+Then('the yearly bars are not shown', async function () {
+  await expect(this.app.principalBars).toHaveCount(0);
+});
+
+// eligibility
+When('I check eligibility for an EMI of {string} at {string} for {string} years', async function (budget, rate, years) {
+  this.state.eligibility = { budget: Number(budget.replace(/,/g, '')), rate: Number(rate), years: Number(years) };
+  await this.app.eligibilityBudget.fill(budget);
+  await this.app.eligibilityRate.fill(rate);
+  await this.app.eligibilityYears.fill(years);
+  await this.app.eligibilityButton.click();
+});
+Then('the maximum loan matches my own calculation', async function () {
+  const { budget, rate, years } = this.state.eligibility;
+  const want = maxLoan(budget, rate, years);
+  expect(Math.abs(Number(await this.page.getByTestId('el-amount').getAttribute('data-value')) - want)).toBeLessThan(CENT);
+  expect(Math.abs(Number(await this.page.getByTestId('el-total').getAttribute('data-value')) - budget * years * 12)).toBeLessThan(CENT);
+  expect(Math.abs(Number(await this.page.getByTestId('el-interest').getAttribute('data-value')) - (budget * years * 12 - want))).toBeLessThan(CENT);
+  await expect(this.page.getByTestId('el-amount')).toHaveText(inr(want));
+});
+Then("that loan's EMI works out to the budget", async function () {
+  // round trip through the *other* formula: the EMI of the maximum loan must equal the budget again
+  const { budget, rate, years } = this.state.eligibility;
+  const p = Number(await this.page.getByTestId('el-amount').getAttribute('data-value'));
+  expect(Math.abs(emiOf(p, rate, years) - budget)).toBeLessThan(0.01);
+});
+When('I use the eligible loan in the calculator', async function () {
+  await this.app.useEligibleButton.click();
+});
+Then('the EMI is just under the budget of {int}', async function (budget) {
+  const e = await this.app.kpiValue('emi');
+  expect(e).toBeLessThanOrEqual(budget + 0.01);
+  expect(e).toBeGreaterThan(budget * 0.995);
+});
+Then('the eligibility form shows the error {string}', async function (message) {
+  await expect(this.page.getByTestId('error-eligibility')).toHaveText(message);
+  await expect(this.page.getByTestId('el-amount')).toBeHidden();
+});
+
+// print
+When('I click Print report', async function () {
+  await this.page.evaluate(() => { window.__printCalls = 0; window.print = () => { window.__printCalls += 1; }; });
+  await this.app.printButton.click();
+});
+Then('the browser print dialog was requested once', async function () {
+  expect(await this.page.evaluate(() => window.__printCalls)).toBe(1);
 });

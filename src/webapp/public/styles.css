@@ -95,3 +95,19 @@ tr.month-sub td,tr.month-sub th{background:var(--bg);color:var(--mut);font-size:
 .insights .kpi b{font-size:20px}
 .afford em{display:inline-block;margin-top:4px;font-style:normal;font-weight:800;font-size:12.5px;padding:2px 10px;border-radius:99px;background:var(--soft)}
 .afford[data-status=comfortable] em{background:#dff5e8;color:#0d7a3c}.afford[data-status=stretching] em{background:#fdf0d3;color:#8a5a00}.afford[data-status=risky] em{background:#fde0e4;color:#a4192b}
+
+.lump-row{grid-template-columns:1fr 110px}
+.chart-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}.chart-head h3{margin:0}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;border-radius:0;background:transparent;color:var(--mut);padding:6px 12px;font-size:12.5px}
+.seg button[aria-pressed=true]{background:var(--soft);color:var(--brand)}
+.cmp-grid.three{grid-template-columns:repeat(3,1fr)}@media(max-width:700px){.cmp-grid.three{grid-template-columns:1fr}}
+#bar-chart .cum-line-principal{fill:none;stroke:var(--brand);stroke-width:3}#bar-chart .cum-line-interest{fill:none;stroke:var(--brand2);stroke-width:3}
+#bar-chart .cum-dot-principal{fill:var(--brand)}#bar-chart .cum-dot-interest{fill:var(--brand2)}
+.legend li.hide{display:none}
+@media print{
+  .hero nav,.themebtn,.side,.controls,#toast,.hero p{display:none!important}
+  main{display:block}body{background:#fff}
+  .hero{background:none;color:#000;padding:0}.hero h1{color:#000}.brand{color:#000}
+  .panel{box-shadow:none;border:0}.table-scroll{max-height:none;overflow:visible}
+}

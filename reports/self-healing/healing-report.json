@@ -15,7 +15,7 @@
           "source": "heuristic",
           "confidence": 0.73,
           "element": {
-            "i": 10,
+            "i": 11,
             "tag": "input",
             "type": "text",
             "leaf": true,
@@ -51,7 +51,7 @@
           "source": "heuristic",
           "confidence": 0.95,
           "element": {
-            "i": 13,
+            "i": 14,
             "tag": "input",
             "type": "text",
             "leaf": true,
@@ -121,7 +121,7 @@
           "source": "heuristic",
           "confidence": 0.52,
           "element": {
-            "i": 33,
+            "i": 36,
             "tag": "b",
             "leaf": true,
             "testid": "kpi-emi",
@@ -157,7 +157,7 @@
           "source": "heuristic",
           "confidence": 0.84,
           "element": {
-            "i": 41,
+            "i": 44,
             "tag": "svg",
             "role": "img",
             "leaf": false,

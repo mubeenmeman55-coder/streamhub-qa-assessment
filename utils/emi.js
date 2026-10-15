@@ -67,4 +67,36 @@ function prepayment(principal, annualRatePct, years, extra) {
   };
 }
 
-module.exports = { emi, summary, yearlySchedule, prepayment };
+/**
+ * One-time prepayment oracle, closed form again. A lump sum L is paid right after payment number k:
+ *   balance after k payments  B_k = P(1+r)^k - E((1+r)^k - 1)/r
+ *   remaining months          m   = ceil( -ln(1 - (B_k - L) r / E) / ln(1+r) )   (same EMI E keeps being paid)
+ *   total paid = E*k + L + E*(m-1) + (balance after m-1 more payments)(1+r)
+ */
+function lumpPrepayment(principal, annualRatePct, years, lump, k) {
+  const r = annualRatePct / 12 / 100;
+  const e = emi(principal, annualRatePct, years);
+  const bk = principal * (1 + r) ** k - (e * ((1 + r) ** k - 1)) / r;
+  const paidLump = Math.min(lump, bk);
+  const bn = bk - paidLump;
+  const m = Math.ceil(-Math.log(1 - (bn * r) / e) / Math.log(1 + r) - 1e-9);
+  const balanceAfter = (j) => bn * (1 + r) ** j - (e * ((1 + r) ** j - 1)) / r;
+  const totalPaid = e * k + paidLump + e * (m - 1) + balanceAfter(m - 1) * (1 + r);
+  const base = summary(principal, annualRatePct, years);
+  return {
+    months: k + m,
+    totalPaid,
+    totalInterest: totalPaid - principal,
+    interestSaved: base.totalInterest - (totalPaid - principal),
+    monthsSaved: years * 12 - (k + m),
+  };
+}
+
+/** Largest loan a monthly EMI budget can service: P = E((1+r)^n - 1) / (r(1+r)^n) */
+function maxLoan(budget, annualRatePct, years) {
+  const r = annualRatePct / 12 / 100;
+  const n = years * 12;
+  return (budget * ((1 + r) ** n - 1)) / (r * (1 + r) ** n);
+}
+
+module.exports = { emi, summary, yearlySchedule, prepayment, lumpPrepayment, maxLoan };

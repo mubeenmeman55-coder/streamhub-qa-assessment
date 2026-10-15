@@ -6,7 +6,7 @@ plus the self-healing exercise. A small mock API that I also built is kept as a 
 | Brief item | What I built | Where |
 |---|---|---|
 | **A1** web app | EMI Calculator: dashboard (KPIs, pie, bar + balance line), report (filters, drill-down, CSV), compare view, prepayment, saved scenarios | `src/webapp/` |
-| **A2** Playwright tests | 68 Cucumber scenarios, page object, independent EMI oracle | `features/webapp/`, `pages/WebAppPage.js`, `features/step_definitions/webapp.steps.js` |
+| **A2** Playwright tests | 89 Cucumber scenarios, page object, independent EMI oracle | `features/webapp/`, `pages/WebAppPage.js`, `features/step_definitions/webapp.steps.js` |
 | **A3** API test | JSONPlaceholder `POST /posts`: long titles, special characters, missing fields | `features/jsonplaceholder/`, `pages/api/PostsApi.js` |
 | **A4** SQL | schema + round-trip transfers + IPL streaks, with output screenshots | `sql/`, `reports/sql/` |
 | Self-healing | 5 deliberately broken locators, write-up, working POC | `pages/LegacyEmiPage.js`, `docs/SELF_HEALING.md`, `self-healing/heal.js` |
@@ -56,6 +56,8 @@ tick marks, EMI at start/end of month, calendar vs financial year, expandable ye
 - **Report** (`#/report`): amortisation table driven by controls - Yearly/Monthly view, Year filter, **Calendar vs Financial year (Apr-Mar)**, click a year to
   **drill into its months**, totals row, and **Download CSV** of what is on screen.
 - **Compare** (`#/compare`): two loans side by side with differences, the cheaper one highlighted, and a plain-language verdict.
+- **Eligibility** (`#/eligibility`): reverse calculator - from the EMI you can afford, the largest loan it services, with a button to load it into the calculator.
+- **Planning**: a **one-time prepayment** (amount + the payment number after which it is paid) on top of the monthly extra payment; a **Cumulative** chart view next to the yearly bars; **Print report** with print-friendly styles.
 - **Insights**: cost of every ₹100 borrowed, the month when principal overtakes interest, and an **affordability check** (EMI as a share of monthly income: comfortable / stretching / risky).
 - **Loan types**: Home / Personal / Car tabs with their own defaults and slider ranges. **EMI timing**: end of month (arrears) or start of month (advance).
 - **Dynamic**: results update live while typing or dragging sliders (invalid values never wipe the last good result); amount spelled out in words (Indian
@@ -78,7 +80,10 @@ tick marks, EMI at start/end of month, calendar vs financial year, expandable ye
   Second and third feature files (`emi_app_features.feature`, `emi_app_dynamic.feature`) cover: prepayment (closed-form oracle, no month loop, so it
   cannot share a bug with the app), compare view, CSV download, saved scenarios surviving a reload, share-link round trip, theme, loan types, start-of-month
   EMI, financial-year grouping, drill-down rows, balance-line values and live recalculation.
-  I mutation-tested the new features (broke the advance-EMI formula, the financial-year boundary and the balance line in the app): 7 scenarios failed as they should.
+  Third round (`emi_app_planning.feature`, `emi_app_insights.feature`): one-time prepayment (closed-form oracle), cumulative chart, eligibility (round-trip: the EMI of the
+  maximum loan must equal the budget again), print, affordability and insights.
+  I mutation-tested the new features twice (broke the advance-EMI formula, the financial-year boundary, the balance line; then the lump-sum timing, the eligibility formula and the
+  cumulative series in the app): 7 and 11 scenarios failed respectively, as they should.
 
 ## A3 - JSONPlaceholder findings (read this)
 
