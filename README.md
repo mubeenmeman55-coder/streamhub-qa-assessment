@@ -51,6 +51,8 @@ Watch it inside VS Code's Simple Browser: `npm run test:ui:live`, then open `htt
 
 See "Latest results" at the end for the numbers.
 
+Line-by-line mapping of the assessment document to this repo: [docs/REQUIREMENTS_CHECKLIST.md](docs/REQUIREMENTS_CHECKLIST.md).
+
 ## A1 - the EMI Calculator app (`src/webapp`)
 
 Plain HTML/CSS/JS served by a tiny Express static server, in the spirit of the public EMI calculators the brief mentions (loan-type tabs, sliders with

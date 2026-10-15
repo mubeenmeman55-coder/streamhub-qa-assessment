@@ -12,7 +12,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 561314100
+              "duration": 1113331899
             },
             "keyword": "Before",
             "hidden": true
@@ -20,7 +20,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 257702000
+              "duration": 420768797
             },
             "arguments": [],
             "keyword": "Given ",
@@ -33,7 +33,7 @@
           {
             "result": {
               "status": "failed",
-              "duration": 3006476998,
+              "duration": 3017032799,
               "error_message": "locator.fill: Timeout 3000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#loan-amount')\u001b[22m\n\n    at CustomWorld.<anonymous> (C:\\Playwright Automation\\tests\\Streamhub-Assesment\\features\\step_definitions\\broken.steps.js:10:48)"
             },
             "arguments": [],
@@ -73,7 +73,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 344481799
+              "duration": 216491200
             },
             "keyword": "After",
             "hidden": true,
