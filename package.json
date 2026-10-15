@@ -13,7 +13,8 @@
     "app:start": "node src/webapp/server.js",
     "test:webapp": "cucumber-js -p webapp",
     "test:jsonplaceholder": "cucumber-js -p jsonplaceholder",
-    "test:gap": "cucumber-js -p gap"
+    "test:gap": "cucumber-js -p gap",
+    "results": "node scripts/summarize-results.js"
   },
   "keywords": [],
   "author": "",

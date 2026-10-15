@@ -31,6 +31,7 @@ No manual server start is needed: the test hooks start the EMI app automatically
 | `npm run test:gap` | A3 *known gaps* - run on demand, **expected to fail** (see findings) |
 | `npm run sql` | **A4** - builds the DB, runs both queries, writes outputs + screenshots |
 | `npm run heal` | self-healing POC |
+| `npm run results` | regenerate `RESULTS.md` from the reports |
 | `npm run test:broken` | the intentionally broken locators (**expected to fail**) |
 | `npm test` | everything that should pass (A2 + A3 + the optional mock-API suite) |
 | `npm run app:start` | run the EMI app yourself at `WEBAPP_URL` (http://localhost:3300) |
@@ -39,6 +40,8 @@ Watch a run in a visible browser: `$env:HEADLESS='false'; $env:SLOW_MO='300'; np
 Watch it inside VS Code's Simple Browser: `npm run test:ui:live`, then open `http://localhost:3200`.
 
 ## Results (committed in `reports/`)
+
+**Start with [RESULTS.md](RESULTS.md)** - one readable page with the pass/fail numbers per suite and feature file, the intentional failures with their reasons, the SQL output screenshots, the self-healing run and sample UI screenshots (generated from the reports by `npm run results`).
 
 - `reports/cucumber/*.html` / `.json` - one HTML + JSON report per suite (`webapp`, `jsonplaceholder`, `known-gap`, `all`, ...)
 - `reports/screenshots/` - one screenshot per UI scenario
