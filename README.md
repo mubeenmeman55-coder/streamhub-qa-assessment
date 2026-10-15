@@ -163,6 +163,9 @@ self-healing/         POC;   docs/SELF_HEALING.md
 - A scenario of mine failed because my own test data was wrong (₹33,038 EMI on a ₹1,00,000 income is 33%, i.e. "stretching", not "comfortable"); the app was right, so I fixed the data, not the assertion.
 - The self-healing POC first "healed" the EMI value to the whole KPI container because validation only checked "contains a number". Found by reading its output, fixed with a leaf-element check.
 - Generating files through shell heredocs repeatedly broke on quoting; writing files directly was more reliable.
+- My first mutation test of the validating API looked fine but was only half-effective: one mutation still rejected the request with a different message (an equivalent mutant) and another never applied because of string escaping. I tightened the tests to assert exact error messages and re-ran each mutation separately until all were caught.
+- The generated source silently contained invisible bidirectional-control characters (from a test payload written into a file). Harmless to behaviour but a code-review hazard, so I replaced them with visible unicode escapes and scanned the repo to confirm none remain.
+- While editing the README programmatically I accidentally cut off its results table; I noticed it in the final audit and restored it.
 - An API suite that was green on its first run was not trusted until mutation-checked (I broke sorting and limit validation; the tests failed as they should).
 - JSONPlaceholder does not behave as the brief's expected outcome assumes; I documented the deviation and kept the failing evidence instead of bending assertions.
 
