@@ -14,7 +14,9 @@
     "test:webapp": "cucumber-js -p webapp",
     "test:jsonplaceholder": "cucumber-js -p jsonplaceholder",
     "test:gap": "cucumber-js -p gap",
-    "results": "node scripts/summarize-results.js"
+    "results": "node scripts/summarize-results.js",
+    "test:strict": "cucumber-js -p strict",
+    "posts-api:start": "node src/posts-api/server.js"
   },
   "keywords": [],
   "author": "",

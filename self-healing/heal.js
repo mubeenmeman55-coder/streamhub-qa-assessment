@@ -3,6 +3,7 @@
  *
  *   npm run heal                      -> offline heuristic ranker (no API key needed)
  *   ANTHROPIC_API_KEY=... npm run heal -> asks Claude to pick from the candidate list, then validates the same way
+ *   npm run heal -- --prompt          -> dry run: print the exact prompt that would be sent for each broken locator (no API call)
  *
  * Pipeline:  DETECT broken locator -> SNAPSHOT candidates from live DOM -> PROPOSE (LLM or heuristic)
  *            -> VALIDATE in a real browser -> REPORT a suggested patch (never auto-applied).
@@ -110,8 +111,8 @@ function toLocatorExpression(c, kind) {
   return null;
 }
 
-async function llmRank(entry, candidates) {
-  const prompt = `A Playwright test locator broke. Pick the element it was meant to target from the candidate list.
+function buildPrompt(entry, candidates) {
+  return `A Playwright test locator broke. Pick the element it was meant to target from the candidate list.
 Rules: answer ONLY with JSON {"index": <candidate i or -1>, "confidence": 0-1, "reason": "..."}; choose -1 if unsure;
 choose by the element's purpose (intent), never by position; the page structure changed, so ignore the old selector's structure.
 
@@ -119,6 +120,10 @@ Intent: ${entry.intent}
 Expected kind: ${entry.kind}
 Broken selector: ${entry.selector}
 Candidates: ${JSON.stringify(candidates.filter((c) => KIND_OK[entry.kind](c)))}`;
+}
+
+async function llmRank(entry, candidates) {
+  const prompt = buildPrompt(entry, candidates);
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
@@ -175,6 +180,13 @@ async function validate(page, entry, proposal) {
   for (const [key, entry] of Object.entries(BROKEN_LOCATORS)) {
     const det = await isBroken(page, entry.selector);
     const row = { key, brokenSelector: entry.selector, intent: entry.intent, detected: det };
+    if (det.broken && process.argv.includes('--prompt')) {
+      console.log(`
+--- prompt that would be sent for "${key}" ---
+${buildPrompt(entry, candidates)}
+`);
+      continue;
+    }
     if (!det.broken) {
       row.outcome = 'healthy - nothing to heal';
     } else {

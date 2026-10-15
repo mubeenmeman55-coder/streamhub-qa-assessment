@@ -1,0 +1,2065 @@
+[
+  {
+    "description": "  The public JSONPlaceholder service accepts everything (see features/jsonplaceholder). This feature runs the same\n  boundary and invalid-data payloads against a local posts API that validates, to demonstrate the expected outcome:\n  appropriate 4xx codes and error messages for invalid input, and no 5xx for any input.",
+    "elements": [
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;control---a-valid-post-is-created",
+        "keyword": "Scenario",
+        "line": 7,
+        "name": "Control - a valid post is created",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 10783800
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 58143698
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I create a post using the \"valid\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7ImlkIjoxMDEsInVzZXJJZCI6MSwidGl0bGUiOiJBIHZhbGlkIHRpdGxlIiwiYm9keSI6IkEgdmFsaWQgYm9keSJ9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2607499
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "the response status is 201",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1669999
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 10,
+            "name": "the response body echoes the \"valid\" payload and adds an id",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:34"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2741600
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;excessively-long-title-(title-1k)-is-rejected-with-422",
+        "keyword": "Scenario Outline",
+        "line": 20,
+        "name": "Excessively long title (title-1k) is rejected with 422",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2945700
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6002299
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 13,
+            "name": "I create a post using the \"title-1k\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MjIgVW5wcm9jZXNzYWJsZSBFbnRpdHkKeyJlcnJvciI6eyJjb2RlIjoiVkFMSURBVElPTl9GQUlMRUQiLCJtZXNzYWdlIjoiVGhlIHBvc3QgaXMgaW52YWxpZCIsImRldGFpbHMiOlt7ImZpZWxkIjoidGl0bGUiLCJtZXNzYWdlIjoidGl0bGUgbXVzdCBiZSBhdCBtb3N0IDIwMCBjaGFyYWN0ZXJzIn1dfX0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 683699
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "the response status is 422",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 678197
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 15,
+            "name": "the error code is \"VALIDATION_FAILED\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 753599
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 16,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1494300
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;excessively-long-title-(title-10k)-is-rejected-with-422",
+        "keyword": "Scenario Outline",
+        "line": 21,
+        "name": "Excessively long title (title-10k) is rejected with 422",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3574799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8181800
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 13,
+            "name": "I create a post using the \"title-10k\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MjIgVW5wcm9jZXNzYWJsZSBFbnRpdHkKeyJlcnJvciI6eyJjb2RlIjoiVkFMSURBVElPTl9GQUlMRUQiLCJtZXNzYWdlIjoiVGhlIHBvc3QgaXMgaW52YWxpZCIsImRldGFpbHMiOlt7ImZpZWxkIjoidGl0bGUiLCJtZXNzYWdlIjoidGl0bGUgbXVzdCBiZSBhdCBtb3N0IDIwMCBjaGFyYWN0ZXJzIn1dfX0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 961097
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "the response status is 422",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 847597
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 15,
+            "name": "the error code is \"VALIDATION_FAILED\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 583098
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 16,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2113100
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;excessively-long-title-(title-100k)-is-rejected-with-422",
+        "keyword": "Scenario Outline",
+        "line": 22,
+        "name": "Excessively long title (title-100k) is rejected with 422",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3296299
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 7786199
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 13,
+            "name": "I create a post using the \"title-100k\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MjIgVW5wcm9jZXNzYWJsZSBFbnRpdHkKeyJlcnJvciI6eyJjb2RlIjoiVkFMSURBVElPTl9GQUlMRUQiLCJtZXNzYWdlIjoiVGhlIHBvc3QgaXMgaW52YWxpZCIsImRldGFpbHMiOlt7ImZpZWxkIjoidGl0bGUiLCJtZXNzYWdlIjoidGl0bGUgbXVzdCBiZSBhdCBtb3N0IDIwMCBjaGFyYWN0ZXJzIn1dfX0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1003498
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "the response status is 422",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2194799
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 15,
+            "name": "the error code is \"VALIDATION_FAILED\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 915699
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 16,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1774900
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;excessively-long-title-(title-1m)-is-rejected-with-413",
+        "keyword": "Scenario Outline",
+        "line": 23,
+        "name": "Excessively long title (title-1m) is rejected with 413",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1014699
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 17250399
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 13,
+            "name": "I create a post using the \"title-1m\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MTMgUGF5bG9hZCBUb28gTGFyZ2UKeyJlcnJvciI6eyJjb2RlIjoiUEFZTE9BRF9UT09fTEFSR0UiLCJtZXNzYWdlIjoiUmVxdWVzdCBib2R5IGV4Y2VlZHMgMTAwIEtCIn19",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 837898
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "the response status is 413",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 803698
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 15,
+            "name": "the error code is \"PAYLOAD_TOO_LARGE\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 365497
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 16,
+            "name": "the API does not fail with a server error",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1380499
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;unsupported-special-characters-(control-chars)-are-rejected",
+        "keyword": "Scenario Outline",
+        "line": 33,
+        "name": "Unsupported special characters (control-chars) are rejected",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1281500
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8409200
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 26,
+            "name": "I create a post using the \"control-chars\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MjIgVW5wcm9jZXNzYWJsZSBFbnRpdHkKeyJlcnJvciI6eyJjb2RlIjoiVkFMSURBVElPTl9GQUlMRUQiLCJtZXNzYWdlIjoiVGhlIHBvc3QgaXMgaW52YWxpZCIsImRldGFpbHMiOlt7ImZpZWxkIjoidGl0bGUiLCJtZXNzYWdlIjoidGl0bGUgY29udGFpbnMgdW5zdXBwb3J0ZWQgY29udHJvbCBvciBiaWRpcmVjdGlvbmFsIGNoYXJhY3RlcnMifV19fQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 763998
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 27,
+            "name": "the response status is 422",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 746298
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 28,
+            "name": "the error code is \"VALIDATION_FAILED\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 984498
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 29,
+            "name": "the error for field \"title\" says \"title contains unsupported control or bidirectional characters\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:74"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1289899
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;unsupported-special-characters-(null-byte)-are-rejected",
+        "keyword": "Scenario Outline",
+        "line": 34,
+        "name": "Unsupported special characters (null-byte) are rejected",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1325499
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8555299
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 26,
+            "name": "I create a post using the \"null-byte\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MjIgVW5wcm9jZXNzYWJsZSBFbnRpdHkKeyJlcnJvciI6eyJjb2RlIjoiVkFMSURBVElPTl9GQUlMRUQiLCJtZXNzYWdlIjoiVGhlIHBvc3QgaXMgaW52YWxpZCIsImRldGFpbHMiOlt7ImZpZWxkIjoidGl0bGUiLCJtZXNzYWdlIjoidGl0bGUgY29udGFpbnMgdW5zdXBwb3J0ZWQgY29udHJvbCBvciBiaWRpcmVjdGlvbmFsIGNoYXJhY3RlcnMifV19fQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 607599
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 27,
+            "name": "the response status is 422",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 364598
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 28,
+            "name": "the error code is \"VALIDATION_FAILED\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 531898
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 29,
+            "name": "the error for field \"title\" says \"title contains unsupported control or bidirectional characters\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:74"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1210699
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;unsupported-special-characters-(rtl-unicode)-are-rejected",
+        "keyword": "Scenario Outline",
+        "line": 35,
+        "name": "Unsupported special characters (rtl-unicode) are rejected",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1757700
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 7630498
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 26,
+            "name": "I create a post using the \"rtl-unicode\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MjIgVW5wcm9jZXNzYWJsZSBFbnRpdHkKeyJlcnJvciI6eyJjb2RlIjoiVkFMSURBVElPTl9GQUlMRUQiLCJtZXNzYWdlIjoiVGhlIHBvc3QgaXMgaW52YWxpZCIsImRldGFpbHMiOlt7ImZpZWxkIjoidGl0bGUiLCJtZXNzYWdlIjoidGl0bGUgY29udGFpbnMgdW5zdXBwb3J0ZWQgY29udHJvbCBvciBiaWRpcmVjdGlvbmFsIGNoYXJhY3RlcnMifV19fQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 678100
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 27,
+            "name": "the response status is 422",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 512197
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 28,
+            "name": "the error code is \"VALIDATION_FAILED\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 528798
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 29,
+            "name": "the error for field \"title\" says \"title contains unsupported control or bidirectional characters\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:74"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8190200
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;ordinary-special-text-(html-script)-is-data,-stored-exactly-as-sent",
+        "keyword": "Scenario Outline",
+        "line": 44,
+        "name": "Ordinary special text (html-script) is data, stored exactly as sent",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1302200
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 7764997
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 38,
+            "name": "I create a post using the \"html-script\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7ImlkIjoxMDIsInVzZXJJZCI6MSwidGl0bGUiOiI8c2NyaXB0PmFsZXJ0KFwieFwiKTwvc2NyaXB0PjxpbWcgc3JjPXggb25lcnJvcj1hbGVydCgxKT4iLCJib2R5IjoiQSB2YWxpZCBib2R5In0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 576798
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 39,
+            "name": "the response status is 201",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 599298
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 40,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDU1LzU1",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1460399
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;ordinary-special-text-(sql-injection)-is-data,-stored-exactly-as-sent",
+        "keyword": "Scenario Outline",
+        "line": 45,
+        "name": "Ordinary special text (sql-injection) is data, stored exactly as sent",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1321599
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 7667399
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 38,
+            "name": "I create a post using the \"sql-injection\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7ImlkIjoxMDMsInVzZXJJZCI6MSwidGl0bGUiOiInOyBEUk9QIFRBQkxFIHBvc3RzOyAtLSIsImJvZHkiOiJBIHZhbGlkIGJvZHkifQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1090098
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 39,
+            "name": "the response status is 201",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 592899
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 40,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDIzLzIz",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1782900
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;ordinary-special-text-(emoji)-is-data,-stored-exactly-as-sent",
+        "keyword": "Scenario Outline",
+        "line": 46,
+        "name": "Ordinary special text (emoji) is data, stored exactly as sent",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1230300
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 10412199
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 38,
+            "name": "I create a post using the \"emoji\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7ImlkIjoxMDQsInVzZXJJZCI6MSwidGl0bGUiOiJMYXVuY2gg8J+agPCflKUg8J+RqOKAjfCfkanigI3wn5GnIGNhZsOpIiwiYm9keSI6IkEgdmFsaWQgYm9keSJ9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 868999
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 39,
+            "name": "the response status is 201",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 522600
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 40,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDI1LzI1",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1927699
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;ordinary-special-text-(json-breakers)-is-data,-stored-exactly-as-sent",
+        "keyword": "Scenario Outline",
+        "line": 47,
+        "name": "Ordinary special text (json-breakers) is data, stored exactly as sent",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1110599
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5606300
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 38,
+            "name": "I create a post using the \"json-breakers\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7ImlkIjoxMDUsInVzZXJJZCI6MSwidGl0bGUiOiJcIn1dLHtcInVzZXJJZFwiOjk5LFwidGl0bGVcIjpcImluamVjdGVkIiwiYm9keSI6IkEgdmFsaWQgYm9keSJ9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1311898
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 39,
+            "name": "the response status is 201",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1263098
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 40,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDM0LzM0",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1889699
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;ordinary-special-text-(path-traversal)-is-data,-stored-exactly-as-sent",
+        "keyword": "Scenario Outline",
+        "line": 48,
+        "name": "Ordinary special text (path-traversal) is data, stored exactly as sent",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1488900
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4518099
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 38,
+            "name": "I create a post using the \"path-traversal\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7ImlkIjoxMDYsInVzZXJJZCI6MSwidGl0bGUiOiIuLi8uLi9ldGMvcGFzc3dkJTAwJTJlJTJlJTJmIiwiYm9keSI6IkEgdmFsaWQgYm9keSJ9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 495398
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 39,
+            "name": "the response status is 201",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 282499
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 40,
+            "name": "an accepted title is echoed back without truncation or corruption",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:53"
+            },
+            "embeddings": [
+              {
+                "data": "VGl0bGUgbGVuZ3RoIHNlbnQvcmVjZWl2ZWQ6IDI4LzI4",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1174599
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;missing-or-invalid-required-field-(missing-userid)-is-rejected-with-a-clear-message",
+        "keyword": "Scenario Outline",
+        "line": 58,
+        "name": "Missing or invalid required field (missing-userId) is rejected with a clear message",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 698100
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 5378999
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 51,
+            "name": "I create a post using the \"missing-userId\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MjIgVW5wcm9jZXNzYWJsZSBFbnRpdHkKeyJlcnJvciI6eyJjb2RlIjoiVkFMSURBVElPTl9GQUlMRUQiLCJtZXNzYWdlIjoiVGhlIHBvc3QgaXMgaW52YWxpZCIsImRldGFpbHMiOlt7ImZpZWxkIjoidXNlcklkIiwibWVzc2FnZSI6InVzZXJJZCBpcyByZXF1aXJlZCJ9XX19",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 653298
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 52,
+            "name": "the response status is 422",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 462398
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 53,
+            "name": "the error code is \"VALIDATION_FAILED\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 346399
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 54,
+            "name": "the error for field \"userId\" says \"userId is required\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:74"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 915200
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;missing-or-invalid-required-field-(missing-title)-is-rejected-with-a-clear-message",
+        "keyword": "Scenario Outline",
+        "line": 59,
+        "name": "Missing or invalid required field (missing-title) is rejected with a clear message",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 843299
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3862599
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 51,
+            "name": "I create a post using the \"missing-title\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MjIgVW5wcm9jZXNzYWJsZSBFbnRpdHkKeyJlcnJvciI6eyJjb2RlIjoiVkFMSURBVElPTl9GQUlMRUQiLCJtZXNzYWdlIjoiVGhlIHBvc3QgaXMgaW52YWxpZCIsImRldGFpbHMiOlt7ImZpZWxkIjoidGl0bGUiLCJtZXNzYWdlIjoidGl0bGUgaXMgcmVxdWlyZWQifV19fQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 439500
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 52,
+            "name": "the response status is 422",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 323498
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 53,
+            "name": "the error code is \"VALIDATION_FAILED\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 374799
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 54,
+            "name": "the error for field \"title\" says \"title is required\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:74"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 857899
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;missing-or-invalid-required-field-(empty-object)-is-rejected-with-a-clear-message",
+        "keyword": "Scenario Outline",
+        "line": 60,
+        "name": "Missing or invalid required field (empty-object) is rejected with a clear message",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 638199
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6957798
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 51,
+            "name": "I create a post using the \"empty-object\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MjIgVW5wcm9jZXNzYWJsZSBFbnRpdHkKeyJlcnJvciI6eyJjb2RlIjoiVkFMSURBVElPTl9GQUlMRUQiLCJtZXNzYWdlIjoiVGhlIHBvc3QgaXMgaW52YWxpZCIsImRldGFpbHMiOlt7ImZpZWxkIjoidXNlcklkIiwibWVzc2FnZSI6InVzZXJJZCBpcyByZXF1aXJlZCJ9LHsiZmllbGQiOiJ0aXRsZSIsIm1lc3NhZ2UiOiJ0aXRsZSBpcyByZXF1aXJlZCJ9XX19",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 564698
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 52,
+            "name": "the response status is 422",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 375099
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 53,
+            "name": "the error code is \"VALIDATION_FAILED\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 369899
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 54,
+            "name": "the error for field \"userId\" says \"userId is required\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:74"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1167200
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;missing-or-invalid-required-field-(userid-string)-is-rejected-with-a-clear-message",
+        "keyword": "Scenario Outline",
+        "line": 61,
+        "name": "Missing or invalid required field (userId-string) is rejected with a clear message",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 751699
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4143298
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 51,
+            "name": "I create a post using the \"userId-string\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MjIgVW5wcm9jZXNzYWJsZSBFbnRpdHkKeyJlcnJvciI6eyJjb2RlIjoiVkFMSURBVElPTl9GQUlMRUQiLCJtZXNzYWdlIjoiVGhlIHBvc3QgaXMgaW52YWxpZCIsImRldGFpbHMiOlt7ImZpZWxkIjoidXNlcklkIiwibWVzc2FnZSI6InVzZXJJZCBtdXN0IGJlIGEgcG9zaXRpdmUgaW50ZWdlciJ9XX19",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 426999
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 52,
+            "name": "the response status is 422",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 390499
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 53,
+            "name": "the error code is \"VALIDATION_FAILED\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 442899
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 54,
+            "name": "the error for field \"userId\" says \"userId must be a positive integer\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:74"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1429000
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;missing-or-invalid-required-field-(userid-negative)-is-rejected-with-a-clear-message",
+        "keyword": "Scenario Outline",
+        "line": 62,
+        "name": "Missing or invalid required field (userId-negative) is rejected with a clear message",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1831499
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 7675298
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 51,
+            "name": "I create a post using the \"userId-negative\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MjIgVW5wcm9jZXNzYWJsZSBFbnRpdHkKeyJlcnJvciI6eyJjb2RlIjoiVkFMSURBVElPTl9GQUlMRUQiLCJtZXNzYWdlIjoiVGhlIHBvc3QgaXMgaW52YWxpZCIsImRldGFpbHMiOlt7ImZpZWxkIjoidXNlcklkIiwibWVzc2FnZSI6InVzZXJJZCBtdXN0IGJlIGEgcG9zaXRpdmUgaW50ZWdlciJ9XX19",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 997398
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 52,
+            "name": "the response status is 422",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 568998
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 53,
+            "name": "the error code is \"VALIDATION_FAILED\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 684897
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 54,
+            "name": "the error for field \"userId\" says \"userId must be a positive integer\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:74"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1695600
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;missing-or-invalid-required-field-(title-null)-is-rejected-with-a-clear-message",
+        "keyword": "Scenario Outline",
+        "line": 63,
+        "name": "Missing or invalid required field (title-null) is rejected with a clear message",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1445799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 6472600
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 51,
+            "name": "I create a post using the \"title-null\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MjIgVW5wcm9jZXNzYWJsZSBFbnRpdHkKeyJlcnJvciI6eyJjb2RlIjoiVkFMSURBVElPTl9GQUlMRUQiLCJtZXNzYWdlIjoiVGhlIHBvc3QgaXMgaW52YWxpZCIsImRldGFpbHMiOlt7ImZpZWxkIjoidGl0bGUiLCJtZXNzYWdlIjoidGl0bGUgaXMgcmVxdWlyZWQifV19fQ==",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 852999
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 52,
+            "name": "the response status is 422",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2645799
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 53,
+            "name": "the error code is \"VALIDATION_FAILED\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1395399
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 54,
+            "name": "the error for field \"title\" says \"title is required\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:74"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3593200
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;missing-or-invalid-required-field-(title-object)-is-rejected-with-a-clear-message",
+        "keyword": "Scenario Outline",
+        "line": 64,
+        "name": "Missing or invalid required field (title-object) is rejected with a clear message",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1822500
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8140799
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 51,
+            "name": "I create a post using the \"title-object\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MjIgVW5wcm9jZXNzYWJsZSBFbnRpdHkKeyJlcnJvciI6eyJjb2RlIjoiVkFMSURBVElPTl9GQUlMRUQiLCJtZXNzYWdlIjoiVGhlIHBvc3QgaXMgaW52YWxpZCIsImRldGFpbHMiOlt7ImZpZWxkIjoidGl0bGUiLCJtZXNzYWdlIjoidGl0bGUgbXVzdCBiZSBhIHN0cmluZyJ9XX19",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1207800
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 52,
+            "name": "the response status is 422",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3470697
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 53,
+            "name": "the error code is \"VALIDATION_FAILED\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 710398
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 54,
+            "name": "the error for field \"title\" says \"title must be a string\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:74"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1007900
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;the-optional-body-may-be-omitted",
+        "keyword": "Scenario",
+        "line": 66,
+        "name": "The optional body may be omitted",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 716399
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 12189298
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 67,
+            "name": "I create a post using the \"missing-body\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7ImlkIjoxMDcsInVzZXJJZCI6MSwidGl0bGUiOiJBIHZhbGlkIHRpdGxlIn0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 627799
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 68,
+            "name": "the response status is 201",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 899300
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;unknown-fields-are-ignored-and-never-stored",
+        "keyword": "Scenario",
+        "line": 70,
+        "name": "Unknown fields are ignored and never stored",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 715199
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 7985998
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 71,
+            "name": "I create a post using the \"extra-fields\" payload",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:17"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCAyMDEgQ3JlYXRlZAp7ImlkIjoxMDgsInVzZXJJZCI6MSwidGl0bGUiOiJBIHZhbGlkIHRpdGxlIiwiYm9keSI6IkEgdmFsaWQgYm9keSJ9",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 800199
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 72,
+            "name": "the response status is 201",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1447099
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 73,
+            "name": "the response omits the field \"isAdmin\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:80"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 966699
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;malformed-json-is-a-client-error,-not-a-server-failure",
+        "keyword": "Scenario",
+        "line": 75,
+        "name": "Malformed JSON is a client error, not a server failure",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 757899
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 7056299
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 76,
+            "name": "I send a malformed JSON body to create a post",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:24"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MDAgQmFkIFJlcXVlc3QKeyJlcnJvciI6eyJjb2RlIjoiTUFMRk9STUVEX0pTT04iLCJtZXNzYWdlIjoiUmVxdWVzdCBib2R5IGlzIG5vdCB2YWxpZCBKU09OIn19",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1401799
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 77,
+            "name": "the response status is 400",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1037200
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 78,
+            "name": "the error code is \"MALFORMED_JSON\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1750999
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side;the-wrong-content-type-is-rejected",
+        "keyword": "Scenario",
+        "line": 80,
+        "name": "The wrong content type is rejected",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1583900
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4747698
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 81,
+            "name": "I create a post with the content type \"text/plain\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:29"
+            },
+            "embeddings": [
+              {
+                "data": "UE9TVCAvcG9zdHMgLT4gSFRUUCA0MTUgVW5zdXBwb3J0ZWQgTWVkaWEgVHlwZQp7ImVycm9yIjp7ImNvZGUiOiJVTlNVUFBPUlRFRF9NRURJQV9UWVBFIiwibWVzc2FnZSI6IkNvbnRlbnQtVHlwZSBtdXN0IGJlIGFwcGxpY2F0aW9uL2pzb24ifX0=",
+                "mime_type": "text/plain"
+              }
+            ]
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 462297
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 82,
+            "name": "the response status is 415",
+            "match": {
+              "location": "features\\step_definitions\\api.steps.js:66"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 271199
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 83,
+            "name": "the error code is \"UNSUPPORTED_MEDIA_TYPE\"",
+            "match": {
+              "location": "features\\step_definitions\\jsonplaceholder.steps.js:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 886300
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validating-posts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "a3-strict---a-validating-posts-api-rejects-invalid-input-with-proper-error-codes-and-never-fails-server-side",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "A3 strict - a validating posts API rejects invalid input with proper error codes and never fails server-side",
+    "tags": [
+      {
+        "name": "@validating-posts",
+        "line": 1
+      }
+    ],
+    "uri": "features\\validating-posts\\strict_create_post.feature"
+  }
+]

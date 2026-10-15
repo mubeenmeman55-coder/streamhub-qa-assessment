@@ -64,3 +64,19 @@ Then('the API rejects the request with a 4xx status', async function () {
   expect(s, `expected a 4xx rejection but the API answered ${s}`).toBeGreaterThanOrEqual(400);
   expect(s).toBeLessThan(500);
 });
+
+// ---------- strict (validating posts API) ----------
+Then('the error code is {string}', async function (code) {
+  expect(this.body?.error?.code).toBe(code);
+  expect(typeof this.body.error.message).toBe('string');
+});
+
+Then('the error for field {string} says {string}', async function (field, message) {
+  const detail = (this.body.error.details || []).find((d) => d.field === field);
+  expect(detail, `an error entry for "${field}"`).toBeDefined();
+  expect(detail.message).toBe(message);
+});
+
+Then('the response omits the field {string}', async function (field) {
+  expect(this.body).not.toHaveProperty(field);
+});

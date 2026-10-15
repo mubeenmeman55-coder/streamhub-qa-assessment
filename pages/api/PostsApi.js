@@ -13,7 +13,7 @@ const PAYLOADS = {
   emoji: { ...valid, title: 'Launch \u{1F680}\u{1F525} \u{1F468}‍\u{1F469}‍\u{1F467} café' },
   'control-chars': { ...valid, title: 'line1\nline2\ttab\r\nend\u0007bell\u001b[31m' },
   'null-byte': { ...valid, title: 'before\u0000after' },
-  'rtl-unicode': { ...valid, title: '‮evil‬ مرحبا 你好' },
+  'rtl-unicode': { ...valid, title: '\u202Eevil\u202C مرحبا 你好' },
   'json-breakers': { ...valid, title: '"}],{"userId":99,"title":"injected' },
   'path-traversal': { ...valid, title: '../../etc/passwd%00%2e%2e%2f' },
   'missing-userId': { title: valid.title, body: valid.body },

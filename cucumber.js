@@ -14,6 +14,7 @@ module.exports = {
   api: { ...common, paths: ['features/api/**/*.feature'], format: fmt('api') },
   webapp: { ...common, paths: ['features/webapp/**/*.feature'], format: fmt('webapp') },
   jsonplaceholder: { ...common, paths: ['features/jsonplaceholder/**/*.feature'], format: fmt('jsonplaceholder') },
+  strict: { ...common, paths: ['features/validating-posts/**/*.feature'], format: fmt('validating-posts') },
   gap: { ...common, tags: '@known-gap', paths: ['features/jsonplaceholder/**/*.feature'], format: fmt('known-gap') },
   broken: { ...common, tags: '@broken', paths: ['features/self-healing/**/*.feature'], format: fmt('broken') },
 };

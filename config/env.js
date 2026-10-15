@@ -16,6 +16,8 @@ module.exports = {
   apiBaseUrl: required('API_BASE_URL'),
   webappUrl: required('WEBAPP_URL'),
   startWebApp: process.env.START_WEBAPP !== 'false',
+  postsApiUrl: required('POSTS_API_URL'),
+  startPostsApi: process.env.START_POSTS_API !== 'false',
   jsonPlaceholderUrl: required('JSONPLACEHOLDER_URL'),
   startApiServer: process.env.START_API_SERVER !== 'false',
   headless: process.env.HEADLESS !== 'false',

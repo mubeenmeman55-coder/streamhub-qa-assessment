@@ -49,6 +49,7 @@ element makes a test pass for the wrong reason, which is worse than a red test.
 ```bash
 npm run heal                         # offline heuristic ranker + real browser validation
 ANTHROPIC_API_KEY=... npm run heal   # LLM picks the candidate; validation is identical
+npm run heal -- --prompt             # dry run: prints the exact prompt that would be sent, no API call
 ```
 
 Verified: the offline mode heals 5 of 5 locators against the app (see

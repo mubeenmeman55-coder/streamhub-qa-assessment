@@ -31,6 +31,7 @@ function summarise(reportFile) {
 const suites = [
   ['A2 - EMI web app (UI)', 'reports/cucumber/webapp.json', 'must pass'],
   ['A3 - JSONPlaceholder POST /posts', 'reports/cucumber/jsonplaceholder.json', 'must pass'],
+  ['A3 strict - local validating posts API', 'reports/cucumber/validating-posts.json', 'must pass'],
   ['Optional extra - mock catalogue API', 'reports/cucumber/api.json', 'must pass'],
   ['A3 known gaps (strict 4xx expectation)', 'reports/cucumber/known-gap.json', 'fails by design'],
   ['Self-healing demo (broken locators)', 'reports/cucumber/broken.json', 'fails by design'],

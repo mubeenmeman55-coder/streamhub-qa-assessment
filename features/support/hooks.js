@@ -5,12 +5,14 @@ const { chromium, request } = require('playwright');
 const config = require('../../config/env');
 const { startServer } = require('../../src/api/server');
 const { startWebApp } = require('../../src/webapp/server');
+const { startPostsApi } = require('../../src/posts-api/server');
 const { startLiveView } = require('./liveview');
 
 const SHOTS_DIR = path.join('reports', 'screenshots');
 let browser;
 let apiServer;
 let webServer;
+let postsServer;
 
 // A server that is already listening on the port (e.g. started by hand for demos) is reused instead of failing
 const startOrReuse = (start, port, name) => start(port).catch((e) => {
@@ -32,6 +34,9 @@ BeforeAll(async () => {
     const port = new URL(config.apiBaseUrl).port || 80;
     apiServer = await startOrReuse(startServer, port, 'mock API');
   }
+  if (config.startPostsApi) {
+    postsServer = await startOrReuse(startPostsApi, new URL(config.postsApiUrl).port || 80, 'validating posts API');
+  }
   if (config.startWebApp) {
     webServer = await startOrReuse(startWebApp, new URL(config.webappUrl).port || 80, 'EMI web app');
   }
@@ -46,6 +51,7 @@ AfterAll(async () => {
   if (browser) await browser.close();
   if (apiServer) await new Promise((resolve) => apiServer.close(resolve));
   if (webServer) await new Promise((resolve) => webServer.close(resolve));
+  if (postsServer) await new Promise((resolve) => postsServer.close(resolve));
 });
 
 Before({ tags: '@ui' }, async function ({ pickle }) {
@@ -69,6 +75,10 @@ AfterStep(async function ({ result }) {
 
 Before({ tags: '@api' }, async function () {
   this.api = await request.newContext({ baseURL: config.apiBaseUrl });
+});
+
+Before({ tags: '@validating-posts' }, async function () {
+  this.api = await request.newContext({ baseURL: config.postsApiUrl, timeout: 30000 });
 });
 
 Before({ tags: '@jsonplaceholder' }, async function () {

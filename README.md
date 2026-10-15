@@ -7,7 +7,7 @@ plus the self-healing exercise. A small mock API that I also built is kept as a 
 |---|---|---|
 | **A1** web app | EMI Calculator: dashboard (KPIs, pie, bar + balance line), report (filters, drill-down, CSV), compare view, prepayment, saved scenarios | `src/webapp/` |
 | **A2** Playwright tests | 89 Cucumber scenarios, page object, independent EMI oracle | `features/webapp/`, `pages/WebAppPage.js`, `features/step_definitions/webapp.steps.js` |
-| **A3** API test | JSONPlaceholder `POST /posts`: long titles, special characters, missing fields | `features/jsonplaceholder/`, `pages/api/PostsApi.js` |
+| **A3** API test | `POST /posts` with long titles, special characters, missing fields - against the real JSONPlaceholder **and** a local validating API that demonstrates the expected 4xx behaviour | `features/jsonplaceholder/`, `features/validating-posts/`, `src/posts-api/`, `pages/api/PostsApi.js` |
 | **A4** SQL | schema + round-trip transfers + IPL streaks, with output screenshots | `sql/`, `reports/sql/` |
 | Self-healing | 5 deliberately broken locators, write-up, working POC | `pages/LegacyEmiPage.js`, `docs/SELF_HEALING.md`, `self-healing/heal.js` |
 | Reflection | below | |
@@ -28,9 +28,10 @@ No manual server start is needed: the test hooks start the EMI app automatically
 |---|---|
 | `npm run test:webapp` | **A2** - the EMI web app scenarios |
 | `npm run test:jsonplaceholder` | **A3** - JSONPlaceholder POST tests (needs internet) |
+| `npm run test:strict` | **A3 strict** - the same payloads against a local posts API that validates (expects 4xx, never 5xx) |
 | `npm run test:gap` | A3 *known gaps* - run on demand, **expected to fail** (see findings) |
 | `npm run sql` | **A4** - builds the DB, runs both queries, writes outputs + screenshots |
-| `npm run heal` | self-healing POC |
+| `npm run heal` | self-healing POC (`npm run heal -- --prompt` prints the exact AI prompt without calling any API) |
 | `npm run results` | regenerate `RESULTS.md` from the reports |
 | `npm run test:broken` | the intentionally broken locators (**expected to fail**) |
 | `npm test` | everything that should pass (A2 + A3 + the optional mock-API suite) |
@@ -104,6 +105,24 @@ The brief expects "appropriate HTTP error codes ... without server-side failures
 - **`@known-gap` (`npm run test:gap`, fails by design)**: the strict expectation "invalid input -> 4xx" (6 payloads answered 201) and the
   malformed-JSON 500. The failing report is committed as `reports/cucumber/known-gap.html` as evidence, rather than weakening assertions to turn it green.
 
+### A3 strict - what the expected outcome looks like when the API validates (`src/posts-api`)
+
+Because JSONPlaceholder cannot demonstrate "appropriate HTTP error codes", a small local API (`POST /posts`) implements the behaviour the brief describes, and
+`features/validating-posts/` runs the same payloads against it (24 scenarios, all pass):
+
+| Input | Response |
+|---|---|
+| Title over 200 characters (1 KB, 10 KB, 100 KB) | **422** `VALIDATION_FAILED` with the offending field |
+| Body over 100 KB (1 MB title) | **413** `PAYLOAD_TOO_LARGE` |
+| Control characters, NUL byte, bidirectional override | **422**, `title contains unsupported control or bidirectional characters` |
+| `<script>`, SQL fragments, emoji, JSON-breaking quotes, path traversal | **201**, stored and echoed exactly (ordinary text is data) |
+| Missing/invalid `userId` or `title`, `{}`, wrong types | **422** with `"userId is required"`-style messages |
+| Malformed JSON | **400** `MALFORMED_JSON` |
+| Wrong content type | **415** |
+| Any input at all | never a 5xx |
+
+I mutation-tested this suite (raised the title limit, dropped the userId check, allowed NUL, allowed bidi characters, broke the malformed-JSON handler): every mutation was caught.
+
 ## A4 - SQL
 
 SQLite (window functions). Assumptions are stated in the query files: "within 10%" is measured against the first transfer and is inclusive, 24 h is inclusive,
@@ -124,7 +143,8 @@ features/webapp/      A2 scenarios            features/jsonplaceholder/   A3 sce
 features/step_definitions/   thin steps       features/support/   world + hooks (browser, servers, screenshots, live view)
 pages/                WebAppPage, LegacyEmiPage (broken locators);  pages/api/ PostsApi, CatalogApi
 utils/                independent EMI maths (test oracle) and number parsing
-src/webapp/           A1 app                  src/api/   mock API (optional extra, see end)
+src/webapp/           A1 app                  src/posts-api/   validating posts API (A3 strict)
+src/api/              mock catalogue API (optional extra, see end)
 sql/                  schema, data, queries, runner
 self-healing/         POC;   docs/SELF_HEALING.md
 ```
@@ -145,6 +165,22 @@ self-healing/         POC;   docs/SELF_HEALING.md
 - Generating files through shell heredocs repeatedly broke on quoting; writing files directly was more reliable.
 - An API suite that was green on its first run was not trusted until mutation-checked (I broke sorting and limit validation; the tests failed as they should).
 - JSONPlaceholder does not behave as the brief's expected outcome assumes; I documented the deviation and kept the failing evidence instead of bending assertions.
+
+## Latest results
+
+Details, per-feature tables and screenshots: [RESULTS.md](RESULTS.md).
+
+| Suite | Result |
+|---|---|
+| **A2** EMI web app (`test:webapp`) | 89 scenarios passed |
+| **A3** JSONPlaceholder, real service (`test:jsonplaceholder`) | 23 scenarios passed |
+| **A3 strict**, local validating API (`test:strict`) | 24 scenarios passed |
+| A3 known gaps (`test:gap`) | 7 failed **by design**: JSONPlaceholder answers 201 to invalid input and 500 to malformed JSON |
+| Optional mock catalogue API (`test:api`) | 58 scenarios passed |
+| Full run `npm test` | 194 scenarios passed |
+| `@broken` self-healing demo | 1 failed **by design** |
+| **A4** SQL | scenario 1: 6 rows, scenario 2: 5 rows (match hand-worked expectations) |
+| `npm run heal` (offline) | 5 of 5 healed |
 
 ## Optional extra: mock catalogue API
 
